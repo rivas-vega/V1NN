@@ -20,12 +20,13 @@ def fixture():
                 signs=np.where(groups == "excitatory", 1, -1), root_ids=np.arange(n).astype(str))
 
 
-def test_spatial_null_joint_degrees_and_repeatability():
+@pytest.mark.parametrize("weight", ["pairs", "edges"])
+def test_spatial_null_joint_degrees_and_repeatability(weight):
     arrays = fixture()
     graph = as_graph(arrays)
     args = (graph, len(graph.src)*5, arrays["groups"], arrays["positions_um"], [25, 50, 100])
-    result, report = rewire_joint_spatial(*args, seed=7, max_seconds=10, max_attempts=100000)
-    repeated, second = rewire_joint_spatial(*args, seed=7, max_seconds=10, max_attempts=100000)
+    result, report = rewire_joint_spatial(*args, seed=7, max_seconds=10, max_attempts=100000, stratum_weight=weight)
+    repeated, second = rewire_joint_spatial(*args, seed=7, max_seconds=10, max_attempts=100000, stratum_weight=weight)
     assert np.array_equal(result.dst, repeated.dst)
     assert report["attempts"] == second["attempts"]
     # Explicit node/group/bin checks independent of the vectorized audit.

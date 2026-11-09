@@ -8,13 +8,15 @@ import numpy as np
 from pilot import atomic_json
 
 
-def compare(original_folder, typed_folder):
+def compare(original_folder, typed_folder, control="type_null"):
+    if control not in ("type_null", "spatial_null"):
+        raise ValueError("Expected prepared null control")
     original_folder, typed_folder = Path(original_folder), Path(typed_folder)
     seeds = [7, 8, 9]
-    models = ("connectome", "degree_null", "no_edges", "type_null")
+    models = ("connectome", "degree_null", "no_edges", control)
     records = {}
     for model in models:
-        folder = typed_folder if model == "type_null" else original_folder
+        folder = typed_folder if model == control else original_folder
         records[model] = [json.loads((folder/f"{model}_{seed}.json").read_text()) for seed in seeds]
     ignored_config = {"model", "max_seconds"}
     for index, seed in enumerate(seeds):
@@ -30,12 +32,12 @@ def compare(original_folder, typed_folder):
             assert trial["environment"] == reference["environment"], "Different numerical environment"
             if model != "no_edges":
                 assert trial["parameters"] == reference["parameters"]
-            if model == "type_null":
+            if model == control:
                 assert trial["model"]["prepared_null"]["source_graph_sha256"] == reference["graph_sha256"]
     result = {"purpose": "development validation reused; descriptive, not independent confirmation",
               "seeds": seeds, "all_trials_completed_steps": 3000,
               "paired_data_config_environment_verified": True,
-              "models": {}, "paired_connectome_minus_type_null": {},
+              "models": {}, f"paired_connectome_minus_{control}": {},
               "uncertainty": "Three seeds jointly change routing, initialization, batches and null realization; no animal/population inference or equivalence test."}
     for model in models:
         result["models"][model] = {}
@@ -48,14 +50,15 @@ def compare(original_folder, typed_folder):
                     "sample_std": float(values.std(ddof=1))}
     for metric in ("mean_endpoint_error", "mean_squared_vector_error"):
         measured = result["models"]["connectome"]["validation"][metric]
-        null = result["models"]["type_null"]["validation"][metric]
+        null = result["models"][control]["validation"][metric]
         delta = np.array(measured["values_by_seed"])-null["values_by_seed"]
-        result["paired_connectome_minus_type_null"][metric] = {
+        result[f"paired_connectome_minus_{control}"][metric] = {
             "values_by_seed": delta.tolist(), "mean": float(delta.mean()),
             "relative_reduction_of_mean_error": 1-measured["mean"]/null["mean"]}
-    delta = result["paired_connectome_minus_type_null"]["mean_endpoint_error"]["values_by_seed"]
+    delta = result[f"paired_connectome_minus_{control}"]["mean_endpoint_error"]["values_by_seed"]
     result["development_decision"] = (
-        "consistent_lower_connectome_EPE; next audit spatial controls" if all(d < 0 for d in delta)
+        ("consistent_lower_connectome_EPE; next audit spatial controls" if control == "type_null"
+         else "consistent_lower_connectome_EPE; separate null and routing variation before confirmation") if all(d < 0 for d in delta)
         else "no_consistent_connectome_advantage; first separate null and routing variation")
     return result
 
@@ -65,7 +68,8 @@ if __name__ == "__main__":
     parser.add_argument("--original", type=Path, default=Path("reports/gpu_long_training"))
     parser.add_argument("--typed", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--control", choices=("type_null", "spatial_null"), default="type_null")
     args = parser.parse_args()
-    report = compare(args.original, args.typed)
+    report = compare(args.original, args.typed, args.control)
     atomic_json(args.output, report)
-    print(json.dumps(report["paired_connectome_minus_type_null"], indent=2))
+    print(json.dumps(report[f"paired_connectome_minus_{args.control}"], indent=2))

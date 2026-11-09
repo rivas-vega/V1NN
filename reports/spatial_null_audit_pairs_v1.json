@@ -1,0 +1,1023 @@
+{
+  "bundle_manifest_sha256": "264ccd9ea1b22fc619f6d90432a1ccd8283825685e6cd0d64bf72e04fca97693",
+  "generation_manifest": {
+    "kind": "joint_node_EI_in_out_distance_v1",
+    "source": {
+      "commit": "c4724ee80b93d4283f99a72c6b70de2c311cbc7b",
+      "dirty": false,
+      "python_sources_sha256": "d9a69a74a23ba4c44cd70d075f5cad3fd16230a6ae8b25071f01486852565ec3"
+    },
+    "source_graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+    "seeds": [
+      7,
+      8,
+      9
+    ],
+    "distance_boundaries_um": [
+      50,
+      100,
+      200,
+      400
+    ],
+    "distance_boundary_side": "left",
+    "swaps_per_edge": 5,
+    "max_attempts_per_graph": 20000000,
+    "max_seconds_per_graph": 300,
+    "minimum_edge_change_fraction": 0.5,
+    "nulls": {
+      "7": {
+        "file": "spatial_null_7.npz",
+        "sha256": "200990636dcc0bf0872cdab3fe4c1be4f9c64966381c0363d98c537f180fe21c",
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 3939339,
+          "seconds": 93.44532687300125,
+          "edge_change_fraction": 0.6713234455942143,
+          "proposal": "ordered edge pairs uniform conditional on fixed pre/post type and distance stratum; stratum weight m*(m-1)",
+          "compatible_strata": 20,
+          "uniform_sampling_claim": false
+        },
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.6713234455942143,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": true,
+          "uniform_sampling_claim": false,
+          "change_by_type_distance_stratum": {
+            "excitatory->excitatory/bin_0": {
+              "original_edges": 4416,
+              "changed_edges": 3092,
+              "fraction_changed": 0.7001811594202898
+            },
+            "excitatory->excitatory/bin_1": {
+              "original_edges": 10178,
+              "changed_edges": 9329,
+              "fraction_changed": 0.9165847907250934
+            },
+            "excitatory->excitatory/bin_2": {
+              "original_edges": 8791,
+              "changed_edges": 8224,
+              "fraction_changed": 0.9355022181776818
+            },
+            "excitatory->excitatory/bin_3": {
+              "original_edges": 7615,
+              "changed_edges": 6948,
+              "fraction_changed": 0.9124097176625082
+            },
+            "excitatory->excitatory/bin_4": {
+              "original_edges": 955,
+              "changed_edges": 810,
+              "fraction_changed": 0.8481675392670157
+            },
+            "excitatory->inhibitory/bin_0": {
+              "original_edges": 2370,
+              "changed_edges": 442,
+              "fraction_changed": 0.18649789029535865
+            },
+            "excitatory->inhibitory/bin_1": {
+              "original_edges": 6408,
+              "changed_edges": 3912,
+              "fraction_changed": 0.6104868913857678
+            },
+            "excitatory->inhibitory/bin_2": {
+              "original_edges": 5284,
+              "changed_edges": 3870,
+              "fraction_changed": 0.7323996971990916
+            },
+            "excitatory->inhibitory/bin_3": {
+              "original_edges": 2296,
+              "changed_edges": 1893,
+              "fraction_changed": 0.8244773519163763
+            },
+            "excitatory->inhibitory/bin_4": {
+              "original_edges": 117,
+              "changed_edges": 38,
+              "fraction_changed": 0.3247863247863248
+            },
+            "inhibitory->excitatory/bin_0": {
+              "original_edges": 3339,
+              "changed_edges": 404,
+              "fraction_changed": 0.12099430967355496
+            },
+            "inhibitory->excitatory/bin_1": {
+              "original_edges": 9657,
+              "changed_edges": 4248,
+              "fraction_changed": 0.43988816402609504
+            },
+            "inhibitory->excitatory/bin_2": {
+              "original_edges": 8713,
+              "changed_edges": 4818,
+              "fraction_changed": 0.5529668311718122
+            },
+            "inhibitory->excitatory/bin_3": {
+              "original_edges": 4527,
+              "changed_edges": 2992,
+              "fraction_changed": 0.6609233487961123
+            },
+            "inhibitory->excitatory/bin_4": {
+              "original_edges": 688,
+              "changed_edges": 390,
+              "fraction_changed": 0.5668604651162791
+            },
+            "inhibitory->inhibitory/bin_0": {
+              "original_edges": 380,
+              "changed_edges": 12,
+              "fraction_changed": 0.031578947368421054
+            },
+            "inhibitory->inhibitory/bin_1": {
+              "original_edges": 1299,
+              "changed_edges": 435,
+              "fraction_changed": 0.3348729792147806
+            },
+            "inhibitory->inhibitory/bin_2": {
+              "original_edges": 1276,
+              "changed_edges": 766,
+              "fraction_changed": 0.6003134796238244
+            },
+            "inhibitory->inhibitory/bin_3": {
+              "original_edges": 604,
+              "changed_edges": 380,
+              "fraction_changed": 0.6291390728476821
+            },
+            "inhibitory->inhibitory/bin_4": {
+              "original_edges": 40,
+              "changed_edges": 0,
+              "fraction_changed": 0.0
+            }
+          },
+          "joint_in_out_type_distance_degrees_exact": true,
+          "distance_boundaries_um": [
+            50,
+            100,
+            200,
+            400
+          ],
+          "distance_boundary_side": "left",
+          "exact_continuous_distances_preserved": false
+        }
+      },
+      "8": {
+        "file": "spatial_null_8.npz",
+        "sha256": "f4bba4da4f6f7f1f9a7726a247b5646fc089b7637d71709502b72ddda044d61b",
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 3925707,
+          "seconds": 88.65994529400086,
+          "edge_change_fraction": 0.6706394943827341,
+          "proposal": "ordered edge pairs uniform conditional on fixed pre/post type and distance stratum; stratum weight m*(m-1)",
+          "compatible_strata": 20,
+          "uniform_sampling_claim": false
+        },
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.6706394943827341,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": true,
+          "uniform_sampling_claim": false,
+          "change_by_type_distance_stratum": {
+            "excitatory->excitatory/bin_0": {
+              "original_edges": 4416,
+              "changed_edges": 3077,
+              "fraction_changed": 0.6967844202898551
+            },
+            "excitatory->excitatory/bin_1": {
+              "original_edges": 10178,
+              "changed_edges": 9297,
+              "fraction_changed": 0.9134407545686776
+            },
+            "excitatory->excitatory/bin_2": {
+              "original_edges": 8791,
+              "changed_edges": 8252,
+              "fraction_changed": 0.9386872938232284
+            },
+            "excitatory->excitatory/bin_3": {
+              "original_edges": 7615,
+              "changed_edges": 7022,
+              "fraction_changed": 0.9221273801707157
+            },
+            "excitatory->excitatory/bin_4": {
+              "original_edges": 955,
+              "changed_edges": 811,
+              "fraction_changed": 0.8492146596858638
+            },
+            "excitatory->inhibitory/bin_0": {
+              "original_edges": 2370,
+              "changed_edges": 470,
+              "fraction_changed": 0.19831223628691982
+            },
+            "excitatory->inhibitory/bin_1": {
+              "original_edges": 6408,
+              "changed_edges": 3881,
+              "fraction_changed": 0.605649188514357
+            },
+            "excitatory->inhibitory/bin_2": {
+              "original_edges": 5284,
+              "changed_edges": 3875,
+              "fraction_changed": 0.7333459500378501
+            },
+            "excitatory->inhibitory/bin_3": {
+              "original_edges": 2296,
+              "changed_edges": 1865,
+              "fraction_changed": 0.8122822299651568
+            },
+            "excitatory->inhibitory/bin_4": {
+              "original_edges": 117,
+              "changed_edges": 44,
+              "fraction_changed": 0.37606837606837606
+            },
+            "inhibitory->excitatory/bin_0": {
+              "original_edges": 3339,
+              "changed_edges": 374,
+              "fraction_changed": 0.11200958370769691
+            },
+            "inhibitory->excitatory/bin_1": {
+              "original_edges": 9657,
+              "changed_edges": 4225,
+              "fraction_changed": 0.4375064719892306
+            },
+            "inhibitory->excitatory/bin_2": {
+              "original_edges": 8713,
+              "changed_edges": 4812,
+              "fraction_changed": 0.5522782049810627
+            },
+            "inhibitory->excitatory/bin_3": {
+              "original_edges": 4527,
+              "changed_edges": 3002,
+              "fraction_changed": 0.6631323172078639
+            },
+            "inhibitory->excitatory/bin_4": {
+              "original_edges": 688,
+              "changed_edges": 385,
+              "fraction_changed": 0.559593023255814
+            },
+            "inhibitory->inhibitory/bin_0": {
+              "original_edges": 380,
+              "changed_edges": 6,
+              "fraction_changed": 0.015789473684210527
+            },
+            "inhibitory->inhibitory/bin_1": {
+              "original_edges": 1299,
+              "changed_edges": 462,
+              "fraction_changed": 0.3556581986143187
+            },
+            "inhibitory->inhibitory/bin_2": {
+              "original_edges": 1276,
+              "changed_edges": 737,
+              "fraction_changed": 0.5775862068965517
+            },
+            "inhibitory->inhibitory/bin_3": {
+              "original_edges": 604,
+              "changed_edges": 352,
+              "fraction_changed": 0.5827814569536424
+            },
+            "inhibitory->inhibitory/bin_4": {
+              "original_edges": 40,
+              "changed_edges": 0,
+              "fraction_changed": 0.0
+            }
+          },
+          "joint_in_out_type_distance_degrees_exact": true,
+          "distance_boundaries_um": [
+            50,
+            100,
+            200,
+            400
+          ],
+          "distance_boundary_side": "left",
+          "exact_continuous_distances_preserved": false
+        }
+      },
+      "9": {
+        "file": "spatial_null_9.npz",
+        "sha256": "c6627d895fee08f00ad6b5db78b36ed20e0f6db078ad9f41b745496affb7dedd",
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 3924096,
+          "seconds": 89.48147051100023,
+          "edge_change_fraction": 0.6687776271959267,
+          "proposal": "ordered edge pairs uniform conditional on fixed pre/post type and distance stratum; stratum weight m*(m-1)",
+          "compatible_strata": 20,
+          "uniform_sampling_claim": false
+        },
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.6687776271959267,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": true,
+          "uniform_sampling_claim": false,
+          "change_by_type_distance_stratum": {
+            "excitatory->excitatory/bin_0": {
+              "original_edges": 4416,
+              "changed_edges": 2980,
+              "fraction_changed": 0.6748188405797102
+            },
+            "excitatory->excitatory/bin_1": {
+              "original_edges": 10178,
+              "changed_edges": 9372,
+              "fraction_changed": 0.9208095893102771
+            },
+            "excitatory->excitatory/bin_2": {
+              "original_edges": 8791,
+              "changed_edges": 8186,
+              "fraction_changed": 0.9311796155158685
+            },
+            "excitatory->excitatory/bin_3": {
+              "original_edges": 7615,
+              "changed_edges": 6972,
+              "fraction_changed": 0.9155613919894944
+            },
+            "excitatory->excitatory/bin_4": {
+              "original_edges": 955,
+              "changed_edges": 837,
+              "fraction_changed": 0.8764397905759163
+            },
+            "excitatory->inhibitory/bin_0": {
+              "original_edges": 2370,
+              "changed_edges": 427,
+              "fraction_changed": 0.18016877637130801
+            },
+            "excitatory->inhibitory/bin_1": {
+              "original_edges": 6408,
+              "changed_edges": 3884,
+              "fraction_changed": 0.6061173533083646
+            },
+            "excitatory->inhibitory/bin_2": {
+              "original_edges": 5284,
+              "changed_edges": 3849,
+              "fraction_changed": 0.7284254352763059
+            },
+            "excitatory->inhibitory/bin_3": {
+              "original_edges": 2296,
+              "changed_edges": 1894,
+              "fraction_changed": 0.8249128919860628
+            },
+            "excitatory->inhibitory/bin_4": {
+              "original_edges": 117,
+              "changed_edges": 32,
+              "fraction_changed": 0.27350427350427353
+            },
+            "inhibitory->excitatory/bin_0": {
+              "original_edges": 3339,
+              "changed_edges": 408,
+              "fraction_changed": 0.12219227313566937
+            },
+            "inhibitory->excitatory/bin_1": {
+              "original_edges": 9657,
+              "changed_edges": 4211,
+              "fraction_changed": 0.436056746401574
+            },
+            "inhibitory->excitatory/bin_2": {
+              "original_edges": 8713,
+              "changed_edges": 4819,
+              "fraction_changed": 0.5530816022036038
+            },
+            "inhibitory->excitatory/bin_3": {
+              "original_edges": 4527,
+              "changed_edges": 2988,
+              "fraction_changed": 0.6600397614314115
+            },
+            "inhibitory->excitatory/bin_4": {
+              "original_edges": 688,
+              "changed_edges": 389,
+              "fraction_changed": 0.565406976744186
+            },
+            "inhibitory->inhibitory/bin_0": {
+              "original_edges": 380,
+              "changed_edges": 4,
+              "fraction_changed": 0.010526315789473684
+            },
+            "inhibitory->inhibitory/bin_1": {
+              "original_edges": 1299,
+              "changed_edges": 429,
+              "fraction_changed": 0.3302540415704388
+            },
+            "inhibitory->inhibitory/bin_2": {
+              "original_edges": 1276,
+              "changed_edges": 765,
+              "fraction_changed": 0.5995297805642633
+            },
+            "inhibitory->inhibitory/bin_3": {
+              "original_edges": 604,
+              "changed_edges": 356,
+              "fraction_changed": 0.5894039735099338
+            },
+            "inhibitory->inhibitory/bin_4": {
+              "original_edges": 40,
+              "changed_edges": 0,
+              "fraction_changed": 0.0
+            }
+          },
+          "joint_in_out_type_distance_degrees_exact": true,
+          "distance_boundaries_um": [
+            50,
+            100,
+            200,
+            400
+          ],
+          "distance_boundary_side": "left",
+          "exact_continuous_distances_preserved": false
+        }
+      }
+    }
+  },
+  "original_spatial_summary": {
+    "mean_um": 136.8597447841517,
+    "distance_bins_um": [
+      50,
+      100,
+      200,
+      400
+    ],
+    "distance_bin_counts": [
+      10505,
+      27542,
+      24064,
+      15042,
+      1800
+    ],
+    "quantiles_10_50_90_um": [
+      44.17978759568685,
+      103.25117366887409,
+      285.3528035302058
+    ],
+    "interpretation": "soma separation; not axonal path length"
+  },
+  "nulls": {
+    "7": {
+      "verified_loader": {
+        "manifest_sha256": "264ccd9ea1b22fc619f6d90432a1ccd8283825685e6cd0d64bf72e04fca97693",
+        "source_graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+        "null_graph_sha256": "200990636dcc0bf0872cdab3fe4c1be4f9c64966381c0363d98c537f180fe21c",
+        "seed": 7,
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.6713234455942143,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": true,
+          "uniform_sampling_claim": false,
+          "change_by_type_distance_stratum": {
+            "excitatory->excitatory/bin_0": {
+              "original_edges": 4416,
+              "changed_edges": 3092,
+              "fraction_changed": 0.7001811594202898
+            },
+            "excitatory->excitatory/bin_1": {
+              "original_edges": 10178,
+              "changed_edges": 9329,
+              "fraction_changed": 0.9165847907250934
+            },
+            "excitatory->excitatory/bin_2": {
+              "original_edges": 8791,
+              "changed_edges": 8224,
+              "fraction_changed": 0.9355022181776818
+            },
+            "excitatory->excitatory/bin_3": {
+              "original_edges": 7615,
+              "changed_edges": 6948,
+              "fraction_changed": 0.9124097176625082
+            },
+            "excitatory->excitatory/bin_4": {
+              "original_edges": 955,
+              "changed_edges": 810,
+              "fraction_changed": 0.8481675392670157
+            },
+            "excitatory->inhibitory/bin_0": {
+              "original_edges": 2370,
+              "changed_edges": 442,
+              "fraction_changed": 0.18649789029535865
+            },
+            "excitatory->inhibitory/bin_1": {
+              "original_edges": 6408,
+              "changed_edges": 3912,
+              "fraction_changed": 0.6104868913857678
+            },
+            "excitatory->inhibitory/bin_2": {
+              "original_edges": 5284,
+              "changed_edges": 3870,
+              "fraction_changed": 0.7323996971990916
+            },
+            "excitatory->inhibitory/bin_3": {
+              "original_edges": 2296,
+              "changed_edges": 1893,
+              "fraction_changed": 0.8244773519163763
+            },
+            "excitatory->inhibitory/bin_4": {
+              "original_edges": 117,
+              "changed_edges": 38,
+              "fraction_changed": 0.3247863247863248
+            },
+            "inhibitory->excitatory/bin_0": {
+              "original_edges": 3339,
+              "changed_edges": 404,
+              "fraction_changed": 0.12099430967355496
+            },
+            "inhibitory->excitatory/bin_1": {
+              "original_edges": 9657,
+              "changed_edges": 4248,
+              "fraction_changed": 0.43988816402609504
+            },
+            "inhibitory->excitatory/bin_2": {
+              "original_edges": 8713,
+              "changed_edges": 4818,
+              "fraction_changed": 0.5529668311718122
+            },
+            "inhibitory->excitatory/bin_3": {
+              "original_edges": 4527,
+              "changed_edges": 2992,
+              "fraction_changed": 0.6609233487961123
+            },
+            "inhibitory->excitatory/bin_4": {
+              "original_edges": 688,
+              "changed_edges": 390,
+              "fraction_changed": 0.5668604651162791
+            },
+            "inhibitory->inhibitory/bin_0": {
+              "original_edges": 380,
+              "changed_edges": 12,
+              "fraction_changed": 0.031578947368421054
+            },
+            "inhibitory->inhibitory/bin_1": {
+              "original_edges": 1299,
+              "changed_edges": 435,
+              "fraction_changed": 0.3348729792147806
+            },
+            "inhibitory->inhibitory/bin_2": {
+              "original_edges": 1276,
+              "changed_edges": 766,
+              "fraction_changed": 0.6003134796238244
+            },
+            "inhibitory->inhibitory/bin_3": {
+              "original_edges": 604,
+              "changed_edges": 380,
+              "fraction_changed": 0.6291390728476821
+            },
+            "inhibitory->inhibitory/bin_4": {
+              "original_edges": 40,
+              "changed_edges": 0,
+              "fraction_changed": 0.0
+            }
+          },
+          "joint_in_out_type_distance_degrees_exact": true,
+          "distance_boundaries_um": [
+            50,
+            100,
+            200,
+            400
+          ],
+          "distance_boundary_side": "left",
+          "exact_continuous_distances_preserved": false
+        },
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 3939339,
+          "seconds": 93.44532687300125,
+          "edge_change_fraction": 0.6713234455942143,
+          "proposal": "ordered edge pairs uniform conditional on fixed pre/post type and distance stratum; stratum weight m*(m-1)",
+          "compatible_strata": 20,
+          "uniform_sampling_claim": false
+        }
+      },
+      "routing_equal": true,
+      "node_and_readout_initial_parameters_equal": true,
+      "initial_theta_multiset_equal": true,
+      "parameter_budget_equal": true,
+      "initial_EI_mass_max_absolute_difference": 0.0,
+      "by_group": {
+        "excitatory->excitatory": {
+          "edges": 31955,
+          "fraction_changed": 0.8888436864340479
+        },
+        "excitatory->inhibitory": {
+          "edges": 16475,
+          "fraction_changed": 0.6163884673748103
+        },
+        "inhibitory->excitatory": {
+          "edges": 26924,
+          "fraction_changed": 0.47734363393255086
+        },
+        "inhibitory->inhibitory": {
+          "edges": 3599,
+          "fraction_changed": 0.4426229508196721
+        }
+      },
+      "spatial_summary": {
+        "mean_um": 139.9410760676071,
+        "distance_bins_um": [
+          50,
+          100,
+          200,
+          400
+        ],
+        "distance_bin_counts": [
+          10505,
+          27542,
+          24064,
+          15042,
+          1800
+        ],
+        "quantiles_10_50_90_um": [
+          44.534189236166796,
+          104.36432463251029,
+          288.93847208064966
+        ],
+        "interpretation": "soma separation; not axonal path length"
+      }
+    },
+    "8": {
+      "verified_loader": {
+        "manifest_sha256": "264ccd9ea1b22fc619f6d90432a1ccd8283825685e6cd0d64bf72e04fca97693",
+        "source_graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+        "null_graph_sha256": "f4bba4da4f6f7f1f9a7726a247b5646fc089b7637d71709502b72ddda044d61b",
+        "seed": 8,
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.6706394943827341,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": true,
+          "uniform_sampling_claim": false,
+          "change_by_type_distance_stratum": {
+            "excitatory->excitatory/bin_0": {
+              "original_edges": 4416,
+              "changed_edges": 3077,
+              "fraction_changed": 0.6967844202898551
+            },
+            "excitatory->excitatory/bin_1": {
+              "original_edges": 10178,
+              "changed_edges": 9297,
+              "fraction_changed": 0.9134407545686776
+            },
+            "excitatory->excitatory/bin_2": {
+              "original_edges": 8791,
+              "changed_edges": 8252,
+              "fraction_changed": 0.9386872938232284
+            },
+            "excitatory->excitatory/bin_3": {
+              "original_edges": 7615,
+              "changed_edges": 7022,
+              "fraction_changed": 0.9221273801707157
+            },
+            "excitatory->excitatory/bin_4": {
+              "original_edges": 955,
+              "changed_edges": 811,
+              "fraction_changed": 0.8492146596858638
+            },
+            "excitatory->inhibitory/bin_0": {
+              "original_edges": 2370,
+              "changed_edges": 470,
+              "fraction_changed": 0.19831223628691982
+            },
+            "excitatory->inhibitory/bin_1": {
+              "original_edges": 6408,
+              "changed_edges": 3881,
+              "fraction_changed": 0.605649188514357
+            },
+            "excitatory->inhibitory/bin_2": {
+              "original_edges": 5284,
+              "changed_edges": 3875,
+              "fraction_changed": 0.7333459500378501
+            },
+            "excitatory->inhibitory/bin_3": {
+              "original_edges": 2296,
+              "changed_edges": 1865,
+              "fraction_changed": 0.8122822299651568
+            },
+            "excitatory->inhibitory/bin_4": {
+              "original_edges": 117,
+              "changed_edges": 44,
+              "fraction_changed": 0.37606837606837606
+            },
+            "inhibitory->excitatory/bin_0": {
+              "original_edges": 3339,
+              "changed_edges": 374,
+              "fraction_changed": 0.11200958370769691
+            },
+            "inhibitory->excitatory/bin_1": {
+              "original_edges": 9657,
+              "changed_edges": 4225,
+              "fraction_changed": 0.4375064719892306
+            },
+            "inhibitory->excitatory/bin_2": {
+              "original_edges": 8713,
+              "changed_edges": 4812,
+              "fraction_changed": 0.5522782049810627
+            },
+            "inhibitory->excitatory/bin_3": {
+              "original_edges": 4527,
+              "changed_edges": 3002,
+              "fraction_changed": 0.6631323172078639
+            },
+            "inhibitory->excitatory/bin_4": {
+              "original_edges": 688,
+              "changed_edges": 385,
+              "fraction_changed": 0.559593023255814
+            },
+            "inhibitory->inhibitory/bin_0": {
+              "original_edges": 380,
+              "changed_edges": 6,
+              "fraction_changed": 0.015789473684210527
+            },
+            "inhibitory->inhibitory/bin_1": {
+              "original_edges": 1299,
+              "changed_edges": 462,
+              "fraction_changed": 0.3556581986143187
+            },
+            "inhibitory->inhibitory/bin_2": {
+              "original_edges": 1276,
+              "changed_edges": 737,
+              "fraction_changed": 0.5775862068965517
+            },
+            "inhibitory->inhibitory/bin_3": {
+              "original_edges": 604,
+              "changed_edges": 352,
+              "fraction_changed": 0.5827814569536424
+            },
+            "inhibitory->inhibitory/bin_4": {
+              "original_edges": 40,
+              "changed_edges": 0,
+              "fraction_changed": 0.0
+            }
+          },
+          "joint_in_out_type_distance_degrees_exact": true,
+          "distance_boundaries_um": [
+            50,
+            100,
+            200,
+            400
+          ],
+          "distance_boundary_side": "left",
+          "exact_continuous_distances_preserved": false
+        },
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 3925707,
+          "seconds": 88.65994529400086,
+          "edge_change_fraction": 0.6706394943827341,
+          "proposal": "ordered edge pairs uniform conditional on fixed pre/post type and distance stratum; stratum weight m*(m-1)",
+          "compatible_strata": 20,
+          "uniform_sampling_claim": false
+        }
+      },
+      "routing_equal": true,
+      "node_and_readout_initial_parameters_equal": true,
+      "initial_theta_multiset_equal": true,
+      "parameter_budget_equal": true,
+      "initial_EI_mass_max_absolute_difference": 0.0,
+      "by_group": {
+        "excitatory->excitatory": {
+          "edges": 31955,
+          "fraction_changed": 0.8905961508371147
+        },
+        "excitatory->inhibitory": {
+          "edges": 16475,
+          "fraction_changed": 0.615174506828528
+        },
+        "inhibitory->excitatory": {
+          "edges": 26924,
+          "fraction_changed": 0.4753379884118259
+        },
+        "inhibitory->inhibitory": {
+          "edges": 3599,
+          "fraction_changed": 0.43262017227007504
+        }
+      },
+      "spatial_summary": {
+        "mean_um": 139.94012916784186,
+        "distance_bins_um": [
+          50,
+          100,
+          200,
+          400
+        ],
+        "distance_bin_counts": [
+          10505,
+          27542,
+          24064,
+          15042,
+          1800
+        ],
+        "quantiles_10_50_90_um": [
+          44.33760762080679,
+          104.45259334262605,
+          289.3776845528086
+        ],
+        "interpretation": "soma separation; not axonal path length"
+      }
+    },
+    "9": {
+      "verified_loader": {
+        "manifest_sha256": "264ccd9ea1b22fc619f6d90432a1ccd8283825685e6cd0d64bf72e04fca97693",
+        "source_graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+        "null_graph_sha256": "c6627d895fee08f00ad6b5db78b36ed20e0f6db078ad9f41b745496affb7dedd",
+        "seed": 9,
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.6687776271959267,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": true,
+          "uniform_sampling_claim": false,
+          "change_by_type_distance_stratum": {
+            "excitatory->excitatory/bin_0": {
+              "original_edges": 4416,
+              "changed_edges": 2980,
+              "fraction_changed": 0.6748188405797102
+            },
+            "excitatory->excitatory/bin_1": {
+              "original_edges": 10178,
+              "changed_edges": 9372,
+              "fraction_changed": 0.9208095893102771
+            },
+            "excitatory->excitatory/bin_2": {
+              "original_edges": 8791,
+              "changed_edges": 8186,
+              "fraction_changed": 0.9311796155158685
+            },
+            "excitatory->excitatory/bin_3": {
+              "original_edges": 7615,
+              "changed_edges": 6972,
+              "fraction_changed": 0.9155613919894944
+            },
+            "excitatory->excitatory/bin_4": {
+              "original_edges": 955,
+              "changed_edges": 837,
+              "fraction_changed": 0.8764397905759163
+            },
+            "excitatory->inhibitory/bin_0": {
+              "original_edges": 2370,
+              "changed_edges": 427,
+              "fraction_changed": 0.18016877637130801
+            },
+            "excitatory->inhibitory/bin_1": {
+              "original_edges": 6408,
+              "changed_edges": 3884,
+              "fraction_changed": 0.6061173533083646
+            },
+            "excitatory->inhibitory/bin_2": {
+              "original_edges": 5284,
+              "changed_edges": 3849,
+              "fraction_changed": 0.7284254352763059
+            },
+            "excitatory->inhibitory/bin_3": {
+              "original_edges": 2296,
+              "changed_edges": 1894,
+              "fraction_changed": 0.8249128919860628
+            },
+            "excitatory->inhibitory/bin_4": {
+              "original_edges": 117,
+              "changed_edges": 32,
+              "fraction_changed": 0.27350427350427353
+            },
+            "inhibitory->excitatory/bin_0": {
+              "original_edges": 3339,
+              "changed_edges": 408,
+              "fraction_changed": 0.12219227313566937
+            },
+            "inhibitory->excitatory/bin_1": {
+              "original_edges": 9657,
+              "changed_edges": 4211,
+              "fraction_changed": 0.436056746401574
+            },
+            "inhibitory->excitatory/bin_2": {
+              "original_edges": 8713,
+              "changed_edges": 4819,
+              "fraction_changed": 0.5530816022036038
+            },
+            "inhibitory->excitatory/bin_3": {
+              "original_edges": 4527,
+              "changed_edges": 2988,
+              "fraction_changed": 0.6600397614314115
+            },
+            "inhibitory->excitatory/bin_4": {
+              "original_edges": 688,
+              "changed_edges": 389,
+              "fraction_changed": 0.565406976744186
+            },
+            "inhibitory->inhibitory/bin_0": {
+              "original_edges": 380,
+              "changed_edges": 4,
+              "fraction_changed": 0.010526315789473684
+            },
+            "inhibitory->inhibitory/bin_1": {
+              "original_edges": 1299,
+              "changed_edges": 429,
+              "fraction_changed": 0.3302540415704388
+            },
+            "inhibitory->inhibitory/bin_2": {
+              "original_edges": 1276,
+              "changed_edges": 765,
+              "fraction_changed": 0.5995297805642633
+            },
+            "inhibitory->inhibitory/bin_3": {
+              "original_edges": 604,
+              "changed_edges": 356,
+              "fraction_changed": 0.5894039735099338
+            },
+            "inhibitory->inhibitory/bin_4": {
+              "original_edges": 40,
+              "changed_edges": 0,
+              "fraction_changed": 0.0
+            }
+          },
+          "joint_in_out_type_distance_degrees_exact": true,
+          "distance_boundaries_um": [
+            50,
+            100,
+            200,
+            400
+          ],
+          "distance_boundary_side": "left",
+          "exact_continuous_distances_preserved": false
+        },
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 3924096,
+          "seconds": 89.48147051100023,
+          "edge_change_fraction": 0.6687776271959267,
+          "proposal": "ordered edge pairs uniform conditional on fixed pre/post type and distance stratum; stratum weight m*(m-1)",
+          "compatible_strata": 20,
+          "uniform_sampling_claim": false
+        }
+      },
+      "routing_equal": true,
+      "node_and_readout_initial_parameters_equal": true,
+      "initial_theta_multiset_equal": true,
+      "parameter_budget_equal": true,
+      "initial_EI_mass_max_absolute_difference": 0.0,
+      "by_group": {
+        "excitatory->excitatory": {
+          "edges": 31955,
+          "fraction_changed": 0.8870912220309811
+        },
+        "excitatory->inhibitory": {
+          "edges": 16475,
+          "fraction_changed": 0.6122003034901365
+        },
+        "inhibitory->excitatory": {
+          "edges": 26924,
+          "fraction_changed": 0.4759693953350171
+        },
+        "inhibitory->inhibitory": {
+          "edges": 3599,
+          "fraction_changed": 0.43178660739094193
+        }
+      },
+      "spatial_summary": {
+        "mean_um": 139.8982334788577,
+        "distance_bins_um": [
+          50,
+          100,
+          200,
+          400
+        ],
+        "distance_bin_counts": [
+          10505,
+          27542,
+          24064,
+          15042,
+          1800
+        ],
+        "quantiles_10_50_90_um": [
+          44.52221532930027,
+          104.52517247055854,
+          289.2794659286821
+        ],
+        "interpretation": "soma separation; not axonal path length"
+      }
+    }
+  }
+}

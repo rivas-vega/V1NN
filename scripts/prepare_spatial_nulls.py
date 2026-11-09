@@ -12,7 +12,7 @@ from v1nn.spatial_nulls import rewire_joint_spatial
 BOUNDARIES = [50, 100, 200, 400]
 
 
-def prepare(source, output):
+def prepare(source, output, proposal_weight="edges"):
     source, output = Path(source), Path(output)
     if output.exists():
         raise FileExistsError("Use a fresh directory; preserve previous attempts")
@@ -22,13 +22,14 @@ def prepare(source, output):
     graph = as_graph(arrays)
     manifest = {"kind": "joint_node_EI_in_out_distance_v1", "source": source_identity(),
                 "source_graph_sha256": sha256(source), "seeds": [7, 8, 9],
+                "proposal_weight": proposal_weight,
                 "distance_boundaries_um": BOUNDARIES, "distance_boundary_side": "left",
                 "swaps_per_edge": 5, "max_attempts_per_graph": 20000000,
                 "max_seconds_per_graph": 300, "minimum_edge_change_fraction": 0.5, "nulls": {}}
     try:
         for seed in manifest["seeds"]:
             null, rewiring = rewire_joint_spatial(graph, 5*len(graph.src), arrays["groups"],
-                arrays["positions_um"], BOUNDARIES, seed=seed, max_attempts=20000000, max_seconds=300)
+                arrays["positions_um"], BOUNDARIES, seed=seed, max_attempts=20000000, max_seconds=300, stratum_weight=proposal_weight)
             candidate = {key: arrays[key] for key in IDENTITY}
             candidate.update(src=null.src, dst=null.dst)
             audit = audit_spatial_null(arrays, candidate, BOUNDARIES, minimum_change=0.5)
@@ -50,5 +51,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=Path("data/processed/column_v1718.npz"))
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--proposal-weight", choices=("pairs", "edges"), default="edges")
     args = parser.parse_args()
-    prepare(args.source, args.output)
+    prepare(args.source, args.output, args.proposal_weight)

@@ -750,3 +750,31 @@ activación de la ampliación a 75. Todavía no se reserva ni se lanza otra GPU.
 la prueba de aceptación usa 80 nodos para disponer de más intercambios factibles.
 El umbral del experimento real permanece en 50 %. Se registrará también el cambio
 por cada estrato E/I-distancia: un cambio global alto no garantiza mezcla local.
+
+**Resultado CPU inicial y corrección metodológica antes de GPU.** Los tres nulos
+cumplieron invariantes y cambiaron 66,88–67,13 % de aristas a 5×E; tiempos
+89–93 s. Sin embargo, la auditoría por estrato detectó una debilidad que el filtro
+global no veía: las 40 aristas I→I de más de 400 µm permanecían intactas en las
+tres semillas, y de las 380 I→I de hasta 50 µm solo cambiaba el 1,1–3,2 %.
+Un recuento exhaustivo de pares en esos dos estratos encontró 214 y 746 propuestas
+ordenadas legales en el grafo original, respectivamente. Por tanto no es una
+imposibilidad geométrica: el peso m(m−1) apenas visita algunos estratos pequeños.
+Informe inicial conservado en `spatial_null_audit_pairs_v1.json`; diagnóstico en
+`spatial_small_strata_diagnostic.json`. Ninguno se ha entrenado en GPU.
+
+Se justifica **una revisión del mecanismo de propuestas**, manteniendo exactamente
+restricciones, semillas, 5×E aceptados y cotas anteriores: elegir estratos con peso
+m iguala la exposición propuesta por arista, y mantiene simetría inversa porque
+los tamaños de estrato son constantes. Registrar propuestas y aceptaciones por
+estrato. Esta revisión responde a evidencia estructural previa a observar errores
+de aprendizaje, no a búsqueda de una ventaja del conectoma. Preparar en otro
+directorio; conservar todos los grafos iniciales. Además del filtro global, antes
+de GPU comprobar que los dos estratos deficientes cambian al menos 10 % de sus
+aristas en cada semilla. Es un filtro contra controles localmente casi idénticos,
+no certificado de mezcla. Si falla, detener GPU y estudiar la limitación; no
+seguir iterando ni relajar el umbral automáticamente.
+
+La cota analítica de saturación de grados solo obliga a conservar 68 aristas
+(0,086 %); es una cota optimista, no prueba de que las demás puedan intercambiarse.
+`spatial_capacity_audit.json` conserva el cálculo y se comprobó sobre una fixture
+completa, en la que todas las aristas están forzadas.

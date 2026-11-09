@@ -47,7 +47,7 @@ def run(config, output, graph_path=None):
     graph, graph_hash = None, None
     null_info = None
     if config.model in ("type_null", "spatial_null") and graph_path is None:
-        raise ValueError("type_null requires an audited bundle graph")
+        raise ValueError(f"{config.model} requires an audited bundle graph")
     if graph_path:
         graph_path = Path(graph_path)
         graph_hash = hashlib.sha256(graph_path.read_bytes()).hexdigest()

@@ -79,7 +79,7 @@
   "available_after_reservations_usd": 36,
   "billing_note": "Billing queried before and after campaigns; delayed snapshots are not a final invoice. Keep reservations until reconciled.",
   "active_bionn_apps": 0,
-  "latest_ephemeral_apps_metered_snapshot_usd": 0.45508727,
+  "latest_ephemeral_apps_metered_snapshot_usd": 0.40975391,
   "snapshot_note": "Workspace ephemeral-app usage snapshot, not a final project invoice. Billing can lag and snapshot totals can update at different times. Reservations remain conservative.",
   "conditional_maximum_usd": 75,
   "extension_activated": false,

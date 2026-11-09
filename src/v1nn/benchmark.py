@@ -156,7 +156,7 @@ class GraphPredictor(nn.Module):
 
 def build_model(config, graph=None):
     if config.model in ("type_null", "spatial_null") and graph is None:
-        raise ValueError("type_null requires a CPU-prepared and audited supplied graph")
+        raise ValueError(f"{config.model} requires a CPU-prepared and audited supplied graph")
     torch.manual_seed(config.seed)
     features = 2*config.grid**2
     if config.model in ("static", "linear_history", "gru", "temporal_cnn"):

@@ -1,0 +1,15 @@
+{
+  "source_graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+  "distance_boundaries_um": [
+    50,
+    100,
+    200,
+    400
+  ],
+  "edges": 78953,
+  "forced_by_saturated_outgoing_marginal": 11,
+  "forced_by_saturated_incoming_marginal": 58,
+  "forced_by_either_marginal": 68,
+  "upper_bound_change_fraction": 0.9991387281040619,
+  "interpretation": "An existing edge must remain when its source or target uses every eligible neighbor in that type/distance bin. This is only an optimistic upper bound; additional constraints may force more edges."
+}

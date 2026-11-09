@@ -34,19 +34,19 @@ una entrada antigua.
 
 ## Próxima acción concreta
 
-Entrada 011 completa: tres ensayos E/I a 3000 pasos y análisis publicados.
-Ninguna GPU BIONN activa; reservas acumuladas 14 USD, margen 36 USD.
-
-Siguiente acción: implementar y auditar **en CPU** nulos con grados entrantes y
-salientes conjuntos por tipo E/I e intervalos de distancia [50, 100, 200, 400] µm.
-La restricción espacial actual solo conserva bins salientes; no reutilizarla
-etiquetándola como conservación por ambos extremos. Leer entrada 011 para el
-criterio de generación, presupuesto temporal y plan de interpretación. Semillas
-7/8/9, 5×E intercambios, ≥50 % de cambio, máximo 20 millones de propuestas y
-300 s por grafo. Si falla la auditoría, no entrenar; mejorar método sin relajar
-restricciones en silencio. Si pasa, una nueva campaña de tres controles espaciales
-con iguales hiperparámetros y reserva adicional previa de 2 USD. Esa reserva y
-esa campaña **todavía no existen**. No repetir los ensayos E/I completados.
+Entrada 012 en curso. El generador espacial ya conserva grados conjuntos por
+E/I e intervalo [50, 100, 200, 400] µm en ambos extremos; 40 tests pasan.
+Los tres primeros nulos (pesos de propuesta m(m−1)) cumplieron el filtro global,
+pero casi no alteraban dos estratos I→I pequeños pese a existir intercambios legales.
+Se conservan como diagnóstico, **no se usarán en GPU**. La entrada 012 justifica
+una revisión previa a medir rendimiento: peso m para igualar propuestas por arista,
+misma configuración de 5×E, 300 s y 20 millones de intentos. Generar y auditar
+`spatial_nulls_v2` en CPU. Además de ≥50 % de cambio global e invariantes exactos,
+exigir ≥10 % de cambio en I→I de hasta 50 µm y de más de 400 µm en cada semilla.
+Si falla, no lanzar GPU ni seguir relajando condiciones; estudiar el generador.
+Si pasa, reservar 2 USD y entrenar solo tres controles espaciales, reutilizando
+los anteriores. Todavía no existe reserva espacial ni campaña espacial GPU.
+Reservas acumuladas 14 USD, límite operativo 50 USD, extensión no activada.
 
 La partición de 2048 clips de la entrada 009 ya fue consultada. Conserva valor
 como confirmación de los modelos congelados entonces, pero no puede reciclarse

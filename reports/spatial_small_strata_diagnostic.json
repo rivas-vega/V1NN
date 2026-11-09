@@ -1,0 +1,17 @@
+{
+  "purpose": "Pre-GPU structural diagnosis of least-changed inhibitory strata; no performance selection",
+  "strata": {
+    "0": {
+      "edges": 380,
+      "ordered_pairs": 144020,
+      "legal_ordered_swaps_at_original": 746,
+      "edges_in_any_legal_initial_swap": 257
+    },
+    "4": {
+      "edges": 40,
+      "ordered_pairs": 1560,
+      "legal_ordered_swaps_at_original": 214,
+      "edges_in_any_legal_initial_swap": 37
+    }
+  }
+}

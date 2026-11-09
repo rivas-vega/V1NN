@@ -40,11 +40,13 @@ def joint_degrees(graph, groups, positions, boundaries):
 
 
 def rewire_joint_spatial(graph, swaps, groups, positions, boundaries, seed=0,
-                         max_attempts=20000000, max_seconds=300):
+                         max_attempts=20000000, max_seconds=300, stratum_weight="pairs"):
     """Symmetric proposals within fixed (pre-type, post-type, distance) strata.
 
     Select a stratum with probability proportional to m*(m-1), then an ordered
-    pair of distinct edge slots uniformly. Reject unless both new distances
+    pair of distinct edge slots uniformly. Alternatively weight by m to equalize
+    proposal exposure per edge across strata, retaining reverse symmetry.
+    Reject unless both new distances
     retain that bin. All four edges thus share a bin, preserving BOTH ends'
     joint degrees. Strata stay fixed after each swap. No certified mixing claim.
     """
@@ -55,6 +57,8 @@ def rewire_joint_spatial(graph, swaps, groups, positions, boundaries, seed=0,
     groups = np.asarray(groups)
     if groups.shape != (graph.n,) or np.any(graph.src == graph.dst):
         raise ValueError("Require groups per node and no autapses")
+    if stratum_weight not in ("pairs", "edges"):
+        raise ValueError("Choose pairs or edges for constant stratum weights")
     positions, boundaries = validate_geometry(graph.n, positions, boundaries)
     if len(boundaries) > 254:
         raise ValueError("Too many bins for the bounded geometry cache")
@@ -71,7 +75,10 @@ def rewire_joint_spatial(graph, swaps, groups, positions, boundaries, seed=0,
     strata = [ids for ids in strata if len(ids) >= 2]
     if swaps and not strata:
         raise RuntimeError("No compatible edge pair for spatial rewiring")
-    cumulative = np.cumsum([len(ids)*(len(ids)-1) for ids in strata], dtype=np.int64)
+    weights = [len(ids)*(len(ids)-1) if stratum_weight == "pairs" else len(ids) for ids in strata]
+    cumulative = np.cumsum(weights, dtype=np.int64)
+    stratum_attempts = np.zeros(len(strata), dtype=np.int64)
+    stratum_accepted = np.zeros(len(strata), dtype=np.int64)
     edges = set(zip(source.tolist(), target.tolist()))
     original_edges = edges.copy()
     rng = np.random.default_rng(seed)
@@ -79,7 +86,9 @@ def rewire_joint_spatial(graph, swaps, groups, positions, boundaries, seed=0,
     while accepted < swaps and attempts < max_attempts:
         if attempts % 1024 == 0 and time.monotonic()-started >= max_seconds:
             raise RuntimeError(f"Spatial null time limit: {accepted}/{swaps} swaps, {attempts} proposals")
-        block = strata[int(np.searchsorted(cumulative, rng.integers(int(cumulative[-1])), side="right"))]
+        selected = int(np.searchsorted(cumulative, rng.integers(int(cumulative[-1])), side="right"))
+        block = strata[selected]
+        stratum_attempts[selected] += 1
         i = int(rng.integers(len(block)))
         j = int(rng.integers(len(block)-1))
         if j >= i:
@@ -96,6 +105,7 @@ def rewire_joint_spatial(graph, swaps, groups, positions, boundaries, seed=0,
         edges.add((a, d)); edges.add((c, b))
         target[i], target[j] = d, b
         accepted += 1
+        stratum_accepted[selected] += 1
     if accepted != swaps:
         raise RuntimeError(f"Spatial null attempt limit: {accepted}/{swaps} swaps, {attempts} proposals")
     candidate = Graph(graph.n, source, target, graph.signs.copy())
@@ -103,8 +113,16 @@ def rewire_joint_spatial(graph, swaps, groups, positions, boundaries, seed=0,
     new = joint_degrees(candidate, groups, positions, boundaries)
     if not all(np.array_equal(a, b) for a, b in zip(old, new)):
         raise AssertionError("Joint incoming/outgoing type-distance degrees changed")
+    sampling = []
+    for index, block in enumerate(strata):
+        slot = block[0]
+        sampling.append({"pre": str(groups[source[slot]]), "post": str(groups[target[slot]]),
+                         "distance_bin": int(edge_bins[slot]), "edges": len(block),
+                         "attempts": int(stratum_attempts[index]), "accepted_swaps": int(stratum_accepted[index])})
     return candidate, {"accepted_swaps": accepted, "attempts": attempts,
                        "seconds": time.monotonic()-started,
                        "edge_change_fraction": len(original_edges-edges)/max(1, len(edges)),
-                       "proposal": "ordered edge pairs uniform conditional on fixed pre/post type and distance stratum; stratum weight m*(m-1)",
+                       "proposal": "constant stratum weights, then uniform distinct ordered edge pair within stratum",
+                       "stratum_weight": "m*(m-1)" if stratum_weight == "pairs" else "m",
+                       "strata_sampling": sampling,
                        "compatible_strata": len(strata), "uniform_sampling_claim": False}

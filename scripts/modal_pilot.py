@@ -32,7 +32,7 @@ image = (modal.Image.debian_slim(python_version="3.12")
 def validate_campaign(models, seeds, steps, seconds, grid, alpha=0.3,
                       train_size=2048, batch=64, lr=0.003):
     allowed = {"static", "linear_history", "gru", "temporal_cnn", "connectome",
-               "no_edges", "reset", "reservoir", "degree_null", "type_null"}
+               "no_edges", "reset", "reservoir", "degree_null", "type_null", "spatial_null"}
     model_list = models.split(",")
     seed_list = [int(seed) for seed in seeds.split(",")]
     if not model_list or any(model not in allowed for model in model_list):
@@ -53,13 +53,14 @@ def validate_campaign(models, seeds, steps, seconds, grid, alpha=0.3,
 
 
 def validate_graph_choice(graph, models, null_manifest_sha256):
-    if graph not in ("synthetic", "microns", "typed_nulls"):
-        raise ValueError("Choose synthetic, microns or typed_nulls")
-    if graph == "typed_nulls":
-        if models != "type_null" or not re.fullmatch(r"[0-9a-f]{64}", null_manifest_sha256):
-            raise ValueError("typed_nulls requires only type_null and a pinned manifest SHA256")
-    elif "type_null" in models.split(",") or null_manifest_sha256:
-        raise ValueError("type_null and its manifest require graph=typed_nulls")
+    prepared = {"typed_nulls": "type_null", "spatial_nulls": "spatial_null"}
+    if graph not in ("synthetic", "microns", *prepared):
+        raise ValueError("Choose synthetic, microns, typed_nulls or spatial_nulls")
+    if graph in prepared:
+        if models != prepared[graph] or not re.fullmatch(r"[0-9a-f]{64}", null_manifest_sha256):
+            raise ValueError("Prepared graphs require the matching single model and pinned manifest SHA256")
+    elif set(models.split(",")) & set(prepared.values()) or null_manifest_sha256:
+        raise ValueError("Prepared null models and manifests require their prepared graph mode")
 
 
 @app.function(image=image, gpu="T4", cpu=2, memory=8192, timeout=1800,
@@ -73,7 +74,7 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
     from datetime import datetime, timezone
     from pilot import atomic_json, run
     from v1nn.benchmark import PilotConfig
-    from v1nn.nulls import load_type_null
+    from v1nn.nulls import load_prepared_null
 
     trials = validate_campaign(models, seeds, steps, seconds, grid, alpha, train_size, batch, lr)
     validate_graph_choice(graph, models, null_manifest_sha256)
@@ -90,11 +91,12 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
     volume.commit()
     try:
         graph_path = None
-        if graph == "typed_nulls":
-            bundle = Path("/results/type-null-bundles")/null_manifest_sha256
+        if graph in ("typed_nulls", "spatial_nulls"):
+            bundle_root = "type-null-bundles" if graph == "typed_nulls" else "spatial-null-bundles"
+            bundle = Path("/results")/bundle_root/null_manifest_sha256
             for _, seed in trials:
-                load_type_null(bundle/f"type_null_{seed}.npz", seed, null_manifest_sha256)
-            shutil.copytree(bundle, folder/"data/typed_nulls")
+                load_prepared_null(bundle/f"{models}_{seed}.npz", seed, null_manifest_sha256, model=models)
+            shutil.copytree(bundle, folder/"data"/graph)
             volume.commit()
         if graph == "microns":
             graph_path = folder/"data/column_v1718.npz"
@@ -103,8 +105,8 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
                             "--output", str(graph_path)], check=True, timeout=180)
             volume.commit()
         for model, seed in trials:
-            if graph == "typed_nulls":
-                graph_path = folder/f"data/typed_nulls/type_null_{seed}.npz"
+            if graph in ("typed_nulls", "spatial_nulls"):
+                graph_path = folder/"data"/graph/f"{model}_{seed}.npz"
             remaining = seconds-(time.monotonic()-started)
             if remaining < 30:
                 summary["status"] = "time_limit"
