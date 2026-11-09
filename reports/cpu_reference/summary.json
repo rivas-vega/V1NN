@@ -1,0 +1,354 @@
+{
+  "source_commit": "517e62448524e457e51d2536cd57d3c2d9909d25",
+  "device": "cpu",
+  "trials": [
+    {
+      "model": "gru",
+      "seed": 7,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.44454678893089294,
+            "mean_endpoint_error": 0.574387788772583
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.42165637016296387,
+            "mean_endpoint_error": 0.5606776475906372
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 12.261069929000769
+    },
+    {
+      "model": "static",
+      "seed": 7,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.544934868812561,
+            "mean_endpoint_error": 1.218567132949829
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.5321130752563477,
+            "mean_endpoint_error": 1.2140061855316162
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 2.858600870999908
+    },
+    {
+      "model": "linear_history",
+      "seed": 7,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.803924798965454,
+            "mean_endpoint_error": 1.274370551109314
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.70138418674469,
+            "mean_endpoint_error": 1.2241381406784058
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 2.665826159000062
+    },
+    {
+      "model": "temporal_cnn",
+      "seed": 7,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.6245748996734619,
+            "mean_endpoint_error": 0.7066670060157776
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.6403435468673706,
+            "mean_endpoint_error": 0.706494152545929
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 4.182580092000535
+    },
+    {
+      "model": "gru",
+      "seed": 8,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.40849411487579346,
+            "mean_endpoint_error": 0.5444564819335938
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.3920953869819641,
+            "mean_endpoint_error": 0.5318304300308228
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 6.903032867000547
+    },
+    {
+      "model": "static",
+      "seed": 8,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.519425392150879,
+            "mean_endpoint_error": 1.2081745862960815
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.5295075178146362,
+            "mean_endpoint_error": 1.2134451866149902
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 3.4430121619998317
+    },
+    {
+      "model": "linear_history",
+      "seed": 8,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.8101723194122314,
+            "mean_endpoint_error": 1.2760642766952515
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.7386332750320435,
+            "mean_endpoint_error": 1.2355329990386963
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 2.571170090999658
+    },
+    {
+      "model": "temporal_cnn",
+      "seed": 8,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.6492827534675598,
+            "mean_endpoint_error": 0.7206401824951172
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.6079509258270264,
+            "mean_endpoint_error": 0.6974773406982422
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 4.284093999000106
+    },
+    {
+      "model": "gru",
+      "seed": 9,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.43710482120513916,
+            "mean_endpoint_error": 0.5667083263397217
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.46692967414855957,
+            "mean_endpoint_error": 0.5773981809616089
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 6.414089476000299
+    },
+    {
+      "model": "static",
+      "seed": 9,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.5199170112609863,
+            "mean_endpoint_error": 1.209609866142273
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.5357364416122437,
+            "mean_endpoint_error": 1.214769959449768
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 2.5414455699992686
+    },
+    {
+      "model": "linear_history",
+      "seed": 9,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.774936318397522,
+            "mean_endpoint_error": 1.2633886337280273
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.7257130146026611,
+            "mean_endpoint_error": 1.220130205154419
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 2.696413038999708
+    },
+    {
+      "model": "temporal_cnn",
+      "seed": 9,
+      "status": "steps_completed",
+      "steps": 500,
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.653120756149292,
+            "mean_endpoint_error": 0.7217807173728943
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.6878630518913269,
+            "mean_endpoint_error": 0.7413442134857178
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 3.8661468840000452
+    }
+  ]
+}

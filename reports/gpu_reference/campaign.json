@@ -1,0 +1,337 @@
+{
+  "run_id": "20261109T183120Z-d416befc",
+  "status": "completed",
+  "gpu": "T4",
+  "source_commit": "517e62448524e457e51d2536cd57d3c2d9909d25",
+  "source_dirty": false,
+  "time_budget_seconds": 1200,
+  "server_timeout_seconds": 1800,
+  "trials": [
+    {
+      "file": "gru_7.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.4445457458496094,
+            "mean_endpoint_error": 0.5743874311447144
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.4216552674770355,
+            "mean_endpoint_error": 0.5606767535209656
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "static_7.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.544934868812561,
+            "mean_endpoint_error": 1.218567132949829
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.5321130752563477,
+            "mean_endpoint_error": 1.2140060663223267
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "linear_history_7.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.803924798965454,
+            "mean_endpoint_error": 1.274370551109314
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.7013840675354004,
+            "mean_endpoint_error": 1.2241382598876953
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "temporal_cnn_7.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.6245748996734619,
+            "mean_endpoint_error": 0.7066669464111328
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.6403435468673706,
+            "mean_endpoint_error": 0.706494152545929
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "gru_8.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.4084970951080322,
+            "mean_endpoint_error": 0.544457733631134
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.39210450649261475,
+            "mean_endpoint_error": 0.5318353176116943
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "static_8.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.519425392150879,
+            "mean_endpoint_error": 1.2081745862960815
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.5295072793960571,
+            "mean_endpoint_error": 1.2134451866149902
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "linear_history_8.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.8101723194122314,
+            "mean_endpoint_error": 1.276064395904541
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.7386332750320435,
+            "mean_endpoint_error": 1.2355329990386963
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "temporal_cnn_8.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.6492828130722046,
+            "mean_endpoint_error": 0.7206401824951172
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.6079509258270264,
+            "mean_endpoint_error": 0.6974772810935974
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "gru_9.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.4371044337749481,
+            "mean_endpoint_error": 0.5667079091072083
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.4669288098812103,
+            "mean_endpoint_error": 0.5773976445198059
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "static_9.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.5199171304702759,
+            "mean_endpoint_error": 1.2096099853515625
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.5357364416122437,
+            "mean_endpoint_error": 1.214769959449768
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "linear_history_9.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.774936556816101,
+            "mean_endpoint_error": 1.2633888721466064
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.7257130146026611,
+            "mean_endpoint_error": 1.2201300859451294
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "temporal_cnn_9.json",
+      "completed_steps": 500,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 0.653120756149292,
+            "mean_endpoint_error": 0.7217807173728943
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 0.6878630518913269,
+            "mean_endpoint_error": 0.7413442730903625
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    }
+  ],
+  "graph": "synthetic",
+  "seconds": 52.248416112
+}

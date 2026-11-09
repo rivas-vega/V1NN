@@ -4,5 +4,33 @@
   "authorized_total": 50.0,
   "account_invoice_verified": false,
   "policy": "Record every attempted paid campaign; estimates and reservations are not invoices. Reserve 2 USD per <=1800 second T4 campaign including margin. Check account usage before scaling.",
-  "campaigns": []
+  "campaigns": [
+    {
+      "app_id": "ap-5KveeqwTQlpsF6VClkQAtI",
+      "status": "rejected_payment_method",
+      "gpu_started": false,
+      "reservation_usd": 2.0
+    },
+    {
+      "app_id": "ap-A42Htgr9Eqj13ZTsjEyjFt",
+      "run_id": "20261109T183120Z-d416befc",
+      "status": "completed",
+      "trials": 12,
+      "function_seconds": 52.248416112,
+      "reservation_usd": 2.0,
+      "source_commit": "517e62448524e457e51d2536cd57d3c2d9909d25"
+    },
+    {
+      "app_id": "ap-YRMM4DrWdNLJDPqGzgZ0dy",
+      "run_id": "20261109T183308Z-cecfdc0f",
+      "status": "completed",
+      "trials": 12,
+      "function_seconds": 191.534503044,
+      "reservation_usd": 2.0,
+      "source_commit": "517e62448524e457e51d2536cd57d3c2d9909d25"
+    }
+  ],
+  "reserved_usd": 6.0,
+  "available_after_reservations_usd": 44.0,
+  "billing_note": "Billing queried before and after campaigns; delayed snapshots are not a final invoice. Keep reservations until reconciled."
 }

@@ -103,3 +103,69 @@ esta entrada; se añadirá su resultado en una entrada posterior.
 **Siguiente paso.** Medir coste/rendimiento real de GPU y comparar varias semillas
 con controles emparejados. No escalar por reducir únicamente la pérdida de
 entrenamiento. Mantener el techo de gasto acumulado y registrar fallos completos.
+
+## 2026-11-09 — 004. Modal operativo y 24 ensayos completos en T4
+
+**Incidencia conservada.** El primer arranque creó la imagen, pero Modal rechazó
+la T4 por ausencia de método de pago. App `ap-5KveeqwTQlpsF6VClkQAtI`, detenida
+sin lanzar GPU. El usuario añadió el método de pago y el siguiente intento funcionó.
+
+**Revisión ejecutada.** `517e62448524e457e51d2536cd57d3c2d9909d25`, árbol limpio.
+Python 3.12.10, PyTorch 2.14.1+cu130, NumPy 2.5.4, CUDA 13.0, Tesla T4.
+La identidad del commit remoto está en `campaign.json`; los informes individuales
+registran además el hash de los archivos Python. Checkpoints recuperados localmente
+y conservados en Modal; no se publican en GitHub.
+
+**Referencias, tres semillas (7/8/9), 500 pasos, batch 64.** Mismos 2.048 clips
+de entrenamiento y 512 de validación. Misma calibración de sensores para todas.
+Los valores ± son desviaciones estándar entre entrenamientos, no intervalos de
+confianza, ni variabilidad entre animales. EPE es error euclídeo de velocidad.
+
+| Modelo | Error cuadrático validación | EPE validación | Error cuadrático, final idéntico |
+| --- | ---: | ---: | ---: |
+| GRU | 0.43005 ± 0.01903 | 0.56185 | 0.42689 |
+| CNN temporal | 0.64233 ± 0.01549 | 0.71636 | 0.64539 |
+| Estático | 1.52809 ± 0.01459 | 1.21212 | 1.53245 |
+| Historia lineal | 1.79634 ± 0.01880 | 1.27127 | 1.72191 |
+| Velocidad cero | 1.49805 | 1.20630 | 1.50000 |
+
+Informes: [GPU](../reports/gpu_reference/campaign.json),
+[reproducción CPU](../reports/cpu_reference/summary.json).
+La campaña GPU duró 52,25 s dentro de la función; el total de los runners CPU
+fue 54,69 s. No son tiempos completos de facturación ni un benchmark de hardware
+aislado; incluyen preparaciones y, en la campaña, commits al volumen.
+
+**MICrONS, mismos datos y tres semillas, 500 pasos, batch 64, alpha 0,3.**
+
+| Modelo | Error cuadrático validación | EPE validación | Error cuadrático, final idéntico |
+| --- | ---: | ---: | ---: |
+| Conectoma medido | 1.64505 ± 0.03368 | 1.23104 | 1.70956 |
+| Sin aristas | 1.65978 ± 0.03309 | 1.23637 | 1.72310 |
+| Estado reiniciado | 1.61528 ± 0.03641 | 1.23383 | 1.65848 |
+| Nulo de grados dirigidos | 1.64327 ± 0.02559 | 1.23067 | 1.70920 |
+
+[Campaña MICrONS](../reports/gpu_microns/campaign.json): 12 ensayos completos,
+191,53 s dentro de la función. No hay mejora frente a velocidad cero. Medido y
+nulo quedan prácticamente iguales en este régimen. No se interpreta como
+refutación general de los conectomas: interfaz, dinámica y optimización son
+limitaciones sustanciales. Este nulo conserva grados, **no tipos ni distancias**.
+
+**Exploración previa de CPU.** Se conservan [cuatro ensayos](../reports/cpu_microns_short/summary.json)
+de la semilla 7, 100 pasos y batch 16. Se detuvo la continuación de esa campaña
+cuando estuvo disponible la GPU; no se presentan las otras semillas como ejecutadas.
+El nulo realizó 394.765 intercambios en 574.595 intentos y cambió el 83,95 % de las
+aristas. Esto mide cambio efectivo, no mezcla uniforme. Auditoría estructural:
+[microns_audit.json](../reports/microns_audit.json).
+
+**Reflexión y siguiente retoque.** La GRU reduce mucho su pérdida de entrenamiento;
+MICrONS con alpha 0,3 permanece cerca del nivel trivial. Antes de aumentar tamaño
+o presupuesto, se expone `--alpha` para probar si una actualización más rápida
+facilita interacciones temporales. Mantener los mismos datos, signos, routing,
+topología y presupuesto entre medido, nulo y control sin aristas. Este ajuste es
+exploratorio sobre validación; no modifica retrospectivamente el protocolo final.
+
+**Comprobaciones y gasto.** 27 tests pasan, incluida la propagación de alpha y su
+efecto sobre la memoria individual. Se consultó facturación antes y después; las
+cifras inmediatas pueden llegar con retraso. Se mantienen 6 USD de reservas
+conservadoras para los tres intentos, no 6 USD de gasto medido. El techo sigue
+siendo 50 USD acumulados. [Registro de cómputo](../reports/compute_ledger.json).

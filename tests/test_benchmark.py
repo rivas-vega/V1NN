@@ -76,3 +76,18 @@ def test_invalid_budget_rejected():
     for seconds in (0, -1, float("nan"), float("inf")):
         with pytest.raises(ValueError):
             PilotConfig(max_seconds=seconds).validate()
+
+
+def test_alpha_changes_single_neuron_memory_without_changing_routing():
+    config = PilotConfig(model="no_edges", alpha=0.3)
+    leaky, _ = build_model(config)
+    config.alpha = 1.0
+    instantaneous, _ = build_model(config)
+    x = torch.zeros(1, 2, 32)
+    x[:, 0] = 1
+    assert torch.equal(leaky.core.routing, instantaneous.core.routing)
+    assert leaky.core(x)[1][:, -1].sum() > 0
+    assert instantaneous.core(x)[1][:, -1].sum() == 0
+    for alpha in (0, -1, 1.1, float("nan")):
+        with pytest.raises(ValueError):
+            PilotConfig(alpha=alpha).validate()

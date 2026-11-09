@@ -26,7 +26,7 @@ image = (modal.Image.debian_slim(python_version="3.12")
          .add_local_dir(ROOT/"scripts", "/root/v1nn/scripts", ignore=["**/__pycache__/**"]))
 
 
-def validate_campaign(models, seeds, steps, seconds, grid):
+def validate_campaign(models, seeds, steps, seconds, grid, alpha=0.3):
     allowed = {"static", "linear_history", "gru", "temporal_cnn", "connectome",
                "no_edges", "reset", "reservoir", "degree_null"}
     model_list = models.split(",")
@@ -39,13 +39,15 @@ def validate_campaign(models, seeds, steps, seconds, grid):
         raise ValueError("Duplicate trials are not allowed")
     if not 1 <= steps <= 3000 or not 60 <= seconds <= 1500 or not 1 <= grid <= 8:
         raise ValueError("Bounds: 1..3000 steps, 60..1500 seconds, grid 1..8")
+    if not 0 < alpha <= 1:
+        raise ValueError("Require 0 < alpha <= 1")
     return [(model, seed) for seed in seed_list for model in model_list]
 
 
 @app.function(image=image, gpu="T4", cpu=2, memory=8192, timeout=1800,
               max_containers=1, min_containers=0, scaledown_window=2,
               retries=0, volumes={"/results": volume})
-def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph: str,
+def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph: str, alpha: float,
              source_commit: str, source_dirty: bool):
     import time
     import uuid
@@ -53,7 +55,7 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
     from pilot import atomic_json, run
     from v1nn.benchmark import PilotConfig
 
-    trials = validate_campaign(models, seeds, steps, seconds, grid)
+    trials = validate_campaign(models, seeds, steps, seconds, grid, alpha)
     if graph not in ("synthetic", "microns"):
         raise ValueError("Choose synthetic or microns")
     started = time.monotonic()
@@ -62,7 +64,7 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
     summary = {"run_id": run_id, "status": "running", "gpu": "T4",
                "source_commit": source_commit, "source_dirty": source_dirty,
                "time_budget_seconds": seconds, "server_timeout_seconds": 1800,
-               "trials": [], "graph": graph}
+               "trials": [], "graph": graph, "alpha": alpha}
     atomic_json(folder/"campaign.json", summary)
     volume.commit()
     try:
@@ -79,7 +81,7 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
                 summary["status"] = "time_limit"
                 break
             output = folder/f"{model}_{seed}.json"
-            result = run(PilotConfig(model=model, seed=seed, steps=steps, grid=grid,
+            result = run(PilotConfig(model=model, seed=seed, steps=steps, grid=grid, alpha=alpha,
                                      device="cuda", max_seconds=min(remaining-20, 300)), output, graph_path)
             summary["trials"].append({"file": output.name,
                                       "completed_steps": result["completed_steps"],
@@ -102,11 +104,11 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
 
 @app.local_entrypoint()
 def main(models: str = "gru,static,linear_history,temporal_cnn", seeds: str = "7,8,9",
-         steps: int = 500, seconds: int = 1200, grid: int = 4, graph: str = "synthetic"):
-    validate_campaign(models, seeds, steps, seconds, grid)
+         steps: int = 500, seconds: int = 1200, grid: int = 4, graph: str = "synthetic", alpha: float = 0.3):
+    validate_campaign(models, seeds, steps, seconds, grid, alpha)
     if graph not in ("synthetic", "microns"):
         raise ValueError("Choose synthetic or microns")
     if SOURCE_DIRTY:
         raise RuntimeError("Commit the reviewed source before launching paid GPU work")
-    result = campaign.remote(models, seeds, steps, seconds, grid, graph, SOURCE_COMMIT, SOURCE_DIRTY)
+    result = campaign.remote(models, seeds, steps, seconds, grid, graph, alpha, SOURCE_COMMIT, SOURCE_DIRTY)
     print(json.dumps(result, indent=2))

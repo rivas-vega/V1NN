@@ -1,0 +1,34 @@
+{
+  "dataset": "MICrONS static teaching export v1718",
+  "graph_file_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+  "nodes": 1357,
+  "directed_pairs": 78953,
+  "isolates": 0,
+  "autapses": 0,
+  "unknown_sign": 0,
+  "in_degree": {
+    "min": 3,
+    "median": 46.0,
+    "max": 358
+  },
+  "out_degree": {
+    "min": 0,
+    "median": 40.0,
+    "max": 620
+  },
+  "groups": {
+    "excitatory": 1191,
+    "inhibitory": 166
+  },
+  "positions_shape": [
+    1357,
+    3
+  ],
+  "positions_finite": true,
+  "layer_metadata_present": false,
+  "limitations": [
+    "No anatomical routing calibration",
+    "Boundary retention not estimable",
+    "No functional matches audited"
+  ]
+}

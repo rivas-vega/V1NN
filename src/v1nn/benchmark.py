@@ -31,6 +31,7 @@ class PilotConfig:
     grid: int = 4
     hidden: int = 64
     lr: float = 0.003
+    alpha: float = 0.3
     device: str = "cpu"
     max_seconds: float = 600.0
 
@@ -42,6 +43,8 @@ class PilotConfig:
             raise ValueError("Invalid pilot dimensions")
         if not math.isfinite(self.lr) or self.lr <= 0:
             raise ValueError("Learning rate must be finite and positive")
+        if not 0 < self.alpha <= 1:
+            raise ValueError("Require 0 < alpha <= 1")
         if not math.isfinite(self.max_seconds) or self.max_seconds <= 0:
             raise ValueError("A finite positive time limit is required")
 
@@ -176,7 +179,7 @@ def build_model(config, graph=None):
         info["null_constraints"] = "directed degrees only; not type/distance matched"
     if config.model == "no_edges":
         graph = Graph(graph.n, np.array([], dtype=int), np.array([], dtype=int), graph.signs)
-    core = ConnectomeRNN(graph, features, 2, routing_seed=config.seed)
+    core = ConnectomeRNN(graph, features, 2, routing_seed=config.seed, alpha=config.alpha)
     if config.model == "reservoir":
         for name, parameter in core.named_parameters():
             if not name.startswith("readout."):

@@ -115,6 +115,7 @@ def main():
                 "frames", "image_size", "grid", "hidden"):
         parser.add_argument("--"+key.replace("_", "-"), type=int, default=getattr(PilotConfig(), key))
     parser.add_argument("--lr", type=float, default=0.003)
+    parser.add_argument("--alpha", type=float, default=0.3)
     parser.add_argument("--max-seconds", type=float, default=600)
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
     parser.add_argument("--graph", type=Path)

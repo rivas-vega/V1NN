@@ -8,7 +8,7 @@
 | Modelo | RNN dispersa, E/I, entrada fija, contracción, lectura lineal | Routing fisiológico, microsteps, priors por tipo |
 | Objetivos | Movimiento 2D, SSL sensorial, pérdidas de observación | Flujo denso, observación calibrada y sincronizada |
 | Controles | Piloto con GRU, CNN temporal, historia lineal, no-edge/reset/reservorio y nulo de grados | Runner confirmatorio, múltiples nulos de tipo/distancia, perturbaciones |
-| Validación | 26 tests, dos smoke tests reproducidos y primera GRU que aprende | Ventaja MICrONS, fisiología y coste GPU |
+| Validación | 27 tests, dos smoke tests reproducidos y comparación de tres semillas en GPU | Ventaja MICrONS, fisiología y coste GPU |
 
 ## P0 — Contrato de datos
 

@@ -1,5 +1,7 @@
 # Validación ejecutada
 
+Este es el informe inicial del prototipo. Las ejecuciones posteriores, incluida la importación real y los pilotos CPU/GPU, se conservan en [la bitácora](../docs/BITACORA.md).
+
 Fecha: 9 de noviembre de 2026. Python 3.13.5, PyTorch 2.10.0+cpu, CPU.
 
 ## Tests

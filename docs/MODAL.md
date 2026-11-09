@@ -40,6 +40,7 @@ No se ha implementado reanudación automática de entrenamiento.
 ```bash
 modal app list
 modal volume ls bionn-v1nn-experiments
+mkdir -p ./outputs/ID_DE_CAMPAÑA
 modal volume get bionn-v1nn-experiments /ID_DE_CAMPAÑA ./outputs/ID_DE_CAMPAÑA
 modal app stop ID_DE_APP
 ```
@@ -47,6 +48,13 @@ modal app stop ID_DE_APP
 Referencias: [ejecución desconectada](https://modal.com/docs/guide/apps),
 [volúmenes](https://modal.com/docs/guide/volumes) y
 [timeouts](https://modal.com/docs/guide/timeouts).
+
+`--alpha` controla la velocidad de actualización del estado, entre 0 y 1,
+excluyendo 0. El valor original es 0,3. Cada informe conserva el valor usado;
+modificarlo es una decisión experimental que debe registrarse en la bitácora.
+
+Crear el directorio de descarga antes de `modal volume get` conserva los archivos
+separados. Comprobar siempre el número de JSON y checkpoints recuperados.
 
 ## Presupuesto de esta ronda
 

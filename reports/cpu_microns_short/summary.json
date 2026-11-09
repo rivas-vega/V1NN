@@ -1,0 +1,166 @@
+{
+  "source_commit": "517e62448524e457e51d2536cd57d3c2d9909d25",
+  "status": "stopped_after_seed7_when_gpu_became_available",
+  "planned_seeds": [
+    7,
+    8,
+    9
+  ],
+  "completed_seeds": [
+    7
+  ],
+  "interrupted_trial_may_have_no_checkpoint": true,
+  "trials": [
+    {
+      "file": "connectome_7.json",
+      "model": "connectome",
+      "seed": 7,
+      "completed_steps": 100,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.5576341152191162,
+            "mean_endpoint_error": 1.2151477336883545
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.6042253971099854,
+            "mean_endpoint_error": 1.2205790281295776
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 64.95116433199928,
+      "model_metadata": {
+        "graph": "user_supplied_graph; see source hash and adjacent provenance",
+        "nodes": 1357,
+        "original_edges": 78953,
+        "edges": 78953
+      }
+    },
+    {
+      "file": "degree_null_7.json",
+      "model": "degree_null",
+      "seed": 7,
+      "completed_steps": 100,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.5576879978179932,
+            "mean_endpoint_error": 1.2153552770614624
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.6035115718841553,
+            "mean_endpoint_error": 1.2199257612228394
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 82.83146372200008,
+      "model_metadata": {
+        "graph": "user_supplied_graph; see source hash and adjacent provenance",
+        "nodes": 1357,
+        "original_edges": 78953,
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 574595,
+          "edge_change_fraction": 0.8395247805656529,
+          "uniform_sampling_claim": false
+        },
+        "null_constraints": "directed degrees only; not type/distance matched",
+        "edges": 78953
+      }
+    },
+    {
+      "file": "no_edges_7.json",
+      "model": "no_edges",
+      "seed": 7,
+      "completed_steps": 100,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.5591093301773071,
+            "mean_endpoint_error": 1.2152719497680664
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.609902262687683,
+            "mean_endpoint_error": 1.2221286296844482
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 7.399553864999689,
+      "model_metadata": {
+        "graph": "user_supplied_graph; see source hash and adjacent provenance",
+        "nodes": 1357,
+        "original_edges": 78953,
+        "edges": 0
+      }
+    },
+    {
+      "file": "reset_7.json",
+      "model": "reset",
+      "seed": 7,
+      "completed_steps": 100,
+      "status": "steps_completed",
+      "evaluation": {
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.5857133865356445,
+            "mean_endpoint_error": 1.225896954536438
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.6252853870391846,
+            "mean_endpoint_error": 1.234058141708374
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      },
+      "seconds": 53.05981923099989,
+      "model_metadata": {
+        "graph": "user_supplied_graph; see source hash and adjacent provenance",
+        "nodes": 1357,
+        "original_edges": 78953,
+        "edges": 78953
+      }
+    }
+  ]
+}

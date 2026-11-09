@@ -25,4 +25,4 @@ git commit -m "Describe the change"
 git push -u origin nombre-del-cambio
 ```
 
-No pegar tokens en scripts ni documentación. No publicar datos crudos, credenciales ni checkpoints sin verificar sus condiciones de uso. `MANIFEST_SHA256.json` cubre los otros 21 archivos de esta entrega, no el propio manifiesto; se debe regenerar si cambian los archivos cubiertos.
+No pegar tokens en scripts ni documentación. No publicar datos crudos, credenciales ni checkpoints sin verificar sus condiciones de uso. `MANIFEST_SHA256.json` cubre los archivos enumerados en él, no el propio manifiesto; se debe regenerar si cambian los archivos cubiertos.
