@@ -4,6 +4,8 @@ modal run --detach scripts/modal_pilot.py --models gru,static --seeds 7,8
 """
 import json
 import math
+import re
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -30,7 +32,7 @@ image = (modal.Image.debian_slim(python_version="3.12")
 def validate_campaign(models, seeds, steps, seconds, grid, alpha=0.3,
                       train_size=2048, batch=64, lr=0.003):
     allowed = {"static", "linear_history", "gru", "temporal_cnn", "connectome",
-               "no_edges", "reset", "reservoir", "degree_null"}
+               "no_edges", "reset", "reservoir", "degree_null", "type_null"}
     model_list = models.split(",")
     seed_list = [int(seed) for seed in seeds.split(",")]
     if not model_list or any(model not in allowed for model in model_list):
@@ -50,21 +52,31 @@ def validate_campaign(models, seeds, steps, seconds, grid, alpha=0.3,
     return [(model, seed) for seed in seed_list for model in model_list]
 
 
+def validate_graph_choice(graph, models, null_manifest_sha256):
+    if graph not in ("synthetic", "microns", "typed_nulls"):
+        raise ValueError("Choose synthetic, microns or typed_nulls")
+    if graph == "typed_nulls":
+        if models != "type_null" or not re.fullmatch(r"[0-9a-f]{64}", null_manifest_sha256):
+            raise ValueError("typed_nulls requires only type_null and a pinned manifest SHA256")
+    elif "type_null" in models.split(",") or null_manifest_sha256:
+        raise ValueError("type_null and its manifest require graph=typed_nulls")
+
+
 @app.function(image=image, gpu="T4", cpu=2, memory=8192, timeout=1800,
               max_containers=1, min_containers=0, scaledown_window=2,
               retries=0, volumes={"/results": volume})
 def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph: str, alpha: float,
              train_size: int, batch: int, lr: float,
-             source_commit: str, source_dirty: bool):
+             source_commit: str, source_dirty: bool, null_manifest_sha256: str = ""):
     import time
     import uuid
     from datetime import datetime, timezone
     from pilot import atomic_json, run
     from v1nn.benchmark import PilotConfig
+    from v1nn.nulls import load_type_null
 
     trials = validate_campaign(models, seeds, steps, seconds, grid, alpha, train_size, batch, lr)
-    if graph not in ("synthetic", "microns"):
-        raise ValueError("Choose synthetic or microns")
+    validate_graph_choice(graph, models, null_manifest_sha256)
     started = time.monotonic()
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"-"+uuid.uuid4().hex[:8]
     folder = Path("/results")/run_id
@@ -72,11 +84,18 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
                "source_commit": source_commit, "source_dirty": source_dirty,
                "time_budget_seconds": seconds, "server_timeout_seconds": 1800,
                "trials": [], "graph": graph, "alpha": alpha,
-               "train_size": train_size, "batch": batch, "lr": lr}
+               "train_size": train_size, "batch": batch, "lr": lr,
+               "null_manifest_sha256": null_manifest_sha256 or None}
     atomic_json(folder/"campaign.json", summary)
     volume.commit()
     try:
         graph_path = None
+        if graph == "typed_nulls":
+            bundle = Path("/results/type-null-bundles")/null_manifest_sha256
+            for _, seed in trials:
+                load_type_null(bundle/f"type_null_{seed}.npz", seed, null_manifest_sha256)
+            shutil.copytree(bundle, folder/"data/typed_nulls")
+            volume.commit()
         if graph == "microns":
             graph_path = folder/"data/column_v1718.npz"
             subprocess.run(["python", "/root/v1nn/scripts/prepare_microns.py",
@@ -84,6 +103,8 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
                             "--output", str(graph_path)], check=True, timeout=180)
             volume.commit()
         for model, seed in trials:
+            if graph == "typed_nulls":
+                graph_path = folder/f"data/typed_nulls/type_null_{seed}.npz"
             remaining = seconds-(time.monotonic()-started)
             if remaining < 30:
                 summary["status"] = "time_limit"
@@ -114,12 +135,11 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
 @app.local_entrypoint()
 def main(models: str = "gru,static,linear_history,temporal_cnn", seeds: str = "7,8,9",
          steps: int = 500, seconds: int = 1200, grid: int = 4, graph: str = "synthetic", alpha: float = 0.3,
-         train_size: int = 2048, batch: int = 64, lr: float = 0.003):
+         train_size: int = 2048, batch: int = 64, lr: float = 0.003, null_manifest_sha256: str = ""):
     validate_campaign(models, seeds, steps, seconds, grid, alpha, train_size, batch, lr)
-    if graph not in ("synthetic", "microns"):
-        raise ValueError("Choose synthetic or microns")
+    validate_graph_choice(graph, models, null_manifest_sha256)
     if SOURCE_DIRTY:
         raise RuntimeError("Commit the reviewed source before launching paid GPU work")
     result = campaign.remote(models, seeds, steps, seconds, grid, graph, alpha,
-                             train_size, batch, lr, SOURCE_COMMIT, SOURCE_DIRTY)
+                             train_size, batch, lr, SOURCE_COMMIT, SOURCE_DIRTY, null_manifest_sha256)
     print(json.dumps(result, indent=2))

@@ -1,5 +1,7 @@
 """Directed graphs and constrained nulls. Indices always mean pre -> post."""
 from dataclasses import dataclass
+import math
+import time
 import numpy as np
 
 
@@ -33,7 +35,7 @@ class Graph:
 
 
 def rewire(graph, swaps, seed=0, groups=None, positions=None, distance_bins=None,
-           max_attempts=None):
+           max_attempts=None, max_seconds=None):
     """Directed double swaps, preserving exact in/out degrees.
 
     Groups preserve each neuron's group-specific degrees. Distance constraints
@@ -42,6 +44,9 @@ def rewire(graph, swaps, seed=0, groups=None, positions=None, distance_bins=None
     """
     if swaps < 0:
         raise ValueError("swaps must be nonnegative")
+    if max_seconds is not None and (not math.isfinite(max_seconds) or max_seconds <= 0):
+        raise ValueError("max_seconds must be finite and positive")
+    started = time.monotonic()
     if groups is not None:
         groups = np.asarray(groups)
         if groups.shape != (graph.n,):
@@ -68,6 +73,9 @@ def rewire(graph, swaps, seed=0, groups=None, positions=None, distance_bins=None
     def dbin(a, b):
         return np.searchsorted(distance_bins, np.linalg.norm(positions[a]-positions[b]))
     while done < swaps and attempts < limit:
+        if (max_seconds is not None and attempts % 1024 == 0 and
+                time.monotonic()-started >= max_seconds):
+            raise RuntimeError(f"Null time limit: {done}/{swaps} swaps in {attempts} attempts")
         attempts += 1
         i, j = rng.choice(eligible, size=2, replace=False)
         a, b, c, d = int(src[i]), int(dst[i]), int(src[j]), int(dst[j])
@@ -90,4 +98,5 @@ def rewire(graph, swaps, seed=0, groups=None, positions=None, distance_bins=None
         raise AssertionError("Degree preservation failed")
     return result, {"accepted_swaps":done, "attempts":attempts,
                     "edge_change_fraction":len(original-edges)/max(1,len(edges)),
+                    "seconds":time.monotonic()-started,
                     "uniform_sampling_claim":False}

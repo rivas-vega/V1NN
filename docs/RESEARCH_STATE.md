@@ -33,8 +33,8 @@ una entrada antigua.
 
 ## Próxima acción concreta
 
-La GPU y la confirmación en CPU han terminado. Leer el plan al final de la
-entrada 009. Generar y auditar en CPU nulos que preserven grados por clase E/I
+La GPU y la confirmación en CPU han terminado. Leer el plan y criterios
+preregistrados en la entrada 010. Generar y auditar en CPU nulos que preserven grados por clase E/I
 antes de entrenarlos. El nulo actual altera la composición inhibitoria de casi
 todas las neuronas, por lo que no aísla el cableado fino. No hay una nueva campaña
 GPU ni reserva pendiente para ese control. No repetir experimentos completados.

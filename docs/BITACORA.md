@@ -567,3 +567,47 @@ detenida. 30 pruebas de código superadas, además de verificación de identidad
 presupuestos de entrenamiento completos, predicciones y figura. Límite operativo
 50 USD, reservas 12 USD, margen conservador 38 USD; la autorización condicional
 hasta 75 USD permanece disponible y sin activar.
+
+## Entrada 010 — 2026-11-09: control E/I, diseño previo a resultados
+
+**Incertidumbre.** La ventaja frente al nulo de grados puede explicarse por los
+grados E/I por neurona. Generaremos en CPU tres nulos tipados, semillas 7/8/9,
+con 5×E intercambios aceptados, máximo 10 000 000 intentos y 180 s por grafo.
+El reloj se comprueba cada 1024 intentos; no es una interrupción exacta al milisegundo.
+Antes de GPU exigimos conservación exacta de grados dirigidos totales y por grupo,
+identidades, signos y posiciones; cero duplicados/autapsis y ≥50 % de aristas
+cambiadas. Este último es un filtro metodológico, no prueba de mezcla uniforme.
+No se conservan distancias ni capas ni subtipos inexistentes en los metadatos.
+Los recuentos de sinapsis no se transfieren a aristas inventadas: seguimos
+estudiando la máscara, como en las comparaciones previas.
+
+**Comparación congelada.** Solo tres ensayos nuevos: `type_null`, semillas 7/8/9,
+3000 pasos, 2048 clips de entrenamiento, lote 64, Adam 0,003, alpha 0,3, grid 4.
+Interfaz, pesos iniciales compatibles y datos compartidos con los modelos de
+`gpu_long_training`. Criterio principal descriptivo: EPE de validación del
+conectoma menos nulo E/I, por semilla y media; secundario MSE. No seleccionar
+semillas, modificar hiperparámetros ni tratar esta validación como test final.
+No acceder de nuevo a los clips de confirmación 20261110 para llamarlos nuevos.
+Si la ventaja se pierde o cambia de signo entre semillas, no atribuirla al
+cableado fino y ampliar primero el análisis de variación entre nulos/rutas.
+Si persiste consistentemente, el siguiente control será espacial, antes de
+escalar la tarea. Tres semillas mezclan realización del nulo y entrenamiento;
+no separan esos factores ni demuestran equivalencia si no hay diferencia.
+
+**Ejecución.** Los archivos se preparan fuera de GPU, se identifican por SHA256
+y se cargan desde un paquete que incluye el original y un manifiesto auditado.
+El servidor verifica hashes y vuelve a contar grados antes de entrenar; guarda
+una copia del paquete junto a los resultados. Sin original o manifiesto válido,
+el ensayo falla. La GPU no realiza los intercambios. Una prueba de integración
+comprueba igualdad de routing, parámetros neuronales/de lectura, presupuesto
+de parámetros y distribución de pesos iniciales firmados por neurona destino.
+Los pesos por arista se inicializan según el grado de destino: su orden en el
+vector cambia con los destinos, aunque se conserva el multiconjunto por destino.
+La primera prueba detectó esa diferencia de orden; se corrigió la comparación
+del test, sin cambiar la inicialización ni los modelos anteriores.
+
+**Presupuesto previo.** Todas las aplicaciones BIONN estaban detenidas. La lectura
+actual de aplicaciones efímeras de Modal es 0,33031793 USD, distinta de la lectura
+previa por actualización de su agregado; no sustituye una factura exclusiva ni
+libera reservas. Se mantienen 12 USD reservados y 50 USD de límite operativo.
+La reserva adicional de 2 USD se añadirá solo después de validar los tres nulos.
