@@ -169,3 +169,58 @@ efecto sobre la memoria individual. Se consultó facturación antes y después; 
 cifras inmediatas pueden llegar con retraso. Se mantienen 6 USD de reservas
 conservadoras para los tres intentos, no 6 USD de gasto medido. El techo sigue
 siendo 50 USD acumulados. [Registro de cómputo](../reports/compute_ledger.json).
+
+## 2026-11-09 — 005. Cambio de dinámica: resultado negativo
+
+**Hipótesis del ajuste.** Probar si la fuga lenta del estado dificultaba aprovechar
+interacciones temporales. Cambiar únicamente alpha de 0,3 a 1, manteniendo datos,
+routing, semillas 7/8/9, optimizador, 500 actualizaciones y batch 64. Medido, nulo
+de grados y control sin aristas reciben el mismo ajuste.
+
+**Ejecutado.** Commit `85dd523510ee696e4ade7f743e3b1ba5529740a8`. App
+`ap-VmT53KXfCtatqKuVgES0GX`, campaña `20261109T184111Z-46d08176`: los nueve ensayos
+terminan sus 500 pasos en T4. Tiempo total dentro de la función: 222,58 s.
+[Informes y configuración](../reports/gpu_alpha1/campaign.json).
+
+| Modelo | Error cuadrático validación, alpha 0,3 | Error cuadrático validación, alpha 1 |
+| --- | ---: | ---: |
+| Conectoma medido | 1.64505 ± 0.03368 | 1.81862 ± 0.06452 |
+| Sin aristas | 1.65978 ± 0.03309 | 1.81132 ± 0.04008 |
+| Nulo de grados | 1.64327 ± 0.02559 | 1.81023 ± 0.05291 |
+
+Con alpha 1, los errores en historias de final idéntico son 1,83493, 1,84479 y
+1,85806, respectivamente. También empeoran respecto al régimen original.
+
+**Decisión.** Conservar alpha 0,3 como valor por defecto. No hay evidencia de que
+el ajuste propuesto resuelva el aprendizaje de movimiento en este régimen. La
+opción permanece disponible para reproducir el resultado, sin presentarla como
+una mejora. No aumentar escala o presupuesto solo por preferencia por el modelo.
+
+**Reflexión sobre ingeniería.** Se exploraron localmente operaciones alternativas
+para el cálculo recurrente. Una multiplicación dispersa fue más lenta que la
+acumulación por arista en el microbenchmark; una matriz densa enmascarada fue más
+rápida, pero requiere memoria cuadrática y el resultado no es un benchmark de
+entrenamiento completo. No se cambió el núcleo por esa observación aislada.
+
+**Estado al cerrar esta primera ronda.** 33 ensayos GPU completos (12 referencias,
+12 MICrONS originales, 9 con alpha 1), además de 16 ensayos comparativos CPU
+conservados y las pruebas de integración. 27 tests pasan. Los cuatro intentos de
+app de BIONN figuran detenidos, con cero tareas activas. No queda una campaña GPU
+ejecutándose ni se ha programado una automatización recurrente.
+
+La consulta de facturación registra 0,11488725 USD en ejecuciones efímeras del
+workspace; es una fotografía provisional, no una factura final atribuida al
+proyecto. Se conservan 8 USD de reservas operativas para cuatro intentos y 42 USD
+de margen frente al máximo autorizado de 50 USD. No reiniciar ese presupuesto en
+la siguiente sesión.
+
+**Próximos experimentos propuestos, todavía no ejecutados.**
+
+1. Comprobar sobreajuste deliberado de un conjunto muy pequeño y medir el error
+   completo de entrenamiento para separar capacidad de optimización.
+2. Revisar escalas de gradientes, ganancia recurrente y representación sensorial,
+   manteniendo controles emparejados. Reservar conjuntos nuevos para confirmar
+   cualquier decisión tomada con esta validación.
+3. Solo después, comparar nulos que conserven tipo y distancia y calibrar una
+   interfaz de entrada más defendible. No reclamar especificidad anatómica con el
+   nulo de grados actual ni generalización a otros animales.

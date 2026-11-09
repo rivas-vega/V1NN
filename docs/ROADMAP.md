@@ -18,11 +18,13 @@ Ejecutar el importador, verificar identidades, signos desconocidos, autapsis, ai
 
 ## P1 — Benchmark temporal válido
 
-Piloto implementado y primera GRU validada en desarrollo; queda la comparación multisemilla y la evaluación de generalización. Detalle y límites en la [bitácora](BITACORA.md).
+Piloto implementado y comparado en tres semillas CPU/GPU; GRU y CNN temporal aprenden. Queda la evaluación de generalización fuera del régimen de entrenamiento. Detalle y límites en la [bitácora](BITACORA.md).
 
 Implementar historia lineal y una GRU/CNN que aprendan. Verificar que la imagen estática no revela la etiqueta. Separar semillas y escenas; añadir historias distintas con igual imagen final. La prueba smoke no sustituye a este benchmark.
 
 ## P2 — Comparación de grafos
+
+Primer piloto MICrONS/nulo de grados completado sin ventaja en tres semillas; el cambio de alpha tampoco mejora. Faltan nulos de tipo/distancia y la evaluación confirmatoria. Se conserva el resultado negativo en la [bitácora](BITACORA.md).
 
 Auditar nulos y cambio efectivo bajo invariantes. Usar misma entrada, lectura, dinámica y presupuesto. Movimiento primero; repetir luego con SSL sensorial como estudio independiente. Registrar curvas, semillas, escenas y coste. No mezclar pérdidas retrospectivamente para rescatar un resultado.
 

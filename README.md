@@ -20,7 +20,8 @@ El precedente directo es [Lappalainen et al., Nature 2024](https://www.nature.co
 | Importador MICrONS v1718 con verificación de hashes | Descarga real verificada: 1.357 neuronas, 78.953 parejas dirigidas |
 | Tests unitarios e integración sintética | 27 tests superados; dos smoke tests reproducidos |
 | Piloto temporal de desarrollo | Runner, controles y GRU/CNN aprenden en tres semillas; MICrONS sin ventaja en el piloto inicial |
-| Ventaja del conectoma, validación funcional y benchmark completo | **No evaluados** |
+| MICrONS frente a controles, tres semillas | Piloto ejecutado; sin ventaja ni mejora frente a velocidad cero |
+| Validación funcional y benchmark confirmatorio completo | **No evaluados** |
 
 Los smoke tests de 25 actualizaciones **no superan predictores triviales**. Son pruebas de ejecución y gradientes, no evidencia a favor o en contra del conectoma. Véase [el informe](reports/VALIDATION.md).
 

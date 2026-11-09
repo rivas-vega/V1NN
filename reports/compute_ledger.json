@@ -28,9 +28,22 @@
       "function_seconds": 191.534503044,
       "reservation_usd": 2.0,
       "source_commit": "517e62448524e457e51d2536cd57d3c2d9909d25"
+    },
+    {
+      "app_id": "ap-VmT53KXfCtatqKuVgES0GX",
+      "run_id": "20261109T184111Z-46d08176",
+      "status": "completed",
+      "trials": 9,
+      "function_seconds": 222.57850821500003,
+      "reservation_usd": 2,
+      "source_commit": "85dd523510ee696e4ade7f743e3b1ba5529740a8",
+      "alpha": 1
     }
   ],
-  "reserved_usd": 6.0,
-  "available_after_reservations_usd": 44.0,
-  "billing_note": "Billing queried before and after campaigns; delayed snapshots are not a final invoice. Keep reservations until reconciled."
+  "reserved_usd": 8,
+  "available_after_reservations_usd": 42,
+  "billing_note": "Billing queried before and after campaigns; delayed snapshots are not a final invoice. Keep reservations until reconciled.",
+  "active_bionn_apps": 0,
+  "latest_ephemeral_apps_metered_snapshot_usd": 0.11488725,
+  "snapshot_note": "Workspace ephemeral-app usage snapshot, not a final project invoice. Billing can lag and snapshot totals can update at different times. Reservations remain conservative."
 }

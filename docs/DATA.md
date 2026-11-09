@@ -17,7 +17,7 @@ Repositorio: `AllenInstitute/connectomics_at_cosyne`. Commit: `513a6fe738f91ce17
 
 El importador verifica hashes, calcula SHA256 y guarda manifiesto. Conserva IDs exactos como enteros/cadenas, nunca float, todos los nodos is_column incluidos aislados, y agrega sinapsis por pareja pre→post. No confunde tamaño sináptico con número. Reporta autapsis sin eliminarlas automáticamente.
 
-**Estado actualizado 2026-11-09:** descarga real completada y hashes verificados. El [manifiesto](../reports/microns_import.json) registra 1.357 neuronas, 78.953 parejas dirigidas y 146.711 sinapsis; no hay signos desconocidos, autapsis ni aisladas. Hay posiciones y tipos generales, pero no capas. Faltan auditoría funcional, fronteras y experimentos sobre MICrONS; véase la [bitácora](BITACORA.md).
+**Estado actualizado 2026-11-09:** descarga real completada y hashes verificados. El [manifiesto](../reports/microns_import.json) registra 1.357 neuronas, 78.953 parejas dirigidas y 146.711 sinapsis; no hay signos desconocidos, autapsis ni aisladas. Hay posiciones y tipos generales, pero no capas. Se ha ejecutado un piloto MICrONS con tres semillas; faltan auditoría funcional, fronteras y controles anatómicos completos. Véase la [bitácora](BITACORA.md).
 
 ## Conectoma abierto e incompleto
 
