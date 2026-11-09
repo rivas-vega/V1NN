@@ -15,3 +15,5 @@ outputs/
 *.feather
 *.parquet
 .DS_Store
+.modal.toml
+modal.toml

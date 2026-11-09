@@ -12,6 +12,7 @@ dependencies = ["numpy>=1.24", "torch>=2.2"]
 [project.optional-dependencies]
 data = ["pandas>=2.0", "pyarrow>=14"]
 test = ["pytest>=7"]
+modal = ["modal==1.6.3"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

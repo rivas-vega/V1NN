@@ -1,0 +1,30 @@
+{
+  "nodes": 1357,
+  "directed_pairs": 78953,
+  "included_synapses": 146711,
+  "excluded_synapses": 0,
+  "autapse_pairs": 0,
+  "excitatory": 1191,
+  "inhibitory": 166,
+  "unknown_sign": 0,
+  "layer_metadata_present": false,
+  "boundary_retention": "not estimable from internal-column synapses alone",
+  "dataset": "MICrONS static teaching export",
+  "materialization": 1718,
+  "upstream_commit": "513a6fe738f91ce179650f1cadf26d4a4728b21a",
+  "sources": {
+    "v1718_cell_info.csv": {
+      "url": "https://raw.githubusercontent.com/AllenInstitute/connectomics_at_cosyne/513a6fe738f91ce179650f1cadf26d4a4728b21a/docs/resources/data/v1718_cell_info.csv",
+      "git_blob_sha1": "65bc15f566288ba763a25c7a6f91a94ab8a970ce",
+      "sha256": "1959b7b7eaad7501c6331551c3ed1e229b40ed3c339ff6273b6365009e33fb09",
+      "bytes": 19202665
+    },
+    "v1718_v1_column_synapses.feather": {
+      "url": "https://raw.githubusercontent.com/AllenInstitute/connectomics_at_cosyne/513a6fe738f91ce179650f1cadf26d4a4728b21a/docs/resources/data/v1718_v1_column_synapses.feather",
+      "git_blob_sha1": "48ba7fa1b6aee968ab53304a655461363deddbd1",
+      "sha256": "fee7afc8c37528e3e1c1a4365f016f74c8ff42b6dad0f06100ef32d38adb0434",
+      "bytes": 5336978
+    }
+  },
+  "actual_import": true
+}

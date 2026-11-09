@@ -4,17 +4,21 @@
 
 | Área | Disponible | Pendiente |
 | --- | --- | --- |
-| Datos | Importador con hash, agregación e IDs exactos, fixtures | Descarga real, auditoría, matches funcionales |
+| Datos | Importación real con hashes verificados, agregación e IDs exactos, fixtures | Auditoría funcional, fronteras, matches funcionales |
 | Modelo | RNN dispersa, E/I, entrada fija, contracción, lectura lineal | Routing fisiológico, microsteps, priors por tipo |
 | Objetivos | Movimiento 2D, SSL sensorial, pérdidas de observación | Flujo denso, observación calibrada y sincronizada |
-| Controles | Rewiring restringido y controles no-edge/reset | Runner completo, GRU, CNN temporal, historia lineal |
-| Validación | 20 tests y dos smoke tests sintéticos | Ventaja MICrONS, fisiología y coste GPU |
+| Controles | Piloto con GRU, CNN temporal, historia lineal, no-edge/reset/reservorio y nulo de grados | Runner confirmatorio, múltiples nulos de tipo/distancia, perturbaciones |
+| Validación | 26 tests, dos smoke tests reproducidos y primera GRU que aprende | Ventaja MICrONS, fisiología y coste GPU |
 
 ## P0 — Contrato de datos
+
+Descarga real y recuentos verificados el 2026-11-09; detalle en la [bitácora](BITACORA.md).
 
 Ejecutar el importador, verificar identidades, signos desconocidos, autapsis, aislamiento, unidades y licencia. Salida: manifiesto real auditado. Escribir un script no completa esta fase.
 
 ## P1 — Benchmark temporal válido
+
+Piloto implementado y primera GRU validada en desarrollo; queda la comparación multisemilla y la evaluación de generalización. Detalle y límites en la [bitácora](BITACORA.md).
 
 Implementar historia lineal y una GRU/CNN que aprendan. Verificar que la imagen estática no revela la etiqueta. Separar semillas y escenas; añadir historias distintas con igual imagen final. La prueba smoke no sustituye a este benchmark.
 

@@ -1,0 +1,8 @@
+{
+  "round": "2026-11-09-initial-pilot",
+  "currency": "USD",
+  "authorized_total": 50.0,
+  "account_invoice_verified": false,
+  "policy": "Record every attempted paid campaign; estimates and reservations are not invoices. Reserve 2 USD per <=1800 second T4 campaign including margin. Check account usage before scaling.",
+  "campaigns": []
+}

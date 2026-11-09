@@ -17,8 +17,9 @@ El precedente directo es [Lappalainen et al., Nature 2024](https://www.nature.co
 | RNN dispersa, signos de Dale, entrada fija y lectura lineal | Implementado |
 | Nulos dirigidos conservando grados, grupos y distancias discretizadas | Implementado, sin garantía de muestreo uniforme |
 | Pérdidas de movimiento, predicción sensorial y observación neuronal | Implementadas |
-| Importador MICrONS v1718 con verificación de hashes | Implementado y probado con fixtures; descarga real no validada |
-| Tests unitarios e integración sintética | 20 tests superados; dos smoke tests ejecutados |
+| Importador MICrONS v1718 con verificación de hashes | Descarga real verificada: 1.357 neuronas, 78.953 parejas dirigidas |
+| Tests unitarios e integración sintética | 26 tests superados; dos smoke tests reproducidos |
+| Piloto temporal de desarrollo | Runner, controles y primera GRU que aprende; pendiente comparación multisemilla |
 | Ventaja del conectoma, validación funcional y benchmark completo | **No evaluados** |
 
 Los smoke tests de 25 actualizaciones **no superan predictores triviales**. Son pruebas de ejecución y gradientes, no evidencia a favor o en contra del conectoma. Véase [el informe](reports/VALIDATION.md).
@@ -47,6 +48,8 @@ El segundo comando sigue siendo una comprobación de ejecución. El importador r
 
 ## Documentación
 
+- [Bitácora de BIONN/V1NN](docs/BITACORA.md): resultados, hipótesis, retoques y decisiones acumuladas.
+- [GPU y conexión a Modal](docs/MODAL.md): autenticación, campañas acotadas y recuperación de resultados.
 - [Protocolo](docs/PROTOCOL.md): hipótesis, controles, métricas y criterios de continuación.
 - [Pérdidas y bibliografía](docs/LOSSES.md): aprendizaje supervisado, SSL bioinspirado y observación neuronal.
 - [Datos y arquitectura](docs/DATA.md): calidad, fronteras, procedencia e interfaz.
@@ -54,3 +57,12 @@ El segundo comando sigue siendo una comprobación de ejecución. El importador r
 - [Publicación](docs/PUBLISHING.md): estado de la subida y comandos de publicación.
 
 `configs/pilot.json` describe una propuesta, **no una prerregistración externa ni un runner completo**. Arquitectura biológica, objetivo bioinspirado y algoritmo local plausible son tres conceptos distintos. El prototipo usa BPTT.
+
+El nuevo piloto de desarrollo se ejecuta con:
+
+```bash
+python scripts/pilot.py --model gru --steps 500 --output outputs/gru.json
+```
+
+Usa validación para explorar y ajustar; no sustituye al protocolo completo ni a un
+test confirmatorio. Ver la bitácora para resultados y limitaciones actuales.
