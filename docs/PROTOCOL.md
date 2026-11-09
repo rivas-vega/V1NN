@@ -26,7 +26,7 @@ El routing aleatorio fijo implementado es diagnóstico, no retinotopía. Una col
 
 El generador desplaza texturas aleatorias periódicamente en ocho direcciones. Cada imagen aislada tiene la misma distribución marginal con independencia de la velocidad. Así se elimina un atajo estático evidente. La implementación estima **velocidad global 2D**, no flujo óptico denso.
 
-Antes de evaluar MICrONS, comprobar que un modelo temporal de referencia aprende y que una lectura estática no explota artefactos. Añadir historias distintas con idéntica imagen final. Separar texturas, velocidades y semillas entre entrenamiento, validación y test. El generador actual es un smoke test, no contiene todavía ese benchmark completo.
+Antes de evaluar MICrONS, comprobar que un modelo temporal de referencia aprende y que una lectura estática no explota artefactos. Añadir historias distintas con idéntica imagen final. Separar texturas, velocidades y semillas entre entrenamiento, validación y test. El piloto actual separa texturas mediante semillas de generación y añade historias con idéntico fotograma final. Comparte las ocho velocidades entre entrenamiento y validación: la extrapolación a velocidades nuevas y el test final independiente siguen pendientes.
 
 Después introducir parches con movimiento independiente, oclusiones, pérdidas de fotogramas y cambios de contraste. Distinguir movimiento visible de mantenimiento de una estimación durante ausencia de entrada. La segunda tarea exige memoria, no percepción de una imagen observable. El flujo denso y escenas naturales son extensiones, no capacidades ya implementadas.
 

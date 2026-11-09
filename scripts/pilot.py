@@ -53,6 +53,8 @@ def run(config, output, graph_path=None):
     model, model_info = build_model(config, graph)
     model.to(config.device)
     parameters = [p for p in model.parameters() if p.requires_grad]
+    initial_parameters = {name: p.detach().cpu().clone()
+                          for name, p in model.named_parameters() if p.requires_grad}
     optimizer = torch.optim.Adam(parameters, lr=config.lr)
     train_x, train_y = (v.to(config.device) for v in data["train"])
     batches = torch.Generator().manual_seed(config.seed)
@@ -69,20 +71,30 @@ def run(config, output, graph_path=None):
             raise RuntimeError(f"Nonfinite loss at step {step}")
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
-        torch.nn.utils.clip_grad_norm_(parameters, 1.0, error_if_nonfinite=True)
+        grad_norm = torch.nn.utils.clip_grad_norm_(parameters, 1.0, error_if_nonfinite=True)
         optimizer.step()
         completed = step+1
         if step == 0 or completed % 50 == 0 or completed == config.steps:
-            history.append({"step": completed, "training_loss": float(loss.detach())})
+            history.append({"step": completed, "training_loss": float(loss.detach()),
+                            "gradient_norm_before_clip": float(grad_norm.detach())})
     model.eval()
     evaluations = {}
     with torch.no_grad():
-        for split in ("validation", "counterfactual"):
+        for split in ("train", "validation", "counterfactual"):
             x, target = data[split]
             predictions = torch.cat([model(chunk.to(config.device)).cpu()
                                      for chunk in x.split(config.batch)])
             evaluations[split] = {"model": metrics(predictions, target),
                                   "zero_velocity": metrics(torch.zeros_like(target), target)}
+    parameter_changes = {}
+    for name, parameter in model.named_parameters():
+        if name in initial_parameters and parameter.numel():
+            initial = initial_parameters[name]
+            delta = parameter.detach().cpu()-initial
+            parameter_changes[name] = {
+                "elements": parameter.numel(),
+                "initial_rms": float(initial.square().mean().sqrt()),
+                "change_rms": float(delta.square().mean().sqrt())}
     if config.device == "cuda":
         torch.cuda.synchronize()
     result = {"status": reason, "completed_steps": completed,
@@ -92,6 +104,9 @@ def run(config, output, graph_path=None):
               "parameters": sum(p.numel() for p in model.parameters()),
               "trainable_parameters": sum(p.numel() for p in parameters),
               "data": manifest, "training": history, "evaluation": evaluations,
+              "optimization": {"optimizer": "Adam", "gradient_clip_norm": 1.0,
+                               "parameter_changes": parameter_changes,
+                               "train_metric": "full fixed training split after final update"},
               "seconds": time.perf_counter()-started,
               "environment": {"python": platform.python_version(), "torch": torch.__version__,
                               "numpy": np.__version__, "device": config.device,

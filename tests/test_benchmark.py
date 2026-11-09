@@ -5,7 +5,7 @@ import pytest
 import torch
 
 from v1nn.benchmark import (PilotConfig, build_model, paired_histories,
-                            pixel_motion_reference, prepare_data, split_seed)
+                            metrics, pixel_motion_reference, prepare_data, split_seed)
 
 
 def test_counterfactual_prevents_static_solution():
@@ -69,6 +69,14 @@ def test_pilot_reproducibility_and_checkpoint(tmp_path):
     assert checkpoint["completed_steps"] == 3
     model, _ = build_model(config)
     model.load_state_dict(checkpoint["model"])
+    data, _ = prepare_data(config)
+    with torch.no_grad():
+        x, target = data["train"]
+        # Verify the reported metric uses the saved final weights and every
+        # training example, rather than the last stochastic training batch.
+        expected = metrics(torch.cat([model(chunk) for chunk in x.split(config.batch)]), target)
+    assert first["evaluation"]["train"]["model"] == expected
+    assert any(p["change_rms"] > 0 for p in first["optimization"]["parameter_changes"].values())
     assert first["completed_steps"] == 3 and first["scientific_claim"] is None
 
 

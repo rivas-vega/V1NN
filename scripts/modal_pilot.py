@@ -3,6 +3,7 @@
 modal run --detach scripts/modal_pilot.py --models gru,static --seeds 7,8
 """
 import json
+import math
 import subprocess
 from pathlib import Path
 
@@ -26,7 +27,8 @@ image = (modal.Image.debian_slim(python_version="3.12")
          .add_local_dir(ROOT/"scripts", "/root/v1nn/scripts", ignore=["**/__pycache__/**"]))
 
 
-def validate_campaign(models, seeds, steps, seconds, grid, alpha=0.3):
+def validate_campaign(models, seeds, steps, seconds, grid, alpha=0.3,
+                      train_size=2048, batch=64, lr=0.003):
     allowed = {"static", "linear_history", "gru", "temporal_cnn", "connectome",
                "no_edges", "reset", "reservoir", "degree_null"}
     model_list = models.split(",")
@@ -41,6 +43,10 @@ def validate_campaign(models, seeds, steps, seconds, grid, alpha=0.3):
         raise ValueError("Bounds: 1..3000 steps, 60..1500 seconds, grid 1..8")
     if not 0 < alpha <= 1:
         raise ValueError("Require 0 < alpha <= 1")
+    if not 1 <= train_size <= 4096 or not 1 <= batch <= 128:
+        raise ValueError("Bounds: 1..4096 training clips, 1..128 batch size")
+    if not math.isfinite(lr) or not 0 < lr <= 0.1:
+        raise ValueError("Require finite 0 < learning rate <= 0.1")
     return [(model, seed) for seed in seed_list for model in model_list]
 
 
@@ -48,6 +54,7 @@ def validate_campaign(models, seeds, steps, seconds, grid, alpha=0.3):
               max_containers=1, min_containers=0, scaledown_window=2,
               retries=0, volumes={"/results": volume})
 def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph: str, alpha: float,
+             train_size: int, batch: int, lr: float,
              source_commit: str, source_dirty: bool):
     import time
     import uuid
@@ -55,7 +62,7 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
     from pilot import atomic_json, run
     from v1nn.benchmark import PilotConfig
 
-    trials = validate_campaign(models, seeds, steps, seconds, grid, alpha)
+    trials = validate_campaign(models, seeds, steps, seconds, grid, alpha, train_size, batch, lr)
     if graph not in ("synthetic", "microns"):
         raise ValueError("Choose synthetic or microns")
     started = time.monotonic()
@@ -64,7 +71,8 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
     summary = {"run_id": run_id, "status": "running", "gpu": "T4",
                "source_commit": source_commit, "source_dirty": source_dirty,
                "time_budget_seconds": seconds, "server_timeout_seconds": 1800,
-               "trials": [], "graph": graph, "alpha": alpha}
+               "trials": [], "graph": graph, "alpha": alpha,
+               "train_size": train_size, "batch": batch, "lr": lr}
     atomic_json(folder/"campaign.json", summary)
     volume.commit()
     try:
@@ -82,6 +90,7 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
                 break
             output = folder/f"{model}_{seed}.json"
             result = run(PilotConfig(model=model, seed=seed, steps=steps, grid=grid, alpha=alpha,
+                                     train_size=train_size, batch=batch, lr=lr,
                                      device="cuda", max_seconds=min(remaining-20, 300)), output, graph_path)
             summary["trials"].append({"file": output.name,
                                       "completed_steps": result["completed_steps"],
@@ -104,11 +113,13 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
 
 @app.local_entrypoint()
 def main(models: str = "gru,static,linear_history,temporal_cnn", seeds: str = "7,8,9",
-         steps: int = 500, seconds: int = 1200, grid: int = 4, graph: str = "synthetic", alpha: float = 0.3):
-    validate_campaign(models, seeds, steps, seconds, grid, alpha)
+         steps: int = 500, seconds: int = 1200, grid: int = 4, graph: str = "synthetic", alpha: float = 0.3,
+         train_size: int = 2048, batch: int = 64, lr: float = 0.003):
+    validate_campaign(models, seeds, steps, seconds, grid, alpha, train_size, batch, lr)
     if graph not in ("synthetic", "microns"):
         raise ValueError("Choose synthetic or microns")
     if SOURCE_DIRTY:
         raise RuntimeError("Commit the reviewed source before launching paid GPU work")
-    result = campaign.remote(models, seeds, steps, seconds, grid, graph, alpha, SOURCE_COMMIT, SOURCE_DIRTY)
+    result = campaign.remote(models, seeds, steps, seconds, grid, graph, alpha,
+                             train_size, batch, lr, SOURCE_COMMIT, SOURCE_DIRTY)
     print(json.dumps(result, indent=2))

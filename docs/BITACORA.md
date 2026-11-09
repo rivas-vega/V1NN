@@ -224,3 +224,39 @@ la siguiente sesión.
 3. Solo después, comparar nulos que conserven tipo y distancia y calibrar una
    interfaz de entrada más defendible. No reclamar especificidad anatómica con el
    nulo de grados actual ni generalización a otros animales.
+
+## Entrada 006 — 2026-11-09: diagnóstico de capacidad con 32 ejemplos (plan previo)
+
+**Motivación.** Las tres semillas del conectoma a 500 actualizaciones no mejoran
+la predicción cero en validación; quitar la fuga (`alpha=1`) empeora el resultado.
+No repetir ese ajuste sin evidencia nueva. Antes de buscar una ventaja anatómica,
+comprobar que el modelo puede ajustar un conjunto deliberadamente pequeño.
+
+**Hipótesis y criterio.** Si conectoma y control sin aristas reducen el MSE de
+entrenamiento completo por debajo del 1 % de su referencia cero, tienen capacidad
+para memorizar 32 clips bajo este optimizador. Esto no demuestra capacidad para
+la tarea general ni que 500 pasos basten con 2048 clips. Si fallan mientras GRU
+aprende, investigar representación/gradientes antes de ampliar el estudio del grafo.
+La lectura estática controla que memorizar ejemplos no equivale a usar movimiento.
+
+**Diseño fijado antes de lanzar.** MICrONS v1718, 32 clips de entrenamiento,
+512 de validación y las mismas 16 texturas contrafactuales × 8 direcciones; filtros
+4×4, 8 fotogramas, alpha 0,3. Modelos GRU, estático, conectoma y sin aristas,
+semillas 7/8/9, 1500 actualizaciones Adam, lr 0,003, batch 64. Datos y calibración
+compartidos dentro de esta campaña. Cambiar el tamaño del generador cambia las
+texturas, etiquetas y calibración: no asumir que estos 32 clips son un subconjunto
+de los 2048 anteriores ni comparar directamente ambos errores de validación.
+Medir todo el entrenamiento después del último paso, además de validación e
+historias contrafactuales. Registrar normas de gradiente y cambio de parámetros.
+
+**Ejecución y coste.** Una campaña T4 secuencial de 12 ensayos, límite suave
+1200 s y duro 1800 s, sin reintentos; reserva previa de 2 USD. No hay aplicaciones
+BIONN activas al preparar este plan. El contador agregado de aplicaciones efímeras
+de Modal es 0,10324261 USD, no una factura final ni un desglose exclusivo del
+proyecto; se mantienen todas las reservas anteriores. Resultados pendientes.
+
+**Continuidad nocturna.** Por petición del usuario se ha creado una revisión en
+este chat cada dos horas durante la noche del 9 al 10 de noviembre, con límite
+el 10 a las 08:00 Europe/Paris. Consultará estado, bitácora y presupuesto antes de
+actuar; no duplicará campañas activas ni repetirá hipótesis descartadas sin motivo.
+El máximo sigue siendo 50 USD acumulados para toda la ronda.
