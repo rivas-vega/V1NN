@@ -94,3 +94,20 @@ siendo 50 USD y la ampliación no está activada. Conciliar primero gasto y rese
 si un experimento indispensable no cabe, justificarlo en la bitácora y actualizar
 el registro de gasto antes de utilizar la ampliación. No gastar para agotar un
 presupuesto ni elevarlo por reservas que todavía no se han conciliado.
+
+## Nulos E/I preparados en CPU
+
+`python scripts/prepare_type_nulls.py --output data/processed/type_nulls_v1`
+genera los tres grafos y publica el manifiesto únicamente si todos superan la
+auditoría. El paquete conserva una copia del original; no contiene credenciales.
+Subir el directorio con `modal volume put` a
+`/type-null-bundles/SHA256_DEL_MANIFIESTO` y comprobar allí el manifiesto antes
+de gastar GPU. El nombre remoto incluye el hash; no sobrescribir paquetes previos.
+
+La campaña usa `--graph typed_nulls --models type_null --seeds 7,8,9`,
+`--steps 3000 --seconds 900 --null-manifest-sha256 SHA256_DEL_MANIFIESTO`.
+No regenera nulos en GPU: comprueba el hash fijado, la identidad de los archivos
+y sus invariantes, y conserva una copia exacta con los resultados. Publicar el
+informe de auditoría pequeño; los NPZ y checkpoints permanecen fuera de GitHub.
+`scripts/compare_type_nulls.py` verifica datos, normalización, configuración y
+entorno antes de comparar con los modelos ya entrenados de 3000 pasos.

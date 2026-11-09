@@ -611,3 +611,25 @@ actual de aplicaciones efímeras de Modal es 0,33031793 USD, distinta de la lect
 previa por actualización de su agregado; no sustituye una factura exclusiva ni
 libera reservas. Se mantienen 12 USD reservados y 50 USD de límite operativo.
 La reserva adicional de 2 USD se añadirá solo después de validar los tres nulos.
+
+**Auditoría CPU completada antes de GPU.** Revisión de generación
+`7654f4a8e353e09c7a1b22d571a7a31e0043976a`, árbol limpio. Cada nulo alcanzó
+394 765 intercambios. Semillas 7/8/9: 1 683 649 / 1 677 899 / 1 679 767 intentos;
+63,83 / 70,19 / 80,11 s; 81,480 / 81,379 / 81,502 % de aristas cambiadas.
+Los tres conservan exactamente todos los invariantes requeridos; también el
+routing, parámetros neuronales/de lectura, multiconjunto inicial de theta y
+masa entrante E/I por neurona (diferencia máxima observada 0). El cambio por bloque
+es ≈94,6 % E→E, 81,6 % E→I, 69 % I→E y 56–57 % I→I; no afirmar mezcla equivalente
+entre bloques. Informe reproducible en `reports/type_null_audit.json`.
+
+Las distancias entre somas no se conservan: media original 136,86 µm, nulos
+196,88–197,33 µm; mediana original 103,25 µm frente a 166,69–167,78 µm.
+Esto deja una explicación espacial abierta si persiste alguna ventaja.
+Una integración CPU de dos pasos con el grafo real verifica el circuito de
+carga/entrenamiento/checkpoint; no se considera evidencia científica de rendimiento.
+35 tests pasan. El paquete auditado se fija por manifiesto
+`ff439638504bf0b97da2543605c2fcc83734c2362f49329dd5f617cdc9c83179`.
+
+Se añade ahora la reserva de 2 USD para los tres ensayos GPU: 14 acumulados,
+36 USD de margen conservador, límite operativo 50 USD; ampliación a 75 sin activar.
+La campaña se limita a 900 s cooperativos y 1800 s de timeout, sin reintentos.

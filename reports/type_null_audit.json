@@ -1,0 +1,286 @@
+{
+  "bundle_manifest_sha256": "ff439638504bf0b97da2543605c2fcc83734c2362f49329dd5f617cdc9c83179",
+  "generation_manifest": {
+    "kind": "directed_degrees_and_node_specific_EI_v1",
+    "source": {
+      "commit": "7654f4a8e353e09c7a1b22d571a7a31e0043976a",
+      "dirty": false,
+      "python_sources_sha256": "0cd5221e53e2009b221cb700413cf7257837d3123d70ed61f1485c8ab29de6ef"
+    },
+    "source_graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+    "seeds": [
+      7,
+      8,
+      9
+    ],
+    "swaps_per_edge": 5,
+    "max_seconds_per_graph": 180,
+    "max_attempts_per_graph": 10000000,
+    "minimum_edge_change_fraction": 0.5,
+    "nulls": {
+      "7": {
+        "file": "type_null_7.npz",
+        "sha256": "52a3950914f49bb93ebb598ac2a9d9e0b5fcd8f7e8a1ae3600c55a2b6955eb1f",
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 1683649,
+          "edge_change_fraction": 0.8148012108469596,
+          "seconds": 63.832580471000256,
+          "uniform_sampling_claim": false
+        },
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.8148012108469596,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": false,
+          "uniform_sampling_claim": false
+        }
+      },
+      "8": {
+        "file": "type_null_8.npz",
+        "sha256": "fb120be8bdcd55a0da9688675df5b825b0c161cf5cdeb7e3f38b363810a5506a",
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 1677899,
+          "edge_change_fraction": 0.8137879497929148,
+          "seconds": 70.19312086399987,
+          "uniform_sampling_claim": false
+        },
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.8137879497929148,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": false,
+          "uniform_sampling_claim": false
+        }
+      },
+      "9": {
+        "file": "type_null_9.npz",
+        "sha256": "db159e3c9fc466c6cf847b16940f8a7441d79d25cf411c99ae5147076b1a92f4",
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 1679767,
+          "edge_change_fraction": 0.8150165288209441,
+          "seconds": 80.107793227,
+          "uniform_sampling_claim": false
+        },
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.8150165288209441,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": false,
+          "uniform_sampling_claim": false
+        }
+      }
+    }
+  },
+  "original_spatial_summary": {
+    "mean_um": 136.8597447841517,
+    "quantiles_10_50_90_um": [
+      44.17978759568685,
+      103.25117366887409,
+      285.3528035302058
+    ],
+    "interpretation": "soma separation; not axonal path length"
+  },
+  "nulls": {
+    "7": {
+      "verified_loader": {
+        "manifest_sha256": "ff439638504bf0b97da2543605c2fcc83734c2362f49329dd5f617cdc9c83179",
+        "source_graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+        "null_graph_sha256": "52a3950914f49bb93ebb598ac2a9d9e0b5fcd8f7e8a1ae3600c55a2b6955eb1f",
+        "seed": 7,
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.8148012108469596,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": false,
+          "uniform_sampling_claim": false
+        },
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 1683649,
+          "edge_change_fraction": 0.8148012108469596,
+          "seconds": 63.832580471000256,
+          "uniform_sampling_claim": false
+        }
+      },
+      "routing_equal": true,
+      "node_and_readout_initial_parameters_equal": true,
+      "initial_theta_multiset_equal": true,
+      "parameter_budget_equal": true,
+      "initial_EI_mass_max_absolute_difference": 0.0,
+      "by_group": {
+        "excitatory->excitatory": {
+          "edges": 31955,
+          "fraction_changed": 0.9457987795337193
+        },
+        "excitatory->inhibitory": {
+          "edges": 16475,
+          "fraction_changed": 0.8155386949924127
+        },
+        "inhibitory->excitatory": {
+          "edges": 26924,
+          "fraction_changed": 0.6926162531570346
+        },
+        "inhibitory->inhibitory": {
+          "edges": 3599,
+          "fraction_changed": 0.5623784384551265
+        }
+      },
+      "spatial_summary": {
+        "mean_um": 197.33006639446964,
+        "quantiles_10_50_90_um": [
+          61.77301445972256,
+          167.77537745450005,
+          381.5790361751767
+        ],
+        "interpretation": "soma separation; not axonal path length"
+      }
+    },
+    "8": {
+      "verified_loader": {
+        "manifest_sha256": "ff439638504bf0b97da2543605c2fcc83734c2362f49329dd5f617cdc9c83179",
+        "source_graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+        "null_graph_sha256": "fb120be8bdcd55a0da9688675df5b825b0c161cf5cdeb7e3f38b363810a5506a",
+        "seed": 8,
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.8137879497929148,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": false,
+          "uniform_sampling_claim": false
+        },
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 1677899,
+          "edge_change_fraction": 0.8137879497929148,
+          "seconds": 70.19312086399987,
+          "uniform_sampling_claim": false
+        }
+      },
+      "routing_equal": true,
+      "node_and_readout_initial_parameters_equal": true,
+      "initial_theta_multiset_equal": true,
+      "parameter_budget_equal": true,
+      "initial_EI_mass_max_absolute_difference": 0.0,
+      "by_group": {
+        "excitatory->excitatory": {
+          "edges": 31955,
+          "fraction_changed": 0.9460491315913002
+        },
+        "excitatory->inhibitory": {
+          "edges": 16475,
+          "fraction_changed": 0.8162670713201821
+        },
+        "inhibitory->excitatory": {
+          "edges": 26924,
+          "fraction_changed": 0.6886421036993018
+        },
+        "inhibitory->inhibitory": {
+          "edges": 3599,
+          "fraction_changed": 0.5643234231731037
+        }
+      },
+      "spatial_summary": {
+        "mean_um": 196.8793215733811,
+        "quantiles_10_50_90_um": [
+          61.114664032076384,
+          166.6925213439404,
+          384.0383013547035
+        ],
+        "interpretation": "soma separation; not axonal path length"
+      }
+    },
+    "9": {
+      "verified_loader": {
+        "manifest_sha256": "ff439638504bf0b97da2543605c2fcc83734c2362f49329dd5f617cdc9c83179",
+        "source_graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+        "null_graph_sha256": "db159e3c9fc466c6cf847b16940f8a7441d79d25cf411c99ae5147076b1a92f4",
+        "seed": 9,
+        "audit": {
+          "nodes": 1357,
+          "edges": 78953,
+          "edge_change_fraction": 0.8150165288209441,
+          "total_directed_degrees_exact": true,
+          "node_specific_EI_degrees_exact": true,
+          "node_identity_exact": true,
+          "autapses": 0,
+          "duplicate_edges": 0,
+          "minimum_change_screen": 0.5,
+          "spatial_constraints": false,
+          "uniform_sampling_claim": false
+        },
+        "rewiring": {
+          "accepted_swaps": 394765,
+          "attempts": 1679767,
+          "edge_change_fraction": 0.8150165288209441,
+          "seconds": 80.107793227,
+          "uniform_sampling_claim": false
+        }
+      },
+      "routing_equal": true,
+      "node_and_readout_initial_parameters_equal": true,
+      "initial_theta_multiset_equal": true,
+      "parameter_budget_equal": true,
+      "initial_EI_mass_max_absolute_difference": 0.0,
+      "by_group": {
+        "excitatory->excitatory": {
+          "edges": 31955,
+          "fraction_changed": 0.9472070098576123
+        },
+        "excitatory->inhibitory": {
+          "edges": 16475,
+          "fraction_changed": 0.817845220030349
+        },
+        "inhibitory->excitatory": {
+          "edges": 26924,
+          "fraction_changed": 0.6885678205318675
+        },
+        "inhibitory->inhibitory": {
+          "edges": 3599,
+          "fraction_changed": 0.5743262017227008
+        }
+      },
+      "spatial_summary": {
+        "mean_um": 197.02038121062412,
+        "quantiles_10_50_90_um": [
+          61.34721699596978,
+          167.02973225147673,
+          383.0914983593281
+        ],
+        "interpretation": "soma separation; not axonal path length"
+      }
+    }
+  }
+}

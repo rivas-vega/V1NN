@@ -33,12 +33,12 @@ una entrada antigua.
 
 ## Próxima acción concreta
 
-La GPU y la confirmación en CPU han terminado. Leer el plan y criterios
-preregistrados en la entrada 010. Generar y auditar en CPU nulos que preserven grados por clase E/I
-antes de entrenarlos. El nulo actual altera la composición inhibitoria de casi
-todas las neuronas, por lo que no aísla el cableado fino. No hay una nueva campaña
-GPU ni reserva pendiente para ese control. No repetir experimentos completados.
-
+Entrada 010: tres nulos E/I generados y auditados en CPU; todos conservan
+invariantes e interfaz y cambian 81,4–81,5 % de aristas. Se han reservado 2 USD
+adicionales (14 acumulados). Preparada una única campaña de tres ensayos a 3000
+pasos. Consultar estado local y Modal antes de actuar; no duplicar la campaña.
+Al terminar, comparar con `gpu_long_training` usando `compare_type_nulls.py` y
+aplicar la decisión preregistrada en la entrada 010.
 La partición de 2048 clips de la entrada 009 ya fue consultada. Conserva valor
 como confirmación de los modelos congelados entonces, pero no puede reciclarse
 como una confirmación independiente de futuros ajustes inspirados por sus resultados.
