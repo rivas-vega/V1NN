@@ -87,3 +87,10 @@ continuar; las campañas ya lanzadas con `--detach` permanecen en Modal.
 son 1..4096 clips, 1..128 ejemplos por lote y una tasa finita entre 0 y 0,1
 (excluyendo 0). El informe distingue el error del lote durante entrenamiento
 del error sobre todos los clips después de la última actualización.
+
+Actualización del 2026-11-09: el usuario permite hasta **75 USD únicamente si
+resulta estrictamente necesario para la primera fase**. El límite operativo sigue
+siendo 50 USD y la ampliación no está activada. Conciliar primero gasto y reservas;
+si un experimento indispensable no cabe, justificarlo en la bitácora y actualizar
+el registro de gasto antes de utilizar la ampliación. No gastar para agotar un
+presupuesto ni elevarlo por reservas que todavía no se han conciliado.

@@ -18,7 +18,7 @@ El precedente directo es [Lappalainen et al., Nature 2024](https://www.nature.co
 | Nulos dirigidos conservando grados, grupos y distancias discretizadas | Implementado, sin garantía de muestreo uniforme |
 | Pérdidas de movimiento, predicción sensorial y observación neuronal | Implementadas |
 | Importador MICrONS v1718 con verificación de hashes | Descarga real verificada: 1.357 neuronas, 78.953 parejas dirigidas |
-| Tests unitarios e integración sintética | 29 tests superados; dos smoke tests reproducidos |
+| Tests unitarios e integración sintética | 30 tests superados; dos smoke tests reproducidos |
 | Piloto temporal de desarrollo | Runner, controles y GRU/CNN aprenden en tres semillas; MICrONS sin ventaja en el piloto inicial |
 | MICrONS frente a controles, tres semillas | Piloto ejecutado; sin ventaja ni mejora frente a velocidad cero |
 | Validación funcional y benchmark confirmatorio completo | **No evaluados** |

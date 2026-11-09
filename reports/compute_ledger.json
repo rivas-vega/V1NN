@@ -49,12 +49,23 @@
       "trials": 12,
       "function_seconds": 224.418454029,
       "source_commit": "3f183683d7d696adb41129983396b5ad89801949"
+    },
+    {
+      "purpose": "training-budget-3000",
+      "status": "running",
+      "reservation_usd": 2,
+      "planned_trials": 9,
+      "app_id": "ap-6HuVccXtz41DlSaTlEz7TF",
+      "source_commit": "d18624dca383cad825305c96a667673e6f87604c"
     }
   ],
-  "reserved_usd": 10.0,
-  "available_after_reservations_usd": 40.0,
+  "reserved_usd": 12.0,
+  "available_after_reservations_usd": 38.0,
   "billing_note": "Billing queried before and after campaigns; delayed snapshots are not a final invoice. Keep reservations until reconciled.",
-  "active_bionn_apps": 0,
+  "active_bionn_apps": 1,
   "latest_ephemeral_apps_metered_snapshot_usd": 0.15065402,
-  "snapshot_note": "Workspace ephemeral-app usage snapshot, not a final project invoice. Billing can lag and snapshot totals can update at different times. Reservations remain conservative."
+  "snapshot_note": "Workspace ephemeral-app usage snapshot, not a final project invoice. Billing can lag and snapshot totals can update at different times. Reservations remain conservative.",
+  "conditional_maximum_usd": 75,
+  "extension_activated": false,
+  "extension_condition": "User permits up to 75 USD only if strictly necessary. Reconcile actual usage and reservations first; document why an indispensable phase-one experiment cannot fit within the active 50 USD limit."
 }

@@ -13,6 +13,11 @@
   Modal. El presupuesto inicial autorizado el 2026-11-09 es 50 USD acumulados para
   esta primera ronda, no 50 USD por sesión. No contar créditos como permiso para
   ampliar uso. Conservar margen; registrar también campañas fallidas.
+  El usuario autorizó después un máximo condicional de 75 USD solo si es
+  estrictamente necesario para esta primera fase. Mantener 50 USD como límite
+  operativo mientras baste. Antes de activar la ampliación, conciliar gasto y
+  reservas y documentar qué experimento indispensable no cabe en 50 USD; no
+  ampliarlo por comodidad ni por reservas pendientes de conciliar.
 - Si la facturación no puede consultarse, no presentar una estimación como coste
   real. Anotar una reserva conservadora por campaña y detener nuevas campañas si
   el margen restante no es verificable. No crear bucles pagados ilimitados.

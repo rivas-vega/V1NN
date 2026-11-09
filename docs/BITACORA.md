@@ -378,3 +378,60 @@ altos, auditar gradientes por grupo y cambios efectivos de pesos antes de otra G
 Si aparece una mejora consistente, contrastarla con el nulo emparejado y reservar
 una partición nueva para confirmación. No volver a la prueba de 32 clips, alpha=1
 ni a una búsqueda de lectura congelada sin una razón nueva registrada.
+
+## Entrada 008 — 2026-11-09: ampliar entrenamiento, no el presupuesto
+
+El usuario pide continuar y permite elevar el máximo de esta primera fase a
+75 USD **solo si es estrictamente necesario**. Se mantiene el límite operativo
+original de 50 USD: hay margen suficiente. La ampliación no se activa. Antes de
+considerarla deberán conciliarse gasto y reservas y justificarse por escrito un
+experimento indispensable que no quepa en el límite original.
+
+Se ha lanzado la comparación fijada al final de la entrada 007: nueve ensayos,
+conectoma/sin aristas/nulo de grados × semillas 7/8/9, 3000 pasos con los mismos
+2048 clips, alpha 0,3, Adam lr 0,003, batch 64 y filtros 4×4. Revisión
+`d18624dca383cad825305c96a667673e6f87604c`, sin cambios de código desde las 29
+pruebas superadas. T4 única, secuencial, sin reintentos, límites 1500/1800 s y
+300 s por ensayo. Comprobar que todos lleguen a 3000 pasos antes de compararlos.
+
+La consulta previa confirmó cero campañas BIONN activas y uso agregado de apps
+efímeras 0,15065402 USD. Reserva nueva: 2 USD; reservas acumuladas: 12 USD; margen
+conservador dentro de los 50: 38 USD. No se confunden reservas con consumo real.
+La tarea nocturna conserva su horario y ahora incluye la autorización condicional
+hasta 75 USD, sin convertirla en un presupuesto a consumir.
+
+### Seguimiento y plan condicionado antes de completar la campaña
+
+La primera semilla completa da MSE de entrenamiento/validación/contrafactual:
+conectoma 0,492595/1,407510/1,364545; sin aristas
+0,978334/1,866976/1,862724. No extrapolar aún a las otras semillas ni atribuir la
+mejora al grafo medido antes de observar el nulo. El cambio de presupuesto de
+entrenamiento es la única intervención de esta campaña.
+
+Para interpretar el mecanismo se añade una auditoría en CPU, sin actualizar
+pesos: gradientes por grupo en los primeros 64 clips de entrenamiento, movimiento
+de parámetros y cambio de pesos recurrentes efectivos. Los tamaños de gradiente
+dependen de la parametrización; su desigualdad no demuestra por sí sola bloqueo
+de aprendizaje, especialmente con Adam. En el checkpoint de 500 pasos/semilla 7,
+el cambio L2 relativo de pesos efectivos ya es 0,181 y ninguna fila alcanza el
+límite de ganancia: no afirmar que los pesos estuvieran completamente congelados.
+
+**Confirmación condicionada, sin mirar sus datos.** Si las tres semillas del
+conectoma a 3000 pasos mejoran a la referencia cero tanto en MSE como EPE de
+validación, congelar esta configuración y evaluar los checkpoints en 2048 clips
+nuevos generados con `split_seed(20261110, 'validation')`. No reentrenar ni ajustar
+normalización: usar la calibración original de los 2048 clips de entrenamiento.
+Evaluar también nulo de grados, sin aristas y las GRU originales de 500 pasos,
+siempre con las tres semillas. La GRU aporta una referencia práctica con distinto
+presupuesto, no una comparación anatómica emparejada.
+
+Criterio principal: EPE, con MSE como secundario; conservar resultados por semilla.
+Para comparación entre conectoma y nulo, calcular diferencias sobre los mismos
+clips, promediar las tres semillas por clip y remuestrear clips completos (2000
+réplicas, semilla 20261109) para un intervalo percentil del 95 %. Es incertidumbre
+sobre estímulos condicionada a estos tres entrenamientos y a esta columna, no
+sobre animales ni sobre todas las realizaciones de grafos. Conservar los mismos
+remuestreos para las comparaciones contra cero y sin aristas. Esta nueva partición
+solo confirma el método congelado; si sus resultados se usan después para ajustar,
+dejará de ser confirmatoria para esas decisiones posteriores. Si no se cumple la
+condición, mantener la partición sin consultar y seguir la auditoría de optimización.

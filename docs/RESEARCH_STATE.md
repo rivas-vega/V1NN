@@ -13,7 +13,7 @@ una entrada antigua.
 | Eliminar la fuga (`alpha=1`) corrige el problema. | Empeora conectoma, sin aristas y nulo en tres semillas. | Descartado en el régimen probado. Reabrir solo por una interacción nueva y explícita, no repetir la misma campaña. |
 | El conectoma puede memorizar 32 ejemplos. | Campaña 006 completada: conectoma y sin aristas cumplen <1 % del error cero en las tres semillas; validación ≈2,98. | Superada la capacidad de memorizar 32 clips. No repetirla ni confundirla con generalización. |
 | Resolver la lectura lineal recupera una representación temporal útil. | 30 lecturas sobre núcleos congelados: mejor regularización se aproxima a la predicción constante; mínimos cuadrados sobreajusta. | No rescata estos estados. No repetir el barrido sin cambiar o justificar la representación. |
-| El fallo a 2048 ejemplos depende del tiempo de optimización conjunta. | Ajuste pequeño posible; lectura congelada insuficiente; 500 pasos dejan entrenamiento alto. | Próximo diagnóstico: 3000 pasos, sin cambiar otros factores, según entrada 007. Aún no ejecutado ni reservado. |
+| El fallo a 2048 ejemplos depende del tiempo de optimización conjunta. | Ajuste pequeño posible; lectura congelada insuficiente; 500 pasos dejan entrenamiento alto. | Próximo diagnóstico: 3000 pasos, sin cambiar otros factores, según entrada 007. En ejecución; 2 USD reservados en entrada 008. |
 
 ## Reglas para evitar bucles
 
@@ -28,10 +28,12 @@ una entrada antigua.
    falta, registrar el bloqueo y avanzar únicamente en tareas independientes útiles.
 6. Mantener el límite acumulado de 50 USD, reservas previas, ejecución secuencial
    acotada y consulta de aplicaciones activas. Los créditos no amplían autorización.
+   Existe autorización condicional hasta 75 USD solo por necesidad estricta,
+   con conciliación y justificación previa. Aún no se ha activado.
 
 ## Próxima acción concreta
 
-Leer el plan y las ramas de decisión al final de la entrada 007. Comprobar primero
-si ya se ejecutó desde otra revisión. Solo después de comprobar Modal y reservar
-2 USD, lanzar una campaña de nueve ensayos con los límites indicados. Tras ella,
-actualizar esta tabla; no aumentar pasos de nuevo por inercia.
+La campaña de nueve ensayos está en marcha (entrada 008). Recuperar su estado
+y resultados antes de iniciar otro trabajo GPU; el identificador está en el
+registro de gasto y en el estado local. Aplicar las ramas de decisión de la
+entrada 007 y actualizar esta tabla; no aumentar pasos de nuevo por inercia.
