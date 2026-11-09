@@ -1,0 +1,24 @@
+{
+  "source_commit": "f3ef3331b7cc24b8130fffb290e16f854a20a7a2",
+  "python_sources_sha256": "7ffa0a8b2ce749d8c01ee96892d2a69e1c982a618766486053629c11827a9f9d",
+  "trials": {
+    "7": {
+      "source_verified": true,
+      "checkpoint_graph_verified": true,
+      "paired_routing_verified": true,
+      "checkpoint_sha256": "7e011f5eee6701e7464508ed5424c59e41e94bd226360f421c5fce912472faa4"
+    },
+    "8": {
+      "source_verified": true,
+      "checkpoint_graph_verified": true,
+      "paired_routing_verified": true,
+      "checkpoint_sha256": "f2a9065b76ae0f2af1481c0baec4c47ca5fb12b188f24a0cf10ae0b4559bbbc8"
+    },
+    "9": {
+      "source_verified": true,
+      "checkpoint_graph_verified": true,
+      "paired_routing_verified": true,
+      "checkpoint_sha256": "07e3460f1d170b42fea3f8ce5890e2a2024eda4be257c18d278c724c03af117c"
+    }
+  }
+}

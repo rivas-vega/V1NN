@@ -10,7 +10,9 @@ una entrada antigua.
 | --- | --- | --- |
 | La señal sensorial permite aprender movimiento temporal. | GRU y CNN temporal mejoran claramente la referencia cero en tres semillas; lectura estática no lo hace. | Superada en este piloto. Revalidar si cambia el generador o la interfaz. |
 | MICrONS supera al nulo de grados con la interfaz inicial. | A 500 pasos no se veía ventaja; a 3000, confirmación en 2048 clips nuevos: EPE 1,07241 vs 1,09245, diferencia −0,02004 con intervalo por clips [−0,02526, −0,01508]. | Ventaja pequeña y condicionada. El control E/I posterior tiene solo evaluación de desarrollo; no atribuir aún el efecto al cableado fino. |
-| La ventaja desaparece al conservar grados E/I por nodo. | Tres nulos válidos, 81,4–81,5 % de conexiones cambiadas. EPE de desarrollo 1,08874 medido vs 1,10281 E/I; diferencia −0,01407, signos consistentes. | No desaparece en este piloto; no es confirmación nueva. Auditar ahora grados conjuntos por tipo y distancia en ambos extremos. |
+| La ventaja desaparece al conservar grados E/I por nodo. | Tres nulos válidos, 81,4–81,5 % de conexiones cambiadas. EPE de desarrollo 1,08874 medido vs 1,10281 E/I; diferencia −0,01407, signos consistentes. | No desaparece con E/I solo, pero el control espacial posterior reduce la diferencia y cambia su signo por semilla. No es confirmación nueva. |
+| La ventaja persiste al conservar organización E/I y espacial. | Nulos v2 auditados: EPE medido 1,08874 vs espacial 1,09264; diferencias −0,00996 / −0,01055 / +0,00881. MSE medio ligeramente peor para medido. | No hay ventaja consistente. Completar diseño fijo cruzado para separar realización nula del paquete de semilla de entrenamiento/routing; no retocar hiperparámetros. |
+| Los modelos aprendidos usan corriente recurrente. | Lesión CPU de tres checkpoints: EPE aumenta +0,37102 de media al retirar únicamente corriente recurrente en inferencia. | Dependencia demostrada dentro de esos predictores; no es superioridad anatómica ni comparación de capacidad del modelo sin aristas. No repetir la misma lesión. |
 | Eliminar la fuga (`alpha=1`) corrige el problema. | Empeora conectoma, sin aristas y nulo en tres semillas. | Descartado en el régimen probado. Reabrir solo por una interacción nueva y explícita, no repetir la misma campaña. |
 | El conectoma puede memorizar 32 ejemplos. | Campaña 006 completada: conectoma y sin aristas cumplen <1 % del error cero en las tres semillas; validación ≈2,98. | Superada la capacidad de memorizar 32 clips. No repetirla ni confundirla con generalización. |
 | Resolver la lectura lineal recupera una representación temporal útil. | 30 lecturas sobre núcleos congelados: mejor regularización se aproxima a la predicción constante; mínimos cuadrados sobreajusta. | No rescata estos estados. No repetir el barrido sin cambiar o justificar la representación. |
@@ -34,17 +36,23 @@ una entrada antigua.
 
 ## Próxima acción concreta
 
-Entrada 012: v2 espacial aprobada en CPU con grados conjuntos exactos, 68,8–69,0 %
-de aristas cambiadas y cobertura corregida en los dos estratos pequeños. No usar
-los grafos v1, que se conservan como diagnóstico negativo de muestreo.
-Preparada una campaña de solo tres ensayos espaciales a 3000 pasos; reserva nueva
-2 USD, acumulado 16 USD y margen 34 USD. Consultar estado local y Modal para
-comprobar si ya se lanzó; no duplicar. Al terminar, comparar con los controles
-existentes usando `compare_type_nulls.py --control spatial_null`, verificar
-identidad de código/checkpoints y aplicar el plan de la entrada 012.
-La lesión CPU de los tres conectomas terminó: retirar corriente recurrente en
-inferencia aumenta EPE medio +0,37102. No repetirla ni interpretarla como test de
-especificidad anatómica o incapacidad del control sin aristas entrenado.
+Entrada 013 completa: tres ensayos espaciales v2, análisis y auditoría publicados.
+Ninguna GPU BIONN activa. Reservas 16 USD, margen 34 USD; límite 50 sin ampliación.
+
+Siguiente paso: leer `configs/spatial_crossed_plan.json`. Separar explícitamente
+semilla de grafo nulo de la semilla que controla routing/inicialización/lotes;
+probar compatibilidad diagonal y procedencia del checkpoint en CPU. Reutilizar
+las tres máscaras v2 y los seis checkpoints existentes (tres medidos + diagonal
+espacial). Entrenar solo las **seis combinaciones fuera de la diagonal** de la
+matriz 3×3; no regenerar nulos, no repetir diagonal, no cambiar hiperparámetros.
+Una campaña acotada de hasta 1200 s, reserva nueva de 2 USD después de comprobar
+método, facturación y apps. Esa campaña y su reserva **todavía no existen**.
+Analizar matriz completa sin selección de semillas según entrada 013. Esto separa
+nulo del paquete de entrenamiento/routing, no routing de inicialización y lotes.
+Si la ventaja sigue siendo inconsistente, cerrar esta comparación sin alegar
+ventaja robusta y revisar interfaz antes de escalar. No buscar indefinidamente
+una configuración favorable. Los grafos espaciales v1 no se usan en GPU: su
+cobertura local deficiente está documentada; v2 pasó ambos filtros estructurales.
 
 La partición de 2048 clips de la entrada 009 ya fue consultada. Conserva valor
 como confirmación de los modelos congelados entonces, pero no puede reciclarse

@@ -820,3 +820,74 @@ EPE emparejado de validación es primario descriptivo; MSE secundario. No usar e
 validación conocida como confirmación nueva. Cualquiera que sea el resultado,
 el siguiente análisis separará variación de nulo y routing/entrenamiento antes
 de una afirmación general; no aumentar pasos ni ajustar hiperparámetros.
+
+## Entrada 013 — 2026-11-09: al controlar tipo y espacio, la ventaja deja de ser consistente
+
+**Campaña espacial completada.** `20261109T211945Z-5e0040f0`, aplicación
+`ap-RRwNLRXEf3Zjtrx3ViMaci`, revisión limpia
+`f3ef3331b7cc24b8130fffb290e16f854a20a7a2`. Tres nulos espaciales v2, tres ensayos
+con los 3000 pasos completos, 341,28 s de función. El cliente agotó la espera de
+los últimos logs después de imprimir el resumen; el registro persistente,
+los tres checkpoints y el estado detenido de la aplicación se verificaron.
+No hubo reintentos ni entrenamiento truncado. Código, datos, normalización,
+configuración, entorno, máscara, signos y routing emparejado están auditados en
+`reports/gpu_spatial_null/identity_audit.json`. Figura: `reports/spatial_comparison.svg`.
+
+| Modelo, 3000 pasos | MSE entrenamiento, media ± DE | EPE validación, media ± DE | MSE validación, media ± DE |
+| --- | ---: | ---: | ---: |
+| Conectoma medido, reutilizado | 0,49426 ± 0,01018 | 1,08874 ± 0,02032 | 1,41721 ± 0,05253 |
+| Nulo E/I, reutilizado | 0,55694 ± 0,05743 | 1,10281 ± 0,02009 | 1,45141 ± 0,04280 |
+| Nulo E/I + distancia, nuevo | 0,51516 ± 0,00562 | 1,09264 ± 0,01028 | 1,41610 ± 0,02530 |
+
+**Contraste principal de desarrollo, conectoma menos nulo espacial.** EPE por
+semilla 7/8/9 = −0,009962 / −0,010548 / **+0,008808**. Media −0,003900:
+reducción relativa de solo **0,36 %**, con cambio de signo en una semilla.
+El MSE secundario medio es **+0,001113**, ligeramente peor para el conectoma
+(1,41721 frente a 1,41610). En las historias de fotograma final compartido, el
+nulo espacial también tiene una media algo menor: EPE 1,06672 frente a 1,07005.
+Los criterios y particiones se mantienen; no se sustituye la métrica principal
+por otra ni se seleccionan semillas favorables.
+
+**Interpretación.** La ventaja frente a controles más débiles no se sostiene de
+forma consistente al conservar grados E/I y organización espacial discretizada.
+La estructura gruesa puede explicar gran parte de la señal vista antes. Esto
+no demuestra equivalencia exacta ni ausencia universal de utilidad del conectoma:
+son tres realizaciones, una columna, entrada aleatoria y validación ya utilizada.
+Quedan diferencias de distancias dentro de cada intervalo y mezcla no certificada.
+El mayor ajuste al entrenamiento del grafo medido no se traduce aquí en una mejora
+estable de generalización. La lesión anterior muestra dependencia de recurrencia,
+pero no rescata una afirmación de superioridad del cableado anatómico fino.
+
+**Decisión siguiente, sin búsqueda de hiperparámetros.** La misma semilla había
+seleccionado tanto el grafo nulo como routing, inicialización y lotes. Para separar
+la realización del nulo del resto, congelar la matriz 3×3 de las tres máscaras
+espaciales existentes por las tres semillas de entrenamiento/routing existentes.
+Reutilizar la diagonal ya completada y los tres conectomas; entrenar **solo las
+seis combinaciones que faltan**, sin generar otros nulos ni repetir la diagonal.
+Plan exacto: `configs/spatial_crossed_plan.json`. Introducir una semilla explícita
+del nulo, separada de `seed`, y guardarla en checkpoint e informe; primero comprobar
+en CPU que los casos diagonales conservan comportamiento e identidad.
+
+Analizar la matriz completa una sola vez: EPE primario, promediando primero los
+tres grafos nulos dentro de cada semilla de entrenamiento/routing y contrastando
+con su conectoma emparejado. Mostrar los tres contrastes y media, así como dispersión
+entre nulos dentro de cada fila; MSE secundario. El eje de entrenamiento todavía
+mezcla routing, inicialización y lotes: no llamarlo aislamiento del routing solo.
+Si no aparece una ventaja consistente, cerrar esta comparación sin una afirmación
+de ventaja robusta y revisar limitaciones de interfaz antes de escalar. No aumentar
+pasos, añadir semillas selectivamente ni retocar hiperparámetros para invertir el
+resultado. Una confirmación nueva, si llega a justificarse tras este diseño fijo,
+requiere congelar su análisis y otra partición antes de verla; 20261110 ya está usada.
+
+La campaña cruzada **no está lanzada ni reservada**. Se prevé como máximo una T4,
+seis ensayos, 1200 s solicitados, timeout 1800 s, cero reintentos y una reserva
+adicional de 2 USD solo después de las comprobaciones de método y consumo.
+
+**Cierre de esta revisión nocturna.** Seis grafos CPU (tres iniciales archivados y
+tres revisados), tres lesiones de checkpoints en CPU y tres entrenamientos GPU
+nuevos. 40 tests pasan; identidades y figura verificadas. Ocho entradas de gasto:
+un intento rechazado y siete campañas completas, 60 ensayos GPU en total.
+Todas las GPU BIONN están detenidas. Reserva acumulada **16 USD**, margen **34 USD**
+bajo **50 USD**; ampliación a 75 sin activar. Lectura agregada de aplicaciones
+efímeras **0,53660009 USD**, no factura definitiva exclusiva del proyecto.
+La revisión de cada dos horas sigue activa dentro de la ventana nocturna.
