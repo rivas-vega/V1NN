@@ -924,3 +924,84 @@ la revisión limpia. Analizar todos los cruces una vez con el criterio previamen
 fijado: promedio de los tres grafos dentro de cada semilla de entrenamiento y
 contraste emparejado con su conectoma. Las nueve celdas no son nueve réplicas
 independientes. La evaluación sigue siendo de desarrollo.
+
+**Diagnóstico CPU independiente durante la campaña.** Antes de consultar la matriz
+GPU, fijar una pregunta acotada de interfaz: ¿las cuatro rutas aleatorias por neurona
+eliminan dimensiones de la retina en la población, antes de la rectificación?
+Auditar las tres rutas ya guardadas, rango/singularidad de su matriz y reconstrucción
+lineal de características conocidas de entrenamiento/validación, también con las
+ganancias positivas aprendidas. Criterio: rango 32 y error relativo <1e-6 descartan
+pérdida de rango solo en esa etapa lineal. No ajusta una nueva red ni toca particiones
+nuevas. No confundir invertibilidad poblacional con retinotopía, aprendizaje fácil
+o conservación de información tras ReLU y recurrencia.
+
+La auditoría lineal ha terminado (`reports/routing_rank_audit.json`): rango 32/32
+en las tres rutas, números de condición iniciales 2,31–2,32 y 2,35–2,43 tras
+las ganancias aprendidas. La reconstrucción de características de validación
+presenta errores relativos de 9,6e-9 a 1,3e-8. La distribución aleatoria no elimina
+dimensiones lineales de la retina a escala poblacional antes de la rectificación;
+no queda resuelta la información disponible después de la no linealidad ni su
+accesibilidad al entrenamiento. No se usó GPU adicional.
+
+## Entrada 015 — 2026-11-10: diseño espacial cruzado cerrado sin ventaja robusta
+
+**Ejecución completa.** Campaña `20261109T230837Z-de15dfee`, app
+`ap-LJtE7LuFhzn08oRYRKDC9M`, revisión limpia
+`5c84afbc8989958efc3af7eece2ce925b2adceaf`. Seis cruces nuevos, 3000 pasos cada uno,
+687,70 s de función, sin truncamientos ni reintentos. Se reutilizaron tres nulos
+diagonales y tres conectomas. Código, datos, entorno, configuración, normalización,
+grafos, rutas y hashes de los **doce checkpoints** se verifican en
+`reports/gpu_spatial_crossed/summary.json`. No se descartó ninguna celda.
+Figura: `reports/spatial_crossed_comparison.svg`.
+
+**Resultado primario, EPE de validación.** Filas = semilla de entrenamiento,
+routing, inicialización y lotes; columnas = semilla de grafo nulo.
+
+| Semilla de entrenamiento | Nulo 7 | Nulo 8 | Nulo 9 | Media nula | Medido | Medido − media nula |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 7 | 1,093920 | 1,075906 | 1,094829 | 1,088218 | 1,083958 | −0,004261 |
+| 8 | 1,076527 | 1,081779 | 1,084098 | 1,080801 | 1,071231 | −0,009570 |
+| 9 | 1,101053 | 1,108068 | 1,102210 | 1,103777 | 1,111019 | +0,007242 |
+
+Media global: medido **1,088736**, espacial **1,090932**, diferencia **−0,002196**,
+reducción relativa **0,20 %**. El signo sigue cambiando entre semillas de
+entrenamiento. En la semilla 9 el medido es peor que los tres grafos nulos; en la
+7 el resultado depende de cuál se compara. La inconsistencia no se explica solo
+por haber usado una diagonal particular. Las desviaciones entre nulos dentro de
+cada fila son 0,010672 / 0,003879 / 0,003761. La desviación entre medias de filas
+es 0,011726. Son descripciones de esta matriz, no componentes de varianza poblacional.
+
+**Métricas secundarias sin selección.** MSE de validación: medido 1,417213,
+nulo 1,413834, diferencia **+0,003380** (medido 0,24 % peor). Diferencias por fila:
+−0,004582 / −0,014460 / +0,029181. El medido ajusta mejor entrenamiento (MSE
+0,494262 vs 0,503440), pero eso no rescata la generalización. En historias con el
+mismo fotograma final, el medido también es peor en promedio: EPE 1,070050 vs
+1,063102; MSE 1,394717 vs 1,381910. Las matrices completas permanecen en el informe.
+
+**Decisión.** Cerrar esta comparación con la conclusión de que **no se demuestra
+una ventaja robusta del cableado fino en el régimen probado**. No repetir cruces,
+seleccionar otras semillas, aumentar pasos ni consumir otra partición de confirmación
+para buscar un resultado favorable. La ventaja frente al nulo de grados anterior
+sigue siendo válida para aquel contraste, pero no identifica especificidad anatómica
+frente a estructura E/I y espacial gruesa. No es equivalencia, ausencia universal
+de utilidad ni una conclusión biológica: una columna, tres grafos, tres semillas
+combinadas y validación reutilizada; distancias continuas y mezcla siguen limitadas.
+
+**Interfaz y siguiente incertidumbre.** La auditoría CPU de la entrada 014 descarta
+pérdida de rango en el routing lineal antes de ReLU. Queda una pregunta distinta:
+si la rectificación del primer estado destruye localmente dimensiones en las entradas
+observadas. Se fija `configs/sensory_rectification_plan.json`: CPU, primeros 256 clips
+de entrenamiento y 256 de validación existentes, primer fotograma, tres rutas;
+ganancia/sesgo iniciales y aprendidos, estado previo cero. Reportar rangos y sensibilidad
+a tolerancias. No mide información de movimiento ni invertibilidad global; la secuencia
+puede compensar pérdidas instantáneas. Si todos son de rango completo, cerrar esa
+explicación local; si aparecen pérdidas, documentar el mecanismo antes de formular
+un control de calibración de interfaz. No hay otra campaña GPU justificada o reservada.
+Este diagnóstico está **planificado, no ejecutado**.
+
+**Cierre y gasto.** 44 tests pasan; figura y auditoría de identidad verificadas.
+Nueve entradas de gasto: un intento rechazado y ocho campañas completas, **66 ensayos
+GPU** en total. BIONN detenido, cero tareas. Reservas acumuladas **18 USD**, margen
+**32 USD** bajo 50; ampliación a 75 sin activar. Instantánea de aplicaciones efímeras
+**0,66885310 USD**, aún no factura definitiva exclusiva. La próxima continuación
+lee esta entrada y el plan CPU; no debe retomar como pendientes campañas ya completas.

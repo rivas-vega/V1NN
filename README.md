@@ -18,8 +18,8 @@ El precedente directo es [Lappalainen et al., Nature 2024](https://www.nature.co
 | Nulos dirigidos conservando grados, grupos y distancias discretizadas | Implementado, sin garantía de muestreo uniforme |
 | Pérdidas de movimiento, predicción sensorial y observación neuronal | Implementadas |
 | Importador MICrONS v1718 con verificación de hashes | Descarga real verificada: 1.357 neuronas, 78.953 parejas dirigidas |
-| Tests unitarios e integración sintética | 40 tests superados; integración con nulos E/I y espaciales auditados |
-| Piloto temporal de desarrollo | GRU/CNN aprenden; la ventaja de MICrONS deja de ser consistente frente al nulo E/I + espacio: EPE medio −0,36 %, signos mixtos, MSE sin mejora |
+| Tests unitarios e integración sintética | 44 tests superados; integración con nulos E/I y espaciales auditados |
+| Piloto temporal de desarrollo | GRU/CNN aprenden; matriz espacial cruzada 3×3: EPE medio −0,20 %, signos mixtos y MSE 0,24 % peor para MICrONS; sin ventaja robusta del cableado fino |
 | MICrONS frente al nulo de grados, confirmación congelada | Ventaja pequeña en 2048 clips nuevos; esta confirmación no incluye el control E/I posterior |
 | Validación funcional y benchmark confirmatorio completo | **No evaluados** |
 

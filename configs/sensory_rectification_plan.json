@@ -1,0 +1,48 @@
+{
+  "question": "Does first-frame rectification cause local loss of sensory dimensions despite the full-rank linear routing?",
+  "status": "planned_not_run",
+  "stage": "CPU mechanistic diagnosis on existing development data, not confirmation",
+  "prerequisite": "Crossed spatial comparison complete and no active campaign",
+  "source_measured_run_id": "20261109T192317Z-94f1cd63",
+  "seeds": [
+    7,
+    8,
+    9
+  ],
+  "data_seed": 20261109,
+  "splits": [
+    "train",
+    "validation"
+  ],
+  "clips_per_split": 256,
+  "selection": "First 256 existing clips in fixed generator order; first frame only",
+  "conditions": [
+    "initial gain=1 and bias=0",
+    "gain and bias from each frozen measured checkpoint"
+  ],
+  "recurrent_state": "Zero initial state; no recurrent current in this first update",
+  "implementation": "Construct the routing matrix with repeated routes counted. Use actual float32 sensory preactivation for active masks; rank the active weighted routing in float64. Alpha scaling does not change rank.",
+  "rank_relative_singular_value_thresholds": [
+    1e-05,
+    0.0001
+  ],
+  "near_zero_preactivation_threshold": 1e-06,
+  "report": [
+    "Rank histogram and full-rank fraction for each seed/condition/split",
+    "Active-neuron counts and near-boundary fraction",
+    "Threshold sensitivity; train feature covariance spectrum as context"
+  ],
+  "interpretation": "Local Jacobian rank in ambient 32-dimensional feature space. Does not establish global invertibility or motion-information loss; later frames and recurrence may compensate.",
+  "decision_if_full_rank": "Close simple local rank-loss explanation at sampled first-frame states; do not change routing to seek a favorable graph effect.",
+  "decision_if_deficient": "Document a local sensory limitation and formulate a matched interface-calibration control before any renewed anatomy claim; no automatic GPU launch.",
+  "gpu": false,
+  "max_processes": 1,
+  "max_threads": 1,
+  "max_seconds": 300,
+  "forbidden": [
+    "New data seed or confirmation split",
+    "Retraining checkpoints",
+    "Repeating crossed trials",
+    "Hyperparameter search or GPU spending"
+  ]
+}

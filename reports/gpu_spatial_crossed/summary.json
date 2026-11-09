@@ -1,0 +1,421 @@
+{
+  "purpose": "Development only; complete fixed design, no independent confirmation",
+  "training_routing_seeds": [
+    7,
+    8,
+    9
+  ],
+  "null_graph_seeds": [
+    7,
+    8,
+    9
+  ],
+  "plan_sha256": "b26743b6fe4482ba4f9100b7aa2f7a3b99684b334e7e13a5957013040b5610c7",
+  "null_manifest_sha256": "076965c316800bc945c69c803033b37257a420e68f81fc0fb491d9fdbdc4a309",
+  "reused_trials": 6,
+  "new_trials": 6,
+  "paired_config_data_environment_verified": true,
+  "checkpoint_audits": [
+    {
+      "file": "connectome_7",
+      "seed": 7,
+      "null_seed": null,
+      "checkpoint_sha256": "7a27fdfda826afd6ecf3daa9320ce3041c3a319cf3c00941cbca200f03ea5f7e",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "spatial_null_7",
+      "seed": 7,
+      "null_seed": 7,
+      "checkpoint_sha256": "7e011f5eee6701e7464508ed5424c59e41e94bd226360f421c5fce912472faa4",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "spatial_null_7_null_8",
+      "seed": 7,
+      "null_seed": 8,
+      "checkpoint_sha256": "5d4d15f1803b51c8ad40355b0c1835c534a12c59f2ddb9730671efaefa4a7b36",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "spatial_null_7_null_9",
+      "seed": 7,
+      "null_seed": 9,
+      "checkpoint_sha256": "956a4a851c40cd0e358f39be28d0502d350eaba5e5cf1deef8dbb33d8896396a",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "connectome_8",
+      "seed": 8,
+      "null_seed": null,
+      "checkpoint_sha256": "f363c79d608d8640c2928feec30adbb7fbcb3ccdb52e6d5cdc44550ae77c74de",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "spatial_null_8_null_7",
+      "seed": 8,
+      "null_seed": 7,
+      "checkpoint_sha256": "45503a0d5b87fdbe71b5390a39eca2a9745e66e5a7e05dce3a9a9e26e39bb302",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "spatial_null_8",
+      "seed": 8,
+      "null_seed": 8,
+      "checkpoint_sha256": "f2a9065b76ae0f2af1481c0baec4c47ca5fb12b188f24a0cf10ae0b4559bbbc8",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "spatial_null_8_null_9",
+      "seed": 8,
+      "null_seed": 9,
+      "checkpoint_sha256": "bd8eebe0d53245c06f6e672d13da686e18f716d5920454b1041bf9a24e9e22dc",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "connectome_9",
+      "seed": 9,
+      "null_seed": null,
+      "checkpoint_sha256": "1a96aca51f07f67cfe1ea16a1d7b69542cb381ec23d43212bbf33bc4ab2b5cc3",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "spatial_null_9_null_7",
+      "seed": 9,
+      "null_seed": 7,
+      "checkpoint_sha256": "0ce06908b327144daecde04e20f1af7a0952c2f219d93a74392b04d4eaf36f39",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "spatial_null_9_null_8",
+      "seed": 9,
+      "null_seed": 8,
+      "checkpoint_sha256": "7ccb022079bc1613fb8324f65a7a8184efabcbecb9e2f062d7a9563539f494c2",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    },
+    {
+      "file": "spatial_null_9",
+      "seed": 9,
+      "null_seed": 9,
+      "checkpoint_sha256": "07e3460f1d170b42fea3f8ce5890e2a2024eda4be257c18d278c724c03af117c",
+      "source_and_graph_verified": true,
+      "paired_routing_verified": true
+    }
+  ],
+  "metrics": {
+    "train": {
+      "mean_endpoint_error": {
+        "measured_by_training_seed": [
+          0.6237987279891968,
+          0.6196882128715515,
+          0.6337407827377319
+        ],
+        "null_matrix": [
+          [
+            0.6395787000656128,
+            0.6230320930480957,
+            0.6282221078872681
+          ],
+          [
+            0.6193430423736572,
+            0.6366872191429138,
+            0.6261141300201416
+          ],
+          [
+            0.6300013661384583,
+            0.6462655067443848,
+            0.6465358734130859
+          ]
+        ],
+        "null_mean_by_training_seed": [
+          0.6302776336669922,
+          0.6273814638455709,
+          0.6409342487653097
+        ],
+        "null_std_within_training_seed": [
+          0.00846264973996734,
+          0.008741265252788804,
+          0.009469119094893043
+        ],
+        "null_mean_by_graph_seed": [
+          0.629641036192576,
+          0.6353282729784647,
+          0.6336240371068319
+        ],
+        "null_std_across_training_seed_means": 0.007137100532533017,
+        "paired_measured_minus_null_mean": [
+          -0.00647890567779541,
+          -0.0076932509740194055,
+          -0.007193466027577755
+        ],
+        "mean_paired_difference": -0.0071218742264641905,
+        "measured_mean": 0.6257425745328268,
+        "null_mean": 0.6328644487592909,
+        "relative_reduction_of_mean_error": 0.011253395952998013
+      },
+      "mean_squared_vector_error": {
+        "measured_by_training_seed": [
+          0.4925950765609741,
+          0.4850176274776459,
+          0.5051733255386353
+        ],
+        "null_matrix": [
+          [
+            0.5134806632995605,
+            0.4903578758239746,
+            0.49623310565948486
+          ],
+          [
+            0.48593974113464355,
+            0.5105627775192261,
+            0.49688971042633057
+          ],
+          [
+            0.4961703419685364,
+            0.5198976993560791,
+            0.5214266777038574
+          ]
+        ],
+        "null_mean_by_training_seed": [
+          0.50002388159434,
+          0.4977974096934001,
+          0.5124982396761576
+        ],
+        "null_std_within_training_seed": [
+          0.012018457130658916,
+          0.012336588615524858,
+          0.014161024904995448
+        ],
+        "null_mean_by_graph_seed": [
+          0.4985302488009135,
+          0.5069394508997599,
+          0.5048498312632242
+        ],
+        "null_std_across_training_seed_means": 0.00792339561952477,
+        "paired_measured_minus_null_mean": [
+          -0.007428805033365848,
+          -0.01277978221575421,
+          -0.0073249141375223425
+        ],
+        "mean_paired_difference": -0.009177833795547466,
+        "measured_mean": 0.4942620098590851,
+        "null_mean": 0.5034398436546326,
+        "relative_reduction_of_mean_error": 0.018230249177185964
+      }
+    },
+    "validation": {
+      "mean_endpoint_error": {
+        "measured_by_training_seed": [
+          1.083957552909851,
+          1.0712308883666992,
+          1.1110187768936157
+        ],
+        "null_matrix": [
+          [
+            1.0939195156097412,
+            1.0759059190750122,
+            1.0948293209075928
+          ],
+          [
+            1.0765267610549927,
+            1.0817785263061523,
+            1.0840983390808105
+          ],
+          [
+            1.10105299949646,
+            1.1080679893493652,
+            1.102210283279419
+          ]
+        ],
+        "null_mean_by_training_seed": [
+          1.0882182518641155,
+          1.0808012088139851,
+          1.1037770907084148
+        ],
+        "null_std_within_training_seed": [
+          0.010672492232474046,
+          0.0038792474219407473,
+          0.0037608090617257126
+        ],
+        "null_mean_by_graph_seed": [
+          1.090499758720398,
+          1.0885841449101765,
+          1.0937126477559407
+        ],
+        "null_std_across_training_seed_means": 0.011725905385208325,
+        "paired_measured_minus_null_mean": [
+          -0.004260698954264397,
+          -0.009570320447285896,
+          0.007241686185200935
+        ],
+        "mean_paired_difference": -0.002196444405449786,
+        "measured_mean": 1.0887357393900554,
+        "null_mean": 1.090932183795505,
+        "relative_reduction_of_mean_error": 0.002013364751792257
+      },
+      "mean_squared_vector_error": {
+        "measured_by_training_seed": [
+          1.4075102806091309,
+          1.3702106475830078,
+          1.47391939163208
+        ],
+        "null_matrix": [
+          [
+            1.424859642982483,
+            1.3861225843429565,
+            1.425294280052185
+          ],
+          [
+            1.376658320426941,
+            1.387582540512085,
+            1.3897713422775269
+          ],
+          [
+            1.4440480470657349,
+            1.4543107748031616,
+            1.4358576536178589
+          ]
+        ],
+        "null_mean_by_training_seed": [
+          1.4120921691258748,
+          1.3846707344055176,
+          1.4447388251622517
+        ],
+        "null_std_within_training_seed": [
+          0.02249137007150689,
+          0.007024727511809151,
+          0.009245934303997505
+        ],
+        "null_mean_by_graph_seed": [
+          1.4151886701583862,
+          1.4093386332194011,
+          1.416974425315857
+        ],
+        "null_std_across_training_seed_means": 0.030071899284990208,
+        "paired_measured_minus_null_mean": [
+          -0.004581888516743904,
+          -0.014460086822509766,
+          0.029180566469828362
+        ],
+        "mean_paired_difference": 0.0033795303768582308,
+        "measured_mean": 1.4172134399414062,
+        "null_mean": 1.413833909564548,
+        "relative_reduction_of_mean_error": -0.002390330543068586
+      }
+    },
+    "counterfactual": {
+      "mean_endpoint_error": {
+        "measured_by_training_seed": [
+          1.0585805177688599,
+          1.0930895805358887,
+          1.0584802627563477
+        ],
+        "null_matrix": [
+          [
+            1.0549712181091309,
+            1.0344091653823853,
+            1.0258666276931763
+          ],
+          [
+            1.082878828048706,
+            1.0725256204605103,
+            1.1102477312088013
+          ],
+          [
+            1.0568891763687134,
+            1.0574781894683838,
+            1.0726529359817505
+          ]
+        ],
+        "null_mean_by_training_seed": [
+          1.0384156703948975,
+          1.0885507265726726,
+          1.0623401006062825
+        ],
+        "null_std_within_training_seed": [
+          0.01496022585496566,
+          0.019490183028289216,
+          0.008936031793756275
+        ],
+        "null_mean_by_graph_seed": [
+          1.0649130741755168,
+          1.0548043251037598,
+          1.069589098294576
+        ],
+        "null_std_across_training_seed_means": 0.02507621426916387,
+        "paired_measured_minus_null_mean": [
+          0.020164847373962402,
+          0.004538853963216072,
+          -0.003859837849934822
+        ],
+        "mean_paired_difference": 0.006947954495747884,
+        "measured_mean": 1.0700501203536987,
+        "null_mean": 1.063102165857951,
+        "relative_reduction_of_mean_error": -0.006535547305691614
+      },
+      "mean_squared_vector_error": {
+        "measured_by_training_seed": [
+          1.364545226097107,
+          1.4540042877197266,
+          1.3656015396118164
+        ],
+        "null_matrix": [
+          [
+            1.3512542247772217,
+            1.3129764795303345,
+            1.3082038164138794
+          ],
+          [
+            1.4342373609542847,
+            1.411657691001892,
+            1.4827561378479004
+          ],
+          [
+            1.3726472854614258,
+            1.3637852668762207,
+            1.3996696472167969
+          ]
+        ],
+        "null_mean_by_training_seed": [
+          1.3241448402404785,
+          1.4428837299346924,
+          1.3787007331848145
+        ],
+        "null_std_within_training_seed": [
+          0.023598381846570534,
+          0.036329286510853535,
+          0.018692387758433432
+        ],
+        "null_mean_by_graph_seed": [
+          1.386046290397644,
+          1.3628064791361492,
+          1.3968765338261921
+        ],
+        "null_std_across_training_seed_means": 0.05943445472754472,
+        "paired_measured_minus_null_mean": [
+          0.04040038585662842,
+          0.01112055778503418,
+          -0.013099193572998047
+        ],
+        "mean_paired_difference": 0.012807250022888184,
+        "measured_mean": 1.39471701780955,
+        "null_mean": 1.3819097677866619,
+        "relative_reduction_of_mean_error": -0.009267790358990613
+      }
+    }
+  },
+  "consistent_lower_measured_epe_by_training_seed": false,
+  "decision": "Close this comparison without a robust fine-wiring advantage claim; audit sensory interface before scaling",
+  "limits": "Three graph realizations crossed with three combined routing/initialization/minibatch seeds. Cells are not nine independent replicates; no animal inference, equivalence or isolated routing effect. Reused development clips; remaining within-bin distance differences and uncertified null mixing."
+}

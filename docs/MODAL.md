@@ -119,3 +119,20 @@ manifiesto y el paquete bajo `/spatial-null-bundles/SHA256_DEL_MANIFIESTO`.
 No usar el paquete inicial `spatial_nulls_v1`: la entrada 012 documenta su
 cobertura insuficiente en estratos pequeños. Verificar también el filtro local
 de esa entrada antes de reservar GPU. Las demás cotas de campaña se mantienen.
+
+## Separar semilla nula y semilla de entrenamiento
+
+En ensayos locales preparados, `--null-seed` elige la máscara; `--seed` mantiene
+routing, inicialización y lotes. Si se omite la primera, ambos valores coinciden
+como en los ensayos históricos. Cada checkpoint nuevo guarda la procedencia nula.
+
+El modo `--crossed-plan configs/spatial_crossed_plan.json` del lanzador Modal
+verifica el diseño fijo de seis cruces fuera de diagonal de la entrada 014;
+requiere las mismas opciones de grafo espacial, semillas 7/8/9, 3000 pasos,
+1200 segundos y el manifiesto v2 fijado en ese plan. El plan completo y su hash
+viajan en el resumen remoto. Las salidas se llaman
+`spatial_null_SEMILLA_ENTRENAMIENTO_null_SEMILLA_GRAFO.json` para evitar colisiones.
+No ejecutar de nuevo si esa campaña ya está completa: consultar la bitácora y el
+registro de gasto. `compare_spatial_crossed.py` combina los seis resultados nuevos
+con la diagonal y los conectomas existentes; comprueba configuración, entorno,
+datos, código, máscaras y rutas directamente en los doce checkpoints.

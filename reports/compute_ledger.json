@@ -89,7 +89,7 @@
     },
     {
       "purpose": "spatial-crossed-offdiagonal-3000",
-      "status": "reserved",
+      "status": "completed",
       "reservation_usd": 2,
       "planned_trials": 6,
       "planned_training_steps": 3000,
@@ -97,17 +97,22 @@
       "planned_seconds": 1200,
       "server_timeout_seconds": 1800,
       "retries": 0,
-      "max_containers": 1
+      "max_containers": 1,
+      "source_commit": "5c84afbc8989958efc3af7eece2ce925b2adceaf",
+      "app_id": "ap-LJtE7LuFhzn08oRYRKDC9M",
+      "run_id": "20261109T230837Z-de15dfee",
+      "trials": 6,
+      "function_seconds": 687.697403744
     }
   ],
   "reserved_usd": 18,
   "available_after_reservations_usd": 32,
   "billing_note": "Billing queried before and after campaigns; delayed snapshots are not a final invoice. Keep reservations until reconciled.",
   "active_bionn_apps": 0,
-  "latest_ephemeral_apps_metered_snapshot_usd": 0.4966746,
+  "latest_ephemeral_apps_metered_snapshot_usd": 0.6688531,
   "snapshot_note": "Workspace ephemeral-app usage snapshot, not a final project invoice. Billing can lag and snapshot totals can update at different times. Reservations remain conservative.",
   "conditional_maximum_usd": 75,
   "extension_activated": false,
   "extension_condition": "User permits up to 75 USD only if strictly necessary. Reconcile actual usage and reservations first; document why an indispensable phase-one experiment cannot fit within the active 50 USD limit.",
-  "latest_billing_checked_utc": "2026-11-09T23:05:06.457267+00:00"
+  "latest_billing_checked_utc": "2026-11-09T23:20:37.160242+00:00"
 }

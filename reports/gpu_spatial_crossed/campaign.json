@@ -1,0 +1,304 @@
+{
+  "run_id": "20261109T230837Z-de15dfee",
+  "status": "completed",
+  "gpu": "T4",
+  "source_commit": "5c84afbc8989958efc3af7eece2ce925b2adceaf",
+  "source_dirty": false,
+  "time_budget_seconds": 1200,
+  "server_timeout_seconds": 1800,
+  "trials": [
+    {
+      "file": "spatial_null_7_null_8.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.4903578758239746,
+            "mean_endpoint_error": 0.6230320930480957
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.3861225843429565,
+            "mean_endpoint_error": 1.0759059190750122
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.3129764795303345,
+            "mean_endpoint_error": 1.0344091653823853
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "spatial_null_7_null_9.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.49623310565948486,
+            "mean_endpoint_error": 0.6282221078872681
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.425294280052185,
+            "mean_endpoint_error": 1.0948293209075928
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.3082038164138794,
+            "mean_endpoint_error": 1.0258666276931763
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "spatial_null_8_null_7.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.48593974113464355,
+            "mean_endpoint_error": 0.6193430423736572
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.376658320426941,
+            "mean_endpoint_error": 1.0765267610549927
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.4342373609542847,
+            "mean_endpoint_error": 1.082878828048706
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "spatial_null_8_null_9.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.49688971042633057,
+            "mean_endpoint_error": 0.6261141300201416
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.3897713422775269,
+            "mean_endpoint_error": 1.0840983390808105
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.4827561378479004,
+            "mean_endpoint_error": 1.1102477312088013
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "spatial_null_9_null_7.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.4961703419685364,
+            "mean_endpoint_error": 0.6300013661384583
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.4440480470657349,
+            "mean_endpoint_error": 1.10105299949646
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.3726472854614258,
+            "mean_endpoint_error": 1.0568891763687134
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "spatial_null_9_null_8.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.5198976993560791,
+            "mean_endpoint_error": 0.6462655067443848
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.4543107748031616,
+            "mean_endpoint_error": 1.1080679893493652
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.3637852668762207,
+            "mean_endpoint_error": 1.0574781894683838
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    }
+  ],
+  "graph": "spatial_nulls",
+  "alpha": 0.3,
+  "train_size": 2048,
+  "batch": 64,
+  "lr": 0.003,
+  "null_manifest_sha256": "076965c316800bc945c69c803033b37257a420e68f81fc0fb491d9fdbdc4a309",
+  "crossed_plan": {
+    "purpose": "Separate spatial-null realization from the combined routing/initialization/minibatch seed; development only",
+    "frozen_after_entry": "013",
+    "model": "spatial_null",
+    "null_bundle_manifest_sha256": "076965c316800bc945c69c803033b37257a420e68f81fc0fb491d9fdbdc4a309",
+    "training_routing_seeds": [
+      7,
+      8,
+      9
+    ],
+    "null_graph_seeds": [
+      7,
+      8,
+      9
+    ],
+    "reuse_diagonal_run_id": "20261109T211945Z-5e0040f0",
+    "reuse_measured_run_id": "20261109T192317Z-94f1cd63",
+    "new_trials_only": [
+      {
+        "seed": 7,
+        "null_seed": 8
+      },
+      {
+        "seed": 7,
+        "null_seed": 9
+      },
+      {
+        "seed": 8,
+        "null_seed": 7
+      },
+      {
+        "seed": 8,
+        "null_seed": 9
+      },
+      {
+        "seed": 9,
+        "null_seed": 7
+      },
+      {
+        "seed": 9,
+        "null_seed": 8
+      }
+    ],
+    "steps": 3000,
+    "data_seed": 20261109,
+    "train_size": 2048,
+    "validation_size": 512,
+    "batch": 64,
+    "lr": 0.003,
+    "alpha": 0.3,
+    "grid": 4,
+    "primary": "Validation EPE: average the three null graphs within each training/routing seed, then subtract from that seed's measured-graph EPE; report all three differences and overall mean",
+    "secondary": "Validation MSE and complete 3x3 metric matrix; report variability across null graphs within each row and across row means",
+    "limits": "Training seed still couples routing, initialization and minibatches. This design separates only null realization from that combined factor. No animal inference, equivalence claim or new confirmation.",
+    "campaign_seconds": 1200,
+    "server_timeout_seconds": 1800,
+    "gpu": "T4",
+    "max_containers": 1,
+    "retries": 0,
+    "anticipated_reservation_usd": 2,
+    "reservation_already_added": false,
+    "launch_gate": "Implement independent null seed with checkpoint provenance, verify diagonal backward compatibility on CPU, pass tests, check usage/active apps, then reserve. Do not repeat completed diagonal or measured trials."
+  },
+  "crossed_plan_sha256": "b26743b6fe4482ba4f9100b7aa2f7a3b99684b334e7e13a5957013040b5610c7",
+  "seconds": 687.697403744
+}
