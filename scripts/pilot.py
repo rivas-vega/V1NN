@@ -13,7 +13,7 @@ import torch
 from v1nn.benchmark import (MODELS, PilotConfig, build_model, config_dict,
                             metrics, prepare_data)
 from v1nn.graph import Graph
-from v1nn.nulls import load_type_null
+from v1nn.nulls import load_prepared_null
 
 
 def atomic_json(path, data):
@@ -46,13 +46,13 @@ def run(config, output, graph_path=None):
     started = time.perf_counter()
     graph, graph_hash = None, None
     null_info = None
-    if config.model == "type_null" and graph_path is None:
+    if config.model in ("type_null", "spatial_null") and graph_path is None:
         raise ValueError("type_null requires an audited bundle graph")
     if graph_path:
         graph_path = Path(graph_path)
         graph_hash = hashlib.sha256(graph_path.read_bytes()).hexdigest()
-        if config.model == "type_null":
-            graph, null_info = load_type_null(graph_path, config.seed)
+        if config.model in ("type_null", "spatial_null"):
+            graph, null_info = load_prepared_null(graph_path, config.seed, model=config.model)
         else:
             with np.load(graph_path, allow_pickle=False) as data:
                 graph = Graph(len(data["signs"]), data["src"], data["dst"], data["signs"])

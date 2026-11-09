@@ -713,3 +713,40 @@ efímeras es 0,45508727 USD; puede retrasarse y no es factura exclusiva del proy
 Las reservas conservadoras permanecen en **14 USD**, margen **36 USD** bajo el
 límite operativo de **50 USD**. No hace falta activar la ampliación a 75 USD.
 La revisión nocturna del chat cada dos horas sigue activa hasta las 08:00 locales.
+
+## Entrada 012 — 2026-11-09: preparación del nulo espacial durante la revisión nocturna
+
+Se retoma exactamente la decisión de la entrada 011: conservar por nodo los
+grados conjuntos de tipo E/I e intervalo de distancia, tanto entrantes como
+salientes. Umbrales fijados previamente: 50, 100, 200 y 400 µm; los valores
+exactamente sobre un límite pertenecen al intervalo inferior. Semillas 7/8/9,
+5×E intercambios, ≥50 % de cambio global, máximo 20 millones de propuestas y
+300 s por grafo. Primero CPU; GPU solo después de pasar la auditoría completa.
+
+El nuevo generador propone dentro de estratos fijos de tipo presináptico,
+postsináptico y distancia. Un estrato de m aristas se elige con peso m(m−1),
+luego un par ordenado distinto de aristas uniformemente. Esto evita propuestas
+incompatibles por construcción sin favorecer arbitrariamente estratos pequeños.
+Se rechaza si cualquiera de las dos nuevas distancias cambia de intervalo,
+crea autapsis o duplica una arista. Los tamaños y etiquetas de los estratos
+permanecen constantes bajo cada intercambio; la propuesta inversa tiene igual
+probabilidad. Esa simetría **no certifica** irreducibilidad ni mezcla suficiente
+después de 5×E intercambios; no se afirma muestreo uniforme.
+
+La auditoría vuelve a contar grados conjuntos a partir de las aristas y distancias,
+independientemente de la matriz de distancias usada para acelerar propuestas.
+Los tests incluyen un contraejemplo que conserva los bins salientes pero cambia
+los entrantes: se rechaza. La entrada, inicialización compatible y datos no cambian.
+Las distancias continuas dentro de cada intervalo pueden cambiar y se reportarán;
+este control no preserva geometría exacta, capas ni longitud axonal.
+
+No hay ninguna campaña BIONN activa al inicio. Lectura agregada de aplicaciones
+efímeras 0,40975391 USD, sujeta a actualizaciones; no se liberan reservas por la
+variación respecto de la lectura anterior. Reservas 14 USD, límite 50, sin
+activación de la ampliación a 75. Todavía no se reserva ni se lanza otra GPU.
+
+39 tests superados antes de generar los grafos reales. Una primera fixture de
+40 nodos cambió solo el 47,1 % a 5×E y fue correctamente rechazada por el filtro;
+la prueba de aceptación usa 80 nodos para disponer de más intercambios factibles.
+El umbral del experimento real permanece en 50 %. Se registrará también el cambio
+por cada estrato E/I-distancia: un cambio global alto no garantiza mezcla local.

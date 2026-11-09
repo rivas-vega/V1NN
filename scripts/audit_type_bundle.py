@@ -8,18 +8,21 @@ import torch
 
 from pilot import atomic_json
 from v1nn.benchmark import PilotConfig, build_model
-from v1nn.nulls import as_graph, load_type_null, read_arrays, sha256
+from v1nn.nulls import as_graph, load_prepared_null, read_arrays, sha256
 
 
-def spatial_summary(arrays):
+def spatial_summary(arrays, boundaries=None):
     distances = np.linalg.norm(arrays["positions_um"][arrays["src"]]-
                                arrays["positions_um"][arrays["dst"]], axis=1)
     return {"mean_um": float(distances.mean()),
+            "distance_bins_um": boundaries,
+            "distance_bin_counts": (np.bincount(np.searchsorted(boundaries, distances),
+                                    minlength=len(boundaries)+1).tolist() if boundaries is not None else None),
             "quantiles_10_50_90_um": np.quantile(distances, [0.1, 0.5, 0.9]).tolist(),
             "interpretation": "soma separation; not axonal path length"}
 
 
-def audit_bundle(folder):
+def audit_bundle(folder, model="type_null"):
     folder = Path(folder)
     torch.set_num_threads(1)
     manifest = json.loads((folder/"manifest.json").read_text())
@@ -27,14 +30,14 @@ def audit_bundle(folder):
     graph = as_graph(original)
     original_edges = set(zip(graph.src.tolist(), graph.dst.tolist()))
     report = {"bundle_manifest_sha256": sha256(folder/"manifest.json"),
-              "generation_manifest": manifest, "original_spatial_summary": spatial_summary(original),
+              "generation_manifest": manifest, "original_spatial_summary": spatial_summary(original, manifest.get("distance_boundaries_um")),
               "nulls": {}}
     for seed in manifest["seeds"]:
-        path = folder/f"type_null_{seed}.npz"
-        null, audit = load_type_null(path, seed, report["bundle_manifest_sha256"])
+        path = folder/f"{model}_{seed}.npz"
+        null, audit = load_prepared_null(path, seed, report["bundle_manifest_sha256"], model=model)
         candidate = read_arrays(path)
         measured, _ = build_model(PilotConfig(model="connectome", seed=seed), graph)
-        randomized, _ = build_model(PilotConfig(model="type_null", seed=seed), null)
+        randomized, _ = build_model(PilotConfig(model=model, seed=seed), null)
         assert torch.equal(measured.core.routing, randomized.core.routing)
         for name, parameter in measured.named_parameters():
             if name != "core.theta":
@@ -64,7 +67,7 @@ def audit_bundle(folder):
             "node_and_readout_initial_parameters_equal": True,
             "initial_theta_multiset_equal": True, "parameter_budget_equal": True,
             "initial_EI_mass_max_absolute_difference": initial_mass_max_error,
-            "by_group": by_group, "spatial_summary": spatial_summary(candidate)}
+            "by_group": by_group, "spatial_summary": spatial_summary(candidate, manifest.get("distance_boundaries_um"))}
     return report
 
 
@@ -72,8 +75,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--bundle", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--model", choices=("type_null", "spatial_null"), default="type_null")
     args = parser.parse_args()
-    report = audit_bundle(args.bundle)
+    report = audit_bundle(args.bundle, args.model)
     atomic_json(args.output, report)
     print(json.dumps({"manifest_sha256": report["bundle_manifest_sha256"],
                       "seeds_verified": list(report["nulls"])}))

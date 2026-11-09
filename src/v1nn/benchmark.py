@@ -14,7 +14,7 @@ from .synthetic import moving_textures
 DIRECTIONS = ((1, 0), (-1, 0), (0, 1), (0, -1),
               (1, 1), (1, -1), (-1, 1), (-1, -1))
 MODELS = ("static", "linear_history", "gru", "temporal_cnn",
-          "connectome", "no_edges", "reset", "reservoir", "degree_null", "type_null")
+          "connectome", "no_edges", "reset", "reservoir", "degree_null", "type_null", "spatial_null")
 
 
 @dataclass
@@ -155,7 +155,7 @@ class GraphPredictor(nn.Module):
 
 
 def build_model(config, graph=None):
-    if config.model == "type_null" and graph is None:
+    if config.model in ("type_null", "spatial_null") and graph is None:
         raise ValueError("type_null requires a CPU-prepared and audited supplied graph")
     torch.manual_seed(config.seed)
     features = 2*config.grid**2
@@ -175,6 +175,8 @@ def build_model(config, graph=None):
     else:
         provenance = "user_supplied_graph; see source hash and adjacent provenance"
     info = {"graph": provenance, "nodes": graph.n, "original_edges": len(graph.src)}
+    if config.model == "spatial_null":
+        info["null_constraints"] = "node-specific joint incoming/outgoing E/I and soma-distance-bin degrees"
     if config.model == "type_null":
         info["null_constraints"] = "directed degrees and node-specific E/I degrees; no spatial constraint"
     if config.model == "degree_null":
