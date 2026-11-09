@@ -36,23 +36,19 @@ una entrada antigua.
 
 ## Próxima acción concreta
 
-Entrada 013 completa: tres ensayos espaciales v2, análisis y auditoría publicados.
-Ninguna GPU BIONN activa. Reservas 16 USD, margen 34 USD; límite 50 sin ampliación.
+Entrada 014: semilla nula independiente implementada y auditoría CPU completada.
+La diagonal reproduce exactamente código histórico, métricas, pesos y optimizador
+en tres integraciones reducidas; los seis cruces conservan routing e inicialización
+por semilla de entrenamiento y seleccionan el grafo correcto. Plan congelado en
+`configs/spatial_crossed_plan.json`; su campo de reserva describe el momento de
+prerregistro, el estado vigente de gasto está en `reports/compute_ledger.json`.
 
-Siguiente paso: leer `configs/spatial_crossed_plan.json`. Separar explícitamente
-semilla de grafo nulo de la semilla que controla routing/inicialización/lotes;
-probar compatibilidad diagonal y procedencia del checkpoint en CPU. Reutilizar
-las tres máscaras v2 y los seis checkpoints existentes (tres medidos + diagonal
-espacial). Entrenar solo las **seis combinaciones fuera de la diagonal** de la
-matriz 3×3; no regenerar nulos, no repetir diagonal, no cambiar hiperparámetros.
-Una campaña acotada de hasta 1200 s, reserva nueva de 2 USD después de comprobar
-método, facturación y apps. Esa campaña y su reserva **todavía no existen**.
-Analizar matriz completa sin selección de semillas según entrada 013. Esto separa
-nulo del paquete de entrenamiento/routing, no routing de inicialización y lotes.
-Si la ventaja sigue siendo inconsistente, cerrar esta comparación sin alegar
-ventaja robusta y revisar interfaz antes de escalar. No buscar indefinidamente
-una configuración favorable. Los grafos espaciales v1 no se usan en GPU: su
-cobertura local deficiente está documentada; v2 pasó ambos filtros estructurales.
+Se han reservado 2 USD para seis cruces nuevos: 18 acumulados, margen 32 bajo 50.
+No ampliar a 75. Ninguna GPU BIONN estaba activa al verificar consumo; publicar
+código verificado y lanzar una sola campaña de 1200 s, luego analizar la matriz
+completa y actualizar este estado. No repetir diagonal ni generar más nulos.
+Si el efecto sigue siendo inconsistente, cerrar esta comparación y auditar la
+interfaz sensorial antes de escalar; no buscar semillas o hiperparámetros favorables.
 
 La partición de 2048 clips de la entrada 009 ya fue consultada. Conserva valor
 como confirmación de los modelos congelados entonces, pero no puede reciclarse

@@ -891,3 +891,36 @@ Todas las GPU BIONN están detenidas. Reserva acumulada **16 USD**, margen **34 
 bajo **50 USD**; ampliación a 75 sin activar. Lectura agregada de aplicaciones
 efímeras **0,53660009 USD**, no factura definitiva exclusiva del proyecto.
 La revisión de cada dos horas sigue activa dentro de la ventana nocturna.
+
+## Entrada 014 — 2026-11-10: separar realización nula de entrenamiento y routing
+
+**Pregunta congelada.** Completar la matriz del plan de la entrada 013 para
+comprobar si su diferencia irregular depende de emparejar siempre la misma semilla
+de grafo y de entrenamiento. No se cambian datos, pasos, hiperparámetros ni nulos.
+Los seis cruces fuera de diagonal son 7/8, 7/9, 8/7, 8/9, 9/7 y 9/8 (primero
+semilla de entrenamiento/routing, después semilla de grafo). Reutilizar los seis
+checkpoints previos: tres medidos y tres nulos de la diagonal.
+
+**Implementación y control CPU.** `null_seed` selecciona únicamente una máscara
+preparada; `seed` sigue controlando routing, inicialización y lotes. Ausencia de
+`null_seed` conserva el comportamiento histórico. El checkpoint guarda ambas
+semillas y manifiesto/procedencia del nulo. El lanzador transmite y verifica el
+plan exacto, su hash, el orden de seis cruces y nombres distintos de salida.
+Rechaza diagonal, duplicados o ajustes de configuración en este modo.
+`reports/crossed_seed_preflight.json` compara código histórico de `3f5ce843` con
+la versión implícita y explícita: métricas, pesos y optimizador coinciden exactamente
+en los tres casos diagonales de dos pasos en CPU. Los seis cruces cargan la máscara
+correcta, conservan rutas y parámetros iniciales de nodo, y guardan procedencia
+verificable. Estas integraciones reducidas son controles de ingeniería, no evidencia
+de rendimiento ni una selección de hiperparámetros.
+
+**Reserva antes de lanzar.** Consulta de facturación y aplicaciones: BIONN detenido,
+0 tareas; agregado efímero del espacio 0,49667460 USD. Es una instantánea con retraso
+(distinta de la anterior), no una factura exclusiva del proyecto: se conservan las
+reservas previas. Nueva reserva 2 USD; total 18, margen 32 bajo el límite 50.
+La ampliación condicional a 75 no se activa. Una T4, 1200 s solicitados, timeout
+1800 s, un contenedor y cero reintentos. Solo lanzar después de verificar y publicar
+la revisión limpia. Analizar todos los cruces una vez con el criterio previamente
+fijado: promedio de los tres grafos dentro de cada semilla de entrenamiento y
+contraste emparejado con su conectoma. Las nueve celdas no son nueve réplicas
+independientes. La evaluación sigue siendo de desarrollo.

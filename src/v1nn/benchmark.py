@@ -34,10 +34,19 @@ class PilotConfig:
     alpha: float = 0.3
     device: str = "cpu"
     max_seconds: float = 600.0
+    null_seed: int | None = None
+
+    @property
+    def effective_null_seed(self):
+        return self.seed if self.null_seed is None else self.null_seed
 
     def validate(self):
         if self.model not in MODELS:
             raise ValueError(f"Unknown model: {self.model}")
+        if self.null_seed is not None and (
+                self.model not in ("type_null", "spatial_null") or
+                type(self.null_seed) is not int or not 0 <= self.null_seed < 2**63):
+            raise ValueError("null_seed must be a nonnegative integer for a prepared null")
         if min(self.steps, self.batch, self.train_size, self.validation_size,
                self.grid, self.hidden) < 1 or self.frames < 2 or self.image_size < 5:
             raise ValueError("Invalid pilot dimensions")

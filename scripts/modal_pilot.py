@@ -2,6 +2,7 @@
 
 modal run --detach scripts/modal_pilot.py --models gru,static --seeds 7,8
 """
+import hashlib
 import json
 import math
 import re
@@ -68,16 +69,23 @@ def validate_graph_choice(graph, models, null_manifest_sha256):
               retries=0, volumes={"/results": volume})
 def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph: str, alpha: float,
              train_size: int, batch: int, lr: float,
-             source_commit: str, source_dirty: bool, null_manifest_sha256: str = ""):
+             source_commit: str, source_dirty: bool, null_manifest_sha256: str = "", crossed_plan_json: str = ""):
     import time
     import uuid
     from datetime import datetime, timezone
     from pilot import atomic_json, run
     from v1nn.benchmark import PilotConfig
     from v1nn.nulls import load_prepared_null
+    from v1nn.crossed import crossed_trials
 
     trials = validate_campaign(models, seeds, steps, seconds, grid, alpha, train_size, batch, lr)
     validate_graph_choice(graph, models, null_manifest_sha256)
+    trials = [(model, seed, None) for model, seed in trials]
+    if crossed_plan_json:
+        trials = crossed_trials(crossed_plan_json, models=models, seeds=seeds, steps=steps,
+                                seconds=seconds, grid=grid, graph=graph, alpha=alpha,
+                                train_size=train_size, batch=batch, lr=lr,
+                                null_manifest_sha256=null_manifest_sha256)
     started = time.monotonic()
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"-"+uuid.uuid4().hex[:8]
     folder = Path("/results")/run_id
@@ -87,6 +95,9 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
                "trials": [], "graph": graph, "alpha": alpha,
                "train_size": train_size, "batch": batch, "lr": lr,
                "null_manifest_sha256": null_manifest_sha256 or None}
+    if crossed_plan_json:
+        summary["crossed_plan"] = json.loads(crossed_plan_json)
+        summary["crossed_plan_sha256"] = hashlib.sha256(crossed_plan_json.encode()).hexdigest()
     atomic_json(folder/"campaign.json", summary)
     volume.commit()
     try:
@@ -94,7 +105,7 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
         if graph in ("typed_nulls", "spatial_nulls"):
             bundle_root = "type-null-bundles" if graph == "typed_nulls" else "spatial-null-bundles"
             bundle = Path("/results")/bundle_root/null_manifest_sha256
-            for _, seed in trials:
+            for seed in sorted({seed if null_seed is None else null_seed for _, seed, null_seed in trials}):
                 load_prepared_null(bundle/f"{models}_{seed}.npz", seed, null_manifest_sha256, model=models)
             shutil.copytree(bundle, folder/"data"/graph)
             volume.commit()
@@ -104,15 +115,17 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
                             "--cache", "/results/microns-cache",
                             "--output", str(graph_path)], check=True, timeout=180)
             volume.commit()
-        for model, seed in trials:
+        for model, seed, null_seed in trials:
+            graph_seed = seed if null_seed is None else null_seed
             if graph in ("typed_nulls", "spatial_nulls"):
-                graph_path = folder/"data"/graph/f"{model}_{seed}.npz"
+                graph_path = folder/"data"/graph/f"{model}_{graph_seed}.npz"
             remaining = seconds-(time.monotonic()-started)
             if remaining < 30:
                 summary["status"] = "time_limit"
                 break
-            output = folder/f"{model}_{seed}.json"
-            result = run(PilotConfig(model=model, seed=seed, steps=steps, grid=grid, alpha=alpha,
+            name = f"{model}_{seed}" + (f"_null_{null_seed}" if null_seed is not None else "")
+            output = folder/f"{name}.json"
+            result = run(PilotConfig(model=model, seed=seed, null_seed=null_seed, steps=steps, grid=grid, alpha=alpha,
                                      train_size=train_size, batch=batch, lr=lr,
                                      device="cuda", max_seconds=min(remaining-20, 300)), output, graph_path)
             summary["trials"].append({"file": output.name,
@@ -137,11 +150,18 @@ def campaign(models: str, seeds: str, steps: int, seconds: int, grid: int, graph
 @app.local_entrypoint()
 def main(models: str = "gru,static,linear_history,temporal_cnn", seeds: str = "7,8,9",
          steps: int = 500, seconds: int = 1200, grid: int = 4, graph: str = "synthetic", alpha: float = 0.3,
-         train_size: int = 2048, batch: int = 64, lr: float = 0.003, null_manifest_sha256: str = ""):
+         train_size: int = 2048, batch: int = 64, lr: float = 0.003, null_manifest_sha256: str = "", crossed_plan: str = ""):
     validate_campaign(models, seeds, steps, seconds, grid, alpha, train_size, batch, lr)
     validate_graph_choice(graph, models, null_manifest_sha256)
+    payload = ""
+    if crossed_plan:
+        from v1nn.crossed import crossed_trials
+        payload = Path(crossed_plan).read_text()
+        crossed_trials(payload, models=models, seeds=seeds, steps=steps, seconds=seconds,
+                       grid=grid, graph=graph, alpha=alpha, train_size=train_size,
+                       batch=batch, lr=lr, null_manifest_sha256=null_manifest_sha256)
     if SOURCE_DIRTY:
         raise RuntimeError("Commit the reviewed source before launching paid GPU work")
     result = campaign.remote(models, seeds, steps, seconds, grid, graph, alpha,
-                             train_size, batch, lr, SOURCE_COMMIT, SOURCE_DIRTY, null_manifest_sha256)
+                             train_size, batch, lr, SOURCE_COMMIT, SOURCE_DIRTY, null_manifest_sha256, payload)
     print(json.dumps(result, indent=2))

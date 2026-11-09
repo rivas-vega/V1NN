@@ -52,7 +52,8 @@ def run(config, output, graph_path=None):
         graph_path = Path(graph_path)
         graph_hash = hashlib.sha256(graph_path.read_bytes()).hexdigest()
         if config.model in ("type_null", "spatial_null"):
-            graph, null_info = load_prepared_null(graph_path, config.seed, model=config.model)
+            graph, null_info = load_prepared_null(graph_path, config.effective_null_seed,
+                                                 model=config.model)
         else:
             with np.load(graph_path, allow_pickle=False) as data:
                 graph = Graph(len(data["signs"]), data["src"], data["dst"], data["signs"])
@@ -127,7 +128,8 @@ def run(config, output, graph_path=None):
     temporary = checkpoint.with_suffix(".pt.tmp")
     torch.save({"model": model.state_dict(), "optimizer": optimizer.state_dict(),
                 "config": config_dict(config), "completed_steps": completed,
-                "normalization": manifest["normalization"]}, temporary)
+                "normalization": manifest["normalization"],
+                "prepared_null": null_info}, temporary)
     temporary.replace(checkpoint)
     return result
 
@@ -140,6 +142,7 @@ def main():
         parser.add_argument("--"+key.replace("_", "-"), type=int, default=getattr(PilotConfig(), key))
     parser.add_argument("--lr", type=float, default=0.003)
     parser.add_argument("--alpha", type=float, default=0.3)
+    parser.add_argument("--null-seed", type=int, default=None)
     parser.add_argument("--max-seconds", type=float, default=600)
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
     parser.add_argument("--graph", type=Path)

@@ -1,0 +1,55 @@
+{
+  "historical_commit": "3f5ce8436c24e4062f70ae16202dd600fa163ce2",
+  "null_manifest_sha256": "076965c316800bc945c69c803033b37257a420e68f81fc0fb491d9fdbdc4a309",
+  "device": "cpu",
+  "diagonal": {
+    "7": {
+      "historical_training_metrics_model_optimizer_exact": true
+    },
+    "8": {
+      "historical_training_metrics_model_optimizer_exact": true
+    },
+    "9": {
+      "historical_training_metrics_model_optimizer_exact": true
+    }
+  },
+  "off_diagonal": {
+    "7,8": {
+      "graph_hash": "ddbcb66ee543052cae0b3620817cee3194dcd1f836ef929ef17a43706ac6355e",
+      "routing_and_node_initialization_paired": true,
+      "checkpoint_provenance_verified": true
+    },
+    "7,9": {
+      "graph_hash": "1ef762c3eb56104297a6e9b9ed09ac076e49fceef2cc78e208dbff2ec22f2838",
+      "routing_and_node_initialization_paired": true,
+      "checkpoint_provenance_verified": true
+    },
+    "8,7": {
+      "graph_hash": "f5dfba750f1b708f89a6d2ce124d4ed1e006dfc6b238bb4e3aa56b69306a89c4",
+      "routing_and_node_initialization_paired": true,
+      "checkpoint_provenance_verified": true
+    },
+    "8,9": {
+      "graph_hash": "1ef762c3eb56104297a6e9b9ed09ac076e49fceef2cc78e208dbff2ec22f2838",
+      "routing_and_node_initialization_paired": true,
+      "checkpoint_provenance_verified": true
+    },
+    "9,7": {
+      "graph_hash": "f5dfba750f1b708f89a6d2ce124d4ed1e006dfc6b238bb4e3aa56b69306a89c4",
+      "routing_and_node_initialization_paired": true,
+      "checkpoint_provenance_verified": true
+    },
+    "9,8": {
+      "graph_hash": "ddbcb66ee543052cae0b3620817cee3194dcd1f836ef929ef17a43706ac6355e",
+      "routing_and_node_initialization_paired": true,
+      "checkpoint_provenance_verified": true
+    }
+  },
+  "limits": "Two-step engineering check on reduced data, not scientific performance evidence.",
+  "implementation_sha256": {
+    "src/v1nn/benchmark.py": "aea9c85a979fe6b38009463f54cddcb07ad21871255275c3a9e6967f6fe18f54",
+    "src/v1nn/crossed.py": "ea9a6a291e1018ea41d277faa84ebec92a0b9e5592d67a5144aeda21da92d83a",
+    "scripts/pilot.py": "885cf387b795c345f30a3b468f228a94bb140428f0243ad9fe2475fcda131228",
+    "scripts/modal_pilot.py": "8a6d6da8fa3dfff99cb3f1589ce82b7d6f7d3c4fa949134e85a7b73209bde7b9"
+  }
+}
