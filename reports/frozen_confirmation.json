@@ -1,0 +1,285 @@
+{
+  "purpose": "Confirmation of frozen configuration; no training or calibration on new clips",
+  "source": {
+    "commit": "a4ad7994ba3dd303bc750097c0524eb564308c55",
+    "dirty": true,
+    "python_sources_sha256": "cf86b12ceec58c856c3760e97065ee1fe2285bfbf9e3a59e61679185b541a8a8"
+  },
+  "entry_condition_met": true,
+  "primary_metric": "mean_endpoint_error",
+  "secondary_metric": "mean_squared_vector_error",
+  "data": {
+    "clips": 2048,
+    "data_seed": 20261110,
+    "generator_seed": 6123065945272911290,
+    "features_sha256": "afd600295a2c50b54eb3f63b7457e8c03d94e310956b647909f10532421f9e77",
+    "targets_sha256": "5405124f94e69730bd58f844f569f3721807a7d7579cc7e863e55c9b882d8e12",
+    "normalization": "original training calibration; unchanged",
+    "new_velocities": false
+  },
+  "graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+  "trials": [
+    {
+      "model": "connectome",
+      "seed": 7,
+      "training_steps": 3000,
+      "checkpoint_sha256": "7a27fdfda826afd6ecf3daa9320ce3041c3a319cf3c00941cbca200f03ea5f7e",
+      "prediction_sha256": "94f76e375395ffd22d779f31a18671070ad1016eed3fd15923598b161a53004e",
+      "mean_squared_vector_error": 1.398895188387017,
+      "mean_endpoint_error": 1.0812409368476583
+    },
+    {
+      "model": "connectome",
+      "seed": 8,
+      "training_steps": 3000,
+      "checkpoint_sha256": "f363c79d608d8640c2928feec30adbb7fbcb3ccdb52e6d5cdc44550ae77c74de",
+      "prediction_sha256": "2dc81dee9821400413ee96dd999a661b65be6021acf86441ce594daf4ea278a1",
+      "mean_squared_vector_error": 1.3318512095970423,
+      "mean_endpoint_error": 1.05292607787666
+    },
+    {
+      "model": "connectome",
+      "seed": 9,
+      "training_steps": 3000,
+      "checkpoint_sha256": "1a96aca51f07f67cfe1ea16a1d7b69542cb381ec23d43212bbf33bc4ab2b5cc3",
+      "prediction_sha256": "9583d62294db508c9f479570dd42c3975da22185ea357f1845a9a14e5fc6efa6",
+      "mean_squared_vector_error": 1.400839681143108,
+      "mean_endpoint_error": 1.08307482913876
+    },
+    {
+      "model": "degree_null",
+      "seed": 7,
+      "training_steps": 3000,
+      "checkpoint_sha256": "5460d759705865a367e8593d8e6605eba9e9372aef1df09be3dbf73e9e4fccec",
+      "prediction_sha256": "74e6971137ceea01433b53f280531eaf71ed9a715ea8df1833f029b56db05122",
+      "mean_squared_vector_error": 1.4228796327593627,
+      "mean_endpoint_error": 1.09332674514259
+    },
+    {
+      "model": "degree_null",
+      "seed": 8,
+      "training_steps": 3000,
+      "checkpoint_sha256": "df97694d69438b41ff09e343e6e68eb0e34a7f2d67ee4cc1e485f74e9c16e4bd",
+      "prediction_sha256": "fc4342a8ee3da4f09fe6556f1d79c3d406ce3ac9e2a6b1097beb557e0f4bbdd2",
+      "mean_squared_vector_error": 1.379313227394616,
+      "mean_endpoint_error": 1.0753943380832198
+    },
+    {
+      "model": "degree_null",
+      "seed": 9,
+      "training_steps": 3000,
+      "checkpoint_sha256": "1e299a44c0a230d49e5506b9861c4124bb07454e582aa4568e32cd48f7c48236",
+      "prediction_sha256": "490019774abb45303033ab13e2cdba6cdbf5dd336acff53775e231bfeb199f06",
+      "mean_squared_vector_error": 1.4662760967075572,
+      "mean_endpoint_error": 1.1086286451630583
+    },
+    {
+      "model": "no_edges",
+      "seed": 7,
+      "training_steps": 3000,
+      "checkpoint_sha256": "c0f4bc0d8869fae870d313683e1f599050898a1a3b7e3ef094aeffe6b68f25fa",
+      "prediction_sha256": "77d7fb3c2a42b5d2270609745fc31a23a6d86ba118621a6b9a3176361bf7ace7",
+      "mean_squared_vector_error": 1.9261890559487234,
+      "mean_endpoint_error": 1.3100823259869327
+    },
+    {
+      "model": "no_edges",
+      "seed": 8,
+      "training_steps": 3000,
+      "checkpoint_sha256": "325de4cdfaeb1c2a8dc1f3ee71d9e8a3f3bb87cc57a81313687a431c4edab3b3",
+      "prediction_sha256": "ef6948e6389c1c70fecb658793b93d1790f6c9c1af5556e94fc976415ed0ba8c",
+      "mean_squared_vector_error": 1.8915985821421093,
+      "mean_endpoint_error": 1.2970969847063492
+    },
+    {
+      "model": "no_edges",
+      "seed": 9,
+      "training_steps": 3000,
+      "checkpoint_sha256": "e32b4838ac59b7a99c6ad3fb1ca6556036c82ea60c58125a64bea3b4e312d0ef",
+      "prediction_sha256": "b5bc5dcf310e1b02680f335dca25d8348e6b2b6110847872ea95ded73d86c33f",
+      "mean_squared_vector_error": 1.9560901890276472,
+      "mean_endpoint_error": 1.3126145109170457
+    },
+    {
+      "model": "gru",
+      "seed": 7,
+      "training_steps": 500,
+      "checkpoint_sha256": "bb16678e63cf73f2cb2724e8b8e9abbddb423764742073eead0e7a54be78850f",
+      "prediction_sha256": "60a9cd31d209486e16c989bad4a562792fc1854e226f2e199475847c69333a4d",
+      "mean_squared_vector_error": 0.3983770933026459,
+      "mean_endpoint_error": 0.5315666868132061
+    },
+    {
+      "model": "gru",
+      "seed": 8,
+      "training_steps": 500,
+      "checkpoint_sha256": "012c0df8b5b08ff2f22878489daa86cf499971c148700adc491f5e36f382687a",
+      "prediction_sha256": "8bb8712d7ab1c03f875024e00d03d9db83a7ab31fba16e6295e563135f3b50b8",
+      "mean_squared_vector_error": 0.39837067406227067,
+      "mean_endpoint_error": 0.5307519108975742
+    },
+    {
+      "model": "gru",
+      "seed": 9,
+      "training_steps": 500,
+      "checkpoint_sha256": "0f8ca2598032751d81cd062bc044c8f2d458bf3f58bf70d2cc2f35cbe706daa5",
+      "prediction_sha256": "471f4f914bccc9f33f481e020a73038123298692326e570dcd8acb1ddb30081c",
+      "mean_squared_vector_error": 0.4241706895761807,
+      "mean_endpoint_error": 0.5548887858946925
+    }
+  ],
+  "zero": {
+    "mean_squared_vector_error": 1.49072265625,
+    "mean_endpoint_error": 1.2032639795825004
+  },
+  "paired_differences_connectome_minus_other": {
+    "degree_null": {
+      "epe": {
+        "mean_difference": -0.020035961508596642,
+        "per_seed_mean_difference": [
+          -0.012085808294931742,
+          -0.022468260206559832,
+          -0.025553816024298355
+        ],
+        "clip_bootstrap_percentile_95": [
+          -0.02526191457233733,
+          -0.015075074385372755
+        ],
+        "replicates": 2000,
+        "bootstrap_seed": 20261109,
+        "unit": "independent clip; seeds averaged within clip",
+        "scope": "conditional on these trained models and this column; not animal or training-population uncertainty"
+      },
+      "mse": {
+        "mean_difference": -0.04562762591145611,
+        "per_seed_mean_difference": [
+          -0.02398444437234551,
+          -0.04746201779757382,
+          -0.065436415564449
+        ],
+        "clip_bootstrap_percentile_95": [
+          -0.05860481493336785,
+          -0.03415179489893681
+        ],
+        "replicates": 2000,
+        "bootstrap_seed": 20261109,
+        "unit": "independent clip; seeds averaged within clip",
+        "scope": "conditional on these trained models and this column; not animal or training-population uncertainty"
+      }
+    },
+    "no_edges": {
+      "epe": {
+        "mean_difference": -0.23418399258241637,
+        "per_seed_mean_difference": [
+          -0.22884138913927443,
+          -0.24417090682968895,
+          -0.22953968177828568
+        ],
+        "clip_bootstrap_percentile_95": [
+          -0.24664086055932866,
+          -0.22293727272780123
+        ],
+        "replicates": 2000,
+        "bootstrap_seed": 20261109,
+        "unit": "independent clip; seeds averaged within clip",
+        "scope": "conditional on these trained models and this column; not animal or training-population uncertainty"
+      },
+      "mse": {
+        "mean_difference": -0.5474305826637709,
+        "per_seed_mean_difference": [
+          -0.5272938675617063,
+          -0.559747372545067,
+          -0.555250507884539
+        ],
+        "clip_bootstrap_percentile_95": [
+          -0.5795531205271617,
+          -0.517066432877737
+        ],
+        "replicates": 2000,
+        "bootstrap_seed": 20261109,
+        "unit": "independent clip; seeds averaged within clip",
+        "scope": "conditional on these trained models and this column; not animal or training-population uncertainty"
+      }
+    },
+    "zero": {
+      "epe": {
+        "mean_difference": -0.13085003162814085,
+        "per_seed_mean_difference": [
+          -0.12202304273484196,
+          -0.15033790170584024,
+          -0.12018915044374029
+        ],
+        "clip_bootstrap_percentile_95": [
+          -0.14706288910527898,
+          -0.11555892320936852
+        ],
+        "replicates": 2000,
+        "bootstrap_seed": 20261109,
+        "unit": "independent clip; seeds averaged within clip",
+        "scope": "conditional on these trained models and this column; not animal or training-population uncertainty"
+      },
+      "mse": {
+        "mean_difference": -0.11352729654094412,
+        "per_seed_mean_difference": [
+          -0.09182746786298288,
+          -0.15887144665295777,
+          -0.08988297510689171
+        ],
+        "clip_bootstrap_percentile_95": [
+          -0.15232784239043248,
+          -0.07631786335743158
+        ],
+        "replicates": 2000,
+        "bootstrap_seed": 20261109,
+        "unit": "independent clip; seeds averaged within clip",
+        "scope": "conditional on these trained models and this column; not animal or training-population uncertainty"
+      }
+    },
+    "gru": {
+      "epe": {
+        "mean_difference": 0.5333448200858686,
+        "per_seed_mean_difference": [
+          0.5496742500344521,
+          0.5221741669790859,
+          0.5281860432440675
+        ],
+        "clip_bootstrap_percentile_95": [
+          0.5157479684538672,
+          0.5508661733896729
+        ],
+        "replicates": 2000,
+        "bootstrap_seed": 20261109,
+        "unit": "independent clip; seeds averaged within clip",
+        "scope": "conditional on these trained models and this column; not animal or training-population uncertainty"
+      },
+      "mse": {
+        "mean_difference": 0.9702225407286901,
+        "per_seed_mean_difference": [
+          1.0005180950843713,
+          0.9334805355347715,
+          0.9766689915669275
+        ],
+        "clip_bootstrap_percentile_95": [
+          0.9291503273821626,
+          1.0118072522085715
+        ],
+        "replicates": 2000,
+        "bootstrap_seed": 20261109,
+        "unit": "independent clip; seeds averaged within clip",
+        "scope": "conditional on these trained models and this column; not animal or training-population uncertainty"
+      }
+    }
+  },
+  "predictions_file_sha256": "4461563ae004833b4b5e41108bdb082f29aef4d9506cdd8d0e0adda179487958",
+  "limitations": [
+    "One column and development-selected configuration",
+    "Same eight velocities; only textures are new",
+    "GRU trained for 500 steps, graph models for 3000",
+    "Intervals resample clips, not independent animals or trained models",
+    "If used for subsequent tuning, these clips become development data"
+  ],
+  "environment": {
+    "torch": "2.14.1+cu130",
+    "device": "cpu"
+  }
+}

@@ -9,11 +9,11 @@ una entrada antigua.
 | Hipótesis o pregunta | Evidencia actual | Decisión y condición para reabrir |
 | --- | --- | --- |
 | La señal sensorial permite aprender movimiento temporal. | GRU y CNN temporal mejoran claramente la referencia cero en tres semillas; lectura estática no lo hace. | Superada en este piloto. Revalidar si cambia el generador o la interfaz. |
-| MICrONS supera al nulo de grados con la interfaz inicial. | A 500 pasos, alpha 0,3 y 2048 clips, ambos quedan por encima del error cero; sus errores son similares. | Sin evidencia de ventaja. No ampliar semillas/nulos antes de establecer un régimen que aprenda. |
+| MICrONS supera al nulo de grados con la interfaz inicial. | A 500 pasos no se veía ventaja; a 3000, confirmación en 2048 clips nuevos: EPE 1,07241 vs 1,09245, diferencia −0,02004 con intervalo por clips [−0,02526, −0,01508]. | Ventaja pequeña y condicionada, pendiente de preservar E/I. No atribuirla aún al cableado fino ni a biología general. |
 | Eliminar la fuga (`alpha=1`) corrige el problema. | Empeora conectoma, sin aristas y nulo en tres semillas. | Descartado en el régimen probado. Reabrir solo por una interacción nueva y explícita, no repetir la misma campaña. |
 | El conectoma puede memorizar 32 ejemplos. | Campaña 006 completada: conectoma y sin aristas cumplen <1 % del error cero en las tres semillas; validación ≈2,98. | Superada la capacidad de memorizar 32 clips. No repetirla ni confundirla con generalización. |
 | Resolver la lectura lineal recupera una representación temporal útil. | 30 lecturas sobre núcleos congelados: mejor regularización se aproxima a la predicción constante; mínimos cuadrados sobreajusta. | No rescata estos estados. No repetir el barrido sin cambiar o justificar la representación. |
-| El fallo a 2048 ejemplos depende del tiempo de optimización conjunta. | Ajuste pequeño posible; lectura congelada insuficiente; 500 pasos dejan entrenamiento alto. | Próximo diagnóstico: 3000 pasos, sin cambiar otros factores, según entrada 007. En ejecución; 2 USD reservados en entrada 008. |
+| El fallo a 2048 ejemplos depende del tiempo de optimización conjunta. | Ajuste pequeño posible; lectura congelada insuficiente; 500 pasos dejan entrenamiento alto. | Campañas 008/009 completas: 3000 pasos permiten aprender y la mejora se mantiene en clips nuevos. No aumentar pasos de nuevo por inercia; pasar al control de organización E/I. |
 
 ## Reglas para evitar bucles
 
@@ -33,7 +33,12 @@ una entrada antigua.
 
 ## Próxima acción concreta
 
-La campaña de nueve ensayos está en marcha (entrada 008). Recuperar su estado
-y resultados antes de iniciar otro trabajo GPU; el identificador está en el
-registro de gasto y en el estado local. Aplicar las ramas de decisión de la
-entrada 007 y actualizar esta tabla; no aumentar pasos de nuevo por inercia.
+La GPU y la confirmación en CPU han terminado. Leer el plan al final de la
+entrada 009. Generar y auditar en CPU nulos que preserven grados por clase E/I
+antes de entrenarlos. El nulo actual altera la composición inhibitoria de casi
+todas las neuronas, por lo que no aísla el cableado fino. No hay una nueva campaña
+GPU ni reserva pendiente para ese control. No repetir experimentos completados.
+
+La partición de 2048 clips de la entrada 009 ya fue consultada. Conserva valor
+como confirmación de los modelos congelados entonces, pero no puede reciclarse
+como una confirmación independiente de futuros ajustes inspirados por sus resultados.

@@ -435,3 +435,135 @@ remuestreos para las comparaciones contra cero y sin aristas. Esta nueva partici
 solo confirma el método congelado; si sus resultados se usan después para ajustar,
 dejará de ser confirmatoria para esas decisiones posteriores. Si no se cumple la
 condición, mantener la partición sin consultar y seguir la auditoría de optimización.
+
+### Auditoría parcial del mecanismo, semilla 7
+
+El prefijo de 500 actualizaciones reproduce la trayectoria original con diferencia
+máxima de pérdida de 1,31e-6 en los puntos registrados. El cambio de instrumentación
+no altera de forma apreciable ese entrenamiento emparejado.
+
+A 3000 pasos, el cambio L2 relativo de pesos recurrentes efectivos sube de 0,181
+a 1,801; la suma absoluta entrante media pasa de 0,484 a 0,713 y el 13,1 % de
+filas alcanza la cota 0,95 (con redondeo numérico). La RMS del cambio de theta pasa
+de 0,173 a 0,800. El gradiente del núcleo no es nulo. Aunque la lectura concentra
+la mayor parte de la norma cuadrática del gradiente, esos datos no apoyan describir
+el núcleo como congelado. Es una auditoría de una semilla y un lote fijo de
+entrenamiento, no una explicación causal completa de la mejora ni una medida
+poblacional. Resultados en `reports/gradient_audit/`.
+
+La tercera semilla del conectoma también cumple la condición fijada: MSE de
+validación 1,473919 frente a 1,498047 de cero, y EPE inferior a la referencia.
+Se cumple el criterio en las tres semillas, aunque el margen de MSE de la tercera
+es pequeño. El análisis de confirmación quedó publicado previamente en la revisión
+`a4ad7994ba3dd303bc750097c0524eb564308c55`. Se ejecutará cuando se recupere el
+último control; no se ha consultado todavía esa partición. No se ha iniciado otra
+campaña GPU ni activado la ampliación de presupuesto.
+
+### Resultado completo de la campaña de 3000 pasos
+
+Completados **9/9 ensayos, todos con 3000 actualizaciones**, en 855,10 s de función.
+Campaña `20261109T192317Z-94f1cd63`, aplicación `ap-6HuVccXtz41DlSaTlEz7TF`.
+Se recuperaron nueve checkpoints y sus informes; ninguna aplicación BIONN quedó
+activa. Datos/calibración coinciden exactamente con los de los respectivos ensayos
+de 500 pasos. La máxima diferencia de pérdida en el prefijo emparejado de 500
+pasos es 1,24e-5 entre los nueve ensayos, compatible con redondeo de ejecución GPU.
+
+| Modelo | MSE entrenamiento | MSE validación ± DE | EPE validación ± DE | MSE contrafactual |
+| --- | ---: | ---: | ---: | ---: |
+| Conectoma | 0,49426 | 1,41721 ± 0,05253 | 1,08874 ± 0,02032 | 1,39472 |
+| Nulo de grados | 0,52184 | 1,45742 ± 0,03740 | 1,10741 ± 0,01730 | 1,44562 |
+| Sin aristas | 1,00282 | 1,87751 ± 0,01363 | 1,29228 ± 0,00122 | 1,93216 |
+| Velocidad cero | 1,50439 | 1,49805 | 1,20630 | 1,50000 |
+
+Medias de tres semillas; el informe JSON conserva valores ordenados por semillas
+7, 8 y 9. Reportes completos: `reports/gpu_long_training/`.
+
+![Comparación de presupuestos de entrenamiento](../reports/training_budget.svg)
+
+La figura usa Matplotlib 3.11.2; se reproduce con `scripts/plot_progress.py` tras
+instalar Matplotlib. Barras: medias; puntos: semillas; sin intervalos inferenciales.
+
+**Decisión provisional.** Extender de 500 a 3000 pasos cambia la conclusión sobre
+capacidad de aprendizaje: el conectoma reduce EPE de validación un 9,75 % frente
+a cero. El nulo también aprende. El conectoma tiene un error algo menor que el
+nulo en las tres semillas de desarrollo, pero todavía no se interpreta como
+ventaja anatómica confirmada. La evaluación de 2048 clips nuevos se ejecuta en
+CPU con configuración y análisis congelados; no se seleccionan modelos a partir
+de resultados parciales de esa evaluación.
+
+**Presupuesto.** Reservas acumuladas 12 USD, margen conservador 38 USD bajo el
+límite operativo de 50. Lectura agregada de aplicaciones efímeras: 0,35485516 USD,
+no factura exclusiva definitiva del proyecto. La ampliación condicional a 75 USD
+sigue sin activarse. No se ha lanzado una segunda campaña GPU en esta continuación.
+
+## Entrada 009 — 2026-11-09: confirmación en 2048 escenas nuevas y siguiente control
+
+Se completó la evaluación en CPU de los doce checkpoints fijados, sin ningún
+reentrenamiento ni recalibración. Generador: 2048 clips, 8 fotogramas, 16×16,
+`split_seed(20261110, 'validation') = 6123065945272911290`. Las ocho velocidades
+son las conocidas; las texturas son nuevas. El análisis y la condición de acceso
+se publicaron antes de consultar estos clips. La lógica de confirmación y los
+modelos se verificaron idénticos a la revisión preregistrada. Informe completo:
+`reports/frozen_confirmation.json`; predicciones privadas conservadas con hash.
+
+| Modelo congelado | Pasos de entrenamiento | EPE nuevo, media ± DE | MSE nuevo, media ± DE |
+| --- | ---: | ---: | ---: |
+| Conectoma | 3000 | 1,07241 ± 0,01690 | 1,37720 ± 0,03928 |
+| Nulo de grados | 3000 | 1,09245 ± 0,01663 | 1,42282 ± 0,04348 |
+| Sin aristas | 3000 | 1,30660 ± 0,00832 | 1,92463 ± 0,03227 |
+| GRU | 500 | 0,53907 ± 0,01371 | 0,40697 ± 0,01489 |
+| Velocidad cero | — | 1,20326 | 1,49072 |
+
+**Contraste principal fijado: EPE de conectoma menos nulo de grados.** Diferencia
+media −0,02004; intervalo percentil del 95 % al remuestrear clips completos:
+[−0,02526, −0,01508]. Diferencias por semilla: −0,01209, −0,02247 y −0,02555.
+La reducción relativa de EPE frente al nulo es 1,83 %; frente a cero es 10,87 %.
+El MSE secundario también mejora: diferencia −0,04563, intervalo
+[−0,05860, −0,03415]. Los otros contrastes del JSON son descriptivos; los
+intervalos son individuales, no simultáneos ni corregidos por multiplicidad.
+
+**Alcance.** Esta comparación confirma una ventaja pequeña frente a estos nulos
+de grados en nuevos estímulos del mismo generador, condicionada a tres
+entrenamientos y una columna. El remuestreo no incluye variación entre animales,
+columnas, conjuntos de entrenamiento o familias amplias de nulos. La GRU, incluso
+con 500 pasos, conserva aproximadamente la mitad del EPE del conectoma: no se ha
+alcanzado competitividad práctica ni demostrado correspondencia biológica.
+
+**Auditoría que limita la interpretación.** El nulo de grados cambia el número
+de entradas inhibitorias en el 93,9–94,8 % de los nodos, con cambio absoluto medio
+aproximado de siete entradas por nodo. Por ejemplo, las aristas I→I pasan de 3599
+a 6434–6549, pese a mantener los grados totales. El archivo
+`reports/null_sign_audit.json` cuenta las aristas por signo presináptico y
+postsináptico y compara grados inhibitorios por nodo a partir de los checkpoints.
+Solo hay dos grupos anotados: 1191 excitatorios y 166 inhibitorios; no hay capas
+ni subtipos que deban inventarse.
+
+**Interpretación y siguiente hipótesis.** La ventaja observada podría proceder
+de esta organización gruesa E/I, no del cableado fino. La siguiente pregunta es
+si persiste frente a nulos que conserven también los grados E/I de cada neurona.
+No volver a aumentar pasos ni ajustar hiperparámetros para inflar esta diferencia.
+
+**Plan siguiente, todavía no ejecutado.** Generar primero en CPU tres nulos con
+`rewire(..., groups=groups)`, semillas 7/8/9 y 5×E intercambios aceptados, con un
+límite explícito de intentos y tiempo. Auditar conservación exacta de grados
+entrantes/salientes totales y por grupo, ausencia de aristas duplicadas/autapsis,
+signos e interfaz. Registrar aceptación y fracción cambiada; no afirmar mezcla
+uniforme. No gastar GPU si el generador falla o conserva casi todo el grafo; revisar
+esa limitación antes. Mantener el routing y la configuración de 3000 pasos.
+Si los controles son válidos, entrenar solo los tres nuevos nulos de tipo bajo
+una campaña acotada y una reserva nueva de 2 USD, previa consulta de uso. Esa
+reserva aún no se ha añadido y esa campaña aún no se ha iniciado.
+
+Si la ventaja desaparece al preservar E/I, la explicación queda en esa estructura
+gruesa bajo el régimen probado. Si persiste, añadir después restricciones
+espaciales auditadas. Comparar inicialmente sobre validación de desarrollo. Estos
+2048 clips ya consultados no serán una nueva confirmación para decisiones que
+se ajusten a sus resultados; una confirmación posterior necesitará otra partición
+congelada antes de verla. Mantener separados ambos usos en los informes.
+
+**Cierre de esta continuación.** Una campaña nueva de nueve ensayos GPU, doce
+evaluaciones congeladas en CPU y dos auditorías de gradientes. La GPU quedó
+detenida. 30 pruebas de código superadas, además de verificación de identidades,
+presupuestos de entrenamiento completos, predicciones y figura. Límite operativo
+50 USD, reservas 12 USD, margen conservador 38 USD; la autorización condicional
+hasta 75 USD permanece disponible y sin activar.

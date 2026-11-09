@@ -1,0 +1,103 @@
+{
+  "purpose": "Diagnostic gradients on fixed training prefix; no further training",
+  "checkpoint_config": {
+    "model": "connectome",
+    "seed": 7,
+    "data_seed": 20261109,
+    "steps": 3000,
+    "batch": 64,
+    "train_size": 2048,
+    "validation_size": 512,
+    "frames": 8,
+    "image_size": 16,
+    "grid": 4,
+    "hidden": 64,
+    "lr": 0.003,
+    "alpha": 0.3,
+    "device": "cuda",
+    "max_seconds": 300
+  },
+  "checkpoint_sha256": "7a27fdfda826afd6ecf3daa9320ce3041c3a319cf3c00941cbca200f03ea5f7e",
+  "analysis_source": {
+    "commit": "a4ad7994ba3dd303bc750097c0524eb564308c55",
+    "dirty": false,
+    "python_sources_sha256": "a90db02897e7316b66cfae2660a5160073a7c6607c12ffa2ad4dd26198fad304"
+  },
+  "data_reconstruction_exact": true,
+  "batch": {
+    "split": "train",
+    "indices": [
+      0,
+      64
+    ],
+    "stop_index_exclusive": true,
+    "features_sha256": "d52b1e5d5d4410490bbb8238a90db2465c6a64c36d0be5b2f4c122b6b6d6968c",
+    "targets_sha256": "b410a3c50a2410a7aad2a6eb6349ae1389ede890706d9ea3910fc4be5f1208cf",
+    "mean_squared_vector_error": 0.4389435350894928
+  },
+  "parameters": {
+    "core.theta": {
+      "elements": 78953,
+      "initial_rms": 5.092770099639893,
+      "final_rms": 5.100574493408203,
+      "change_rms": 0.8002808094024658,
+      "gradient_l2": 0.03888707980513573,
+      "gradient_rms": 0.00013839556777384132,
+      "gradient_nonzero_fraction": 1.0,
+      "fraction_squared_gradient_norm": 0.00040367348390869606
+    },
+    "core.log_input_gain": {
+      "elements": 1357,
+      "initial_rms": 0.0,
+      "final_rms": 0.2710453271865845,
+      "change_rms": 0.2710453271865845,
+      "gradient_l2": 0.2151930183172226,
+      "gradient_rms": 0.0058416868560016155,
+      "gradient_nonzero_fraction": 1.0,
+      "fraction_squared_gradient_norm": 0.01236163494658674
+    },
+    "core.bias": {
+      "elements": 1357,
+      "initial_rms": 0.0,
+      "final_rms": 0.18075047433376312,
+      "change_rms": 0.18075047433376312,
+      "gradient_l2": 0.5017498135566711,
+      "gradient_rms": 0.013620633631944656,
+      "gradient_nonzero_fraction": 1.0,
+      "fraction_squared_gradient_norm": 0.06720382615234619
+    },
+    "core.readout.weight": {
+      "elements": 2714,
+      "initial_rms": 0.015753211453557014,
+      "final_rms": 0.17947442829608917,
+      "change_rms": 0.17732121050357819,
+      "gradient_l2": 1.849823236465454,
+      "gradient_rms": 0.0355079248547554,
+      "gradient_nonzero_fraction": 1.0,
+      "fraction_squared_gradient_norm": 0.9134399905042275
+    },
+    "core.readout.bias": {
+      "elements": 2,
+      "initial_rms": 0.016908586025238037,
+      "final_rms": 0.055019561201334,
+      "change_rms": 0.038536012172698975,
+      "gradient_l2": 0.15713095664978027,
+      "gradient_rms": 0.11110836267471313,
+      "gradient_nonzero_fraction": 1.0,
+      "fraction_squared_gradient_norm": 0.006590874912930809
+    }
+  },
+  "recurrence": {
+    "edges": 78953,
+    "relative_l2_effective_weight_change": 1.800705075263977,
+    "mean_incoming_absolute_sum": 0.7131221890449524,
+    "max_incoming_absolute_sum": 0.9500004053115845,
+    "fraction_rows_at_gain_cap": 0.13117170333862305
+  },
+  "gradient_norm_before_clip": 1.9354868274461607,
+  "caveat": "Gradient sizes depend on parameterization. Dominant readout norm alone does not prove blocked core learning, especially with Adam.",
+  "environment": {
+    "torch": "2.14.1+cu130",
+    "device": "cpu"
+  }
+}

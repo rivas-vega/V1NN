@@ -52,18 +52,21 @@
     },
     {
       "purpose": "training-budget-3000",
-      "status": "running",
+      "status": "completed",
       "reservation_usd": 2,
       "planned_trials": 9,
       "app_id": "ap-6HuVccXtz41DlSaTlEz7TF",
-      "source_commit": "d18624dca383cad825305c96a667673e6f87604c"
+      "source_commit": "d18624dca383cad825305c96a667673e6f87604c",
+      "run_id": "20261109T192317Z-94f1cd63",
+      "trials": 9,
+      "function_seconds": 855.097176248
     }
   ],
   "reserved_usd": 12.0,
   "available_after_reservations_usd": 38.0,
   "billing_note": "Billing queried before and after campaigns; delayed snapshots are not a final invoice. Keep reservations until reconciled.",
-  "active_bionn_apps": 1,
-  "latest_ephemeral_apps_metered_snapshot_usd": 0.15065402,
+  "active_bionn_apps": 0,
+  "latest_ephemeral_apps_metered_snapshot_usd": 0.35485516,
   "snapshot_note": "Workspace ephemeral-app usage snapshot, not a final project invoice. Billing can lag and snapshot totals can update at different times. Reservations remain conservative.",
   "conditional_maximum_usd": 75,
   "extension_activated": false,

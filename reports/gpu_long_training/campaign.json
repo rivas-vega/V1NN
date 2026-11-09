@@ -1,0 +1,350 @@
+{
+  "run_id": "20261109T192317Z-94f1cd63",
+  "status": "completed",
+  "gpu": "T4",
+  "source_commit": "d18624dca383cad825305c96a667673e6f87604c",
+  "source_dirty": false,
+  "time_budget_seconds": 1500,
+  "server_timeout_seconds": 1800,
+  "trials": [
+    {
+      "file": "connectome_7.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.4925950765609741,
+            "mean_endpoint_error": 0.6237987279891968
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.4075102806091309,
+            "mean_endpoint_error": 1.083957552909851
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.364545226097107,
+            "mean_endpoint_error": 1.0585805177688599
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "no_edges_7.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.9783340096473694,
+            "mean_endpoint_error": 0.9214813709259033
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.866976261138916,
+            "mean_endpoint_error": 1.2908729314804077
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.8627241849899292,
+            "mean_endpoint_error": 1.291529655456543
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "degree_null_7.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.4976044297218323,
+            "mean_endpoint_error": 0.6290197968482971
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.4429690837860107,
+            "mean_endpoint_error": 1.1007623672485352
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.3319268226623535,
+            "mean_endpoint_error": 1.0447543859481812
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "connectome_8.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.4850176274776459,
+            "mean_endpoint_error": 0.6196882128715515
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.3702106475830078,
+            "mean_endpoint_error": 1.0712308883666992
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.4540042877197266,
+            "mean_endpoint_error": 1.0930895805358887
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "no_edges_8.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.9901204109191895,
+            "mean_endpoint_error": 0.9272900819778442
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.8726511001586914,
+            "mean_endpoint_error": 1.2929702997207642
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.979381799697876,
+            "mean_endpoint_error": 1.3231475353240967
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "degree_null_8.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.5104589462280273,
+            "mean_endpoint_error": 0.637393593788147
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.4294044971466064,
+            "mean_endpoint_error": 1.0944238901138306
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.543859839439392,
+            "mean_endpoint_error": 1.133087158203125
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "connectome_9.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.5051733255386353,
+            "mean_endpoint_error": 0.6337407827377319
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.47391939163208,
+            "mean_endpoint_error": 1.1110187768936157
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.3656015396118164,
+            "mean_endpoint_error": 1.0584802627563477
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "no_edges_9.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 1.0399985313415527,
+            "mean_endpoint_error": 0.9424632787704468
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.8929030895233154,
+            "mean_endpoint_error": 1.293006181716919
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.954361915588379,
+            "mean_endpoint_error": 1.3057267665863037
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    },
+    {
+      "file": "degree_null_9.json",
+      "completed_steps": 3000,
+      "status": "steps_completed",
+      "evaluation": {
+        "train": {
+          "model": {
+            "mean_squared_vector_error": 0.557461142539978,
+            "mean_endpoint_error": 0.6696605086326599
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.50439453125,
+            "mean_endpoint_error": 1.208927035331726
+          }
+        },
+        "validation": {
+          "model": {
+            "mean_squared_vector_error": 1.499885082244873,
+            "mean_endpoint_error": 1.1270442008972168
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.498046875,
+            "mean_endpoint_error": 1.2062976360321045
+          }
+        },
+        "counterfactual": {
+          "model": {
+            "mean_squared_vector_error": 1.4610588550567627,
+            "mean_endpoint_error": 1.0951623916625977
+          },
+          "zero_velocity": {
+            "mean_squared_vector_error": 1.5,
+            "mean_endpoint_error": 1.2071067094802856
+          }
+        }
+      }
+    }
+  ],
+  "graph": "microns",
+  "alpha": 0.3,
+  "train_size": 2048,
+  "batch": 64,
+  "lr": 0.003,
+  "seconds": 855.097176248
+}

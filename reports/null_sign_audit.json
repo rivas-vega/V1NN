@@ -1,0 +1,74 @@
+{
+  "purpose": "Anatomical audit of existing degree-only nulls; no training or new stimulus evaluation",
+  "group_counts": {
+    "excitatory": 1191,
+    "inhibitory": 166
+  },
+  "matrix_order": "rows presynaptic E,I; columns postsynaptic E,I",
+  "original": {
+    "matrix_pre_post_E_I": [
+      [
+        31955,
+        16475
+      ],
+      [
+        26924,
+        3599
+      ]
+    ]
+  },
+  "degree_nulls": [
+    {
+      "matrix_pre_post_E_I": [
+        [
+          34865,
+          13565
+        ],
+        [
+          24014,
+          6509
+        ]
+      ],
+      "seed": 7,
+      "checkpoint_sha256": "5460d759705865a367e8593d8e6605eba9e9372aef1df09be3dbf73e9e4fccec",
+      "fraction_nodes_with_changed_inhibitory_indegree": 0.9388356669123066,
+      "mean_absolute_inhibitory_indegree_change": 7.019896831245394,
+      "rms_inhibitory_indegree_change": 10.25956426005462
+    },
+    {
+      "matrix_pre_post_E_I": [
+        [
+          34905,
+          13525
+        ],
+        [
+          23974,
+          6549
+        ]
+      ],
+      "seed": 8,
+      "checkpoint_sha256": "df97694d69438b41ff09e343e6e68eb0e34a7f2d67ee4cc1e485f74e9c16e4bd",
+      "fraction_nodes_with_changed_inhibitory_indegree": 0.948415622697126,
+      "mean_absolute_inhibitory_indegree_change": 6.950626381724392,
+      "rms_inhibitory_indegree_change": 10.276358168847738
+    },
+    {
+      "matrix_pre_post_E_I": [
+        [
+          34790,
+          13640
+        ],
+        [
+          24089,
+          6434
+        ]
+      ],
+      "seed": 9,
+      "checkpoint_sha256": "1e299a44c0a230d49e5506b9861c4124bb07454e582aa4568e32cd48f7c48236",
+      "fraction_nodes_with_changed_inhibitory_indegree": 0.948415622697126,
+      "mean_absolute_inhibitory_indegree_change": 6.966838614591009,
+      "rms_inhibitory_indegree_change": 10.12435574339746
+    }
+  ],
+  "interpretation": "Degree-only swaps preserve total in/out degrees, not each neuron's E/I-specific degrees. A degree-null difference cannot isolate fine wiring from this coarse organization."
+}
