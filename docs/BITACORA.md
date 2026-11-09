@@ -260,3 +260,121 @@ este chat cada dos horas durante la noche del 9 al 10 de noviembre, con límite
 el 10 a las 08:00 Europe/Paris. Consultará estado, bitácora y presupuesto antes de
 actuar; no duplicará campañas activas ni repetirá hipótesis descartadas sin motivo.
 El máximo sigue siendo 50 USD acumulados para toda la ronda.
+
+### Diagnóstico adicional fijado durante la campaña 006
+
+La reevaluación en CPU de nueve checkpoints de la campaña original confirma MSE
+medio de entrenamiento: GRU 0,044127, conectoma 1,389131 y sin aristas 1,422518.
+Se reconstruyeron exactamente datos/calibración y se reprodujo la validación
+con diferencias numéricas inferiores a la tolerancia fijada (relativa 1e-5,
+absoluta 1e-6). No hubo entrenamiento adicional. El grafo local tiene el mismo
+SHA-256 que el usado en Modal. Archivo: `reports/retrospective_training.json`.
+
+El primer ensayo pequeño del conectoma baja a MSE 0,013758 en entrenamiento
+pero sube a 3,022269 en validación; es parcial, no una conclusión de tres semillas.
+Esto motiva una prueba independiente **sin gasto GPU**: congelar los núcleos ya
+entrenados de la campaña original (2048 clips, 500 pasos) y resolver directamente
+la lectura lineal mediante mínimos cuadrados/ridge. Comparar conectoma y sin
+aristas, semillas 7/8/9, con penalizaciones fijadas ahora: 0, 1e-4, 1e-2, 1 y 100.
+Centrar y escalar cada estado final usando exclusivamente entrenamiento; el sesgo
+no se penaliza. Las penalizaciones se aplican al error cuadrático medio por clip,
+no a su suma. Resolver en float64 y registrar rango/tolerancia numérica.
+
+Si solo mejora entrenamiento, hay margen de optimización de la lectura pero no
+se ha mostrado una representación que generalice. Si mejora validación, comparar
+ambos controles con el mismo presupuesto de selección y confirmarlo después
+con particiones nuevas. La selección entre penalizaciones sigue siendo ajuste
+sobre validación; no es un test final ni evidencia aislada de ventaja anatómica.
+No modificar el núcleo ni descartar puntos de regularización desfavorables.
+
+### Resultado de la campaña 006
+
+Completados **12/12 ensayos de 1500 pasos**, T4, 224,42 s de función. Revisión
+`3f183683d7d696adb41129983396b5ad89801949`; aplicación
+`ap-jTYXYN8vV4Zu4BraLAilMz`, campaña `20261109T190712Z-eb2cacc2`.
+Reportes íntegros en `reports/gpu_tiny_fit/`; checkpoints privados recuperados.
+Ninguna aplicación BIONN permanece activa al comprobar el cierre.
+
+| Modelo | MSE entrenamiento, media ± DE | MSE validación, media ± DE | MSE contrafactual, media ± DE |
+| --- | ---: | ---: | ---: |
+| GRU | 3,12e-13 ± 1,81e-14 | 2,10916 ± 0,02565 | 2,03630 ± 0,02296 |
+| Estático | 0,02115 ± 0,00285 | 10,34310 ± 0,43679 | 11,84951 ± 0,28159 |
+| Conectoma | 0,00459 ± 0,00794 | 2,98154 ± 0,08968 | 2,38177 ± 0,02737 |
+| Sin aristas | 0,00648 ± 0,00557 | 2,98249 ± 0,06466 | 2,37420 ± 0,04162 |
+| Velocidad cero | 1,43750 | 1,49805 | 1,50000 |
+
+**Observación.** Conectoma y sin aristas cumplen el criterio fijado en las tres
+semillas: MSE de entrenamiento <0,014375 (1 % de cero). La semilla 7 del conectoma
+queda cerca del umbral: 0,013758; las otras dan 2,96e-8 y 4,09e-6. Su norma de
+gradiente al último lote aún es 3,71 antes del clipping, frente a 0,0063 y 0,0220
+en las otras dos. No se declara convergencia uniforme ni se oculta la variación.
+Los parámetros recurrentes cambian: RMS del cambio de theta 0,0755–0,0782.
+
+**Interpretación y decisión.** El pipeline puede memorizar estos 32 ejemplos;
+queda descartada una incapacidad absoluta de ajuste bajo esta configuración.
+Todos los modelos generalizan mal con tan pocos clips. La casi igualdad entre
+conectoma y sin aristas no aporta una ventaja anatómica. Tampoco se debe atribuir
+el fallo del conjunto grande únicamente a generalización: su error de
+entrenamiento ya era alto. Completar el diagnóstico de lectura congelada antes
+de elegir otro entrenamiento; no repetir el ajuste pequeño ni alpha=1.
+
+**Gasto.** Reservas acumuladas 10 USD de los 50 autorizados; margen conservador
+40 USD. La lectura de uso agregado de aplicaciones efímeras de Modal tras esta
+campaña es 0,15065402 USD, todavía sujeta a retrasos y sin constituir una factura
+exclusiva del proyecto. No se liberan reservas basándose en esa lectura parcial.
+
+## Entrada 007 — 2026-11-09: resolver la lectura no rescata la representación
+
+Se completó en CPU el diagnóstico fijado durante la entrada 006: seis núcleos
+congelados (conectoma/sin aristas × tres semillas), cinco penalizaciones cada uno,
+**30 lecturas ajustadas sin reentrenar el núcleo**. Herramienta reproducible:
+`scripts/readout_diagnostic.py`; datos completos en `reports/readout_diagnostic/`.
+Se verificaron hashes del grafo, datos/calibración y reproducción de la validación
+original. Todos los estados tienen rango numérico 1357 bajo el umbral documentado.
+La solución se comprobó contra un sistema lineal directo y mínimos cuadrados con
+un diseño singular; los datos de validación no participan en la calibración.
+
+| Lectura | Conectoma: MSE entrenamiento / validación | Sin aristas: MSE entrenamiento / validación |
+| --- | ---: | ---: |
+| Adam original | 1,38913 / 1,64505 | 1,42252 / 1,65978 |
+| Mínimos cuadrados, lambda 0 | 0,44513 / 4,23610 | 0,48777 / 4,69867 |
+| Ridge, lambda 0,0001 | 0,44645 / 4,02719 | 0,49204 / 4,41582 |
+| Ridge, lambda 0,01 | 0,64246 / 2,16576 | 0,71069 / 2,21769 |
+| Ridge, lambda 1 | 1,29518 / 1,53269 | 1,32140 / 1,53469 |
+| Ridge, lambda 100 | 1,49078 / 1,49738 | 1,49144 / 1,49743 |
+| Constante: media de etiquetas de entrenamiento | 1,50434 / 1,49741 | 1,50434 / 1,49741 |
+
+Son medias de tres semillas; desviaciones y errores contrafactuales están en el
+resumen JSON. El mejor lambda del conjunto probado es el extremo superior (100),
+con error prácticamente idéntico a la predicción constante. En contrafactuales,
+ese lambda da 1,50723/1,50752 frente a 1,50006 de la constante.
+
+**Conclusión acotada.** Hay margen de optimización de la lectura para bajar el
+error de entrenamiento, pero la lectura resuelta directamente sobre estos estados
+no aporta aprendizaje temporal útil que generalice. No basta con sustituir Adam
+por ridge en la salida. No se ha demostrado que optimizar conjuntamente durante
+más tiempo sea inútil, ni se ha evaluado toda regularización posible. La comparación
+sigue siendo exploratoria, con la validación utilizada para ajustar.
+
+**Aclaración del control.** El modelo sin aristas es aditivo entre fotogramas,
+aunque conserve estado por fuga. Esa propiedad se ha demostrado a partir de la
+ecuación y comprobado mediante combinación de historias en un test. Con las
+marginales estacionarias del generador, memorizar una muestra finita no le da una
+señal poblacional de velocidad. El protocolo ahora distingue esta limitación de
+la capacidad de interacción temporal del conectoma.
+
+**Siguiente decisión, sin ejecutar aún.** Una sola comparación emparejada de
+presupuesto de entrenamiento: 3000 actualizaciones frente a las 500 originales,
+manteniendo datos (2048 clips), lr 0,003, alpha 0,3, batch 64, sensores y modelos
+conectoma/sin aristas/nulo de grados, semillas 7/8/9. No cambiar a la vez interfaz,
+optimizador ni dinámica. Registrar curvas y error completo de entrenamiento.
+Reservar 2 USD y comprobar uso/aplicaciones antes de lanzar la campaña de nueve
+ensayos (1500 s cooperativos, 1800 s de servidor). El registro actual todavía
+no incluye esa reserva ni afirma que la campaña haya comenzado.
+
+Si entrenamiento baja pero validación permanece en la constante o peor, estudiar
+representación/interfaz en lugar de añadir más pasos. Si los dos errores permanecen
+altos, auditar gradientes por grupo y cambios efectivos de pesos antes de otra GPU.
+Si aparece una mejora consistente, contrastarla con el nulo emparejado y reservar
+una partición nueva para confirmación. No volver a la prueba de 32 clips, alpha=1
+ni a una búsqueda de lectura congelada sin una razón nueva registrada.

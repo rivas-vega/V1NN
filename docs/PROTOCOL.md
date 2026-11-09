@@ -83,3 +83,22 @@ Superar al azar simple pero no al nulo espacial/tipado sugiere que basta la estr
 [Lappalainen et al. 2024](https://www.nature.com/articles/s41586-024-07939-3) ya relacionan conectividad, movimiento y respuestas neuronales. [Ding et al. 2025](https://www.nature.com/articles/s41586-025-08840-3) estudian reglas de conectividad funcional. [Wang et al. 2025](https://www.nature.com/articles/s41586-025-08829-y) predicen respuestas corticales mediante un modelo fundacional. El [preprint cortical de 2026](https://pubmed.ncbi.nlm.nih.gov/42079060/) es un antecedente cercano que requiere comparación metodológica detallada; no presentarlo como validación de esta hipótesis.
 
 La contribución potencial es evaluar **especificidad del cableado bajo distintos objetivos y controles de interfaz**, no construir «la primera RNN biológica». La prioridad bibliográfica no está demostrada.
+
+## Límite específico del control sin aristas
+
+En esta implementación, sin aristas el estado cumple
+`h_t = (1-alpha) h_(t-1) + alpha * ReLU(sensory_t + bias)`.
+Por tanto la salida final es una suma ponderada de funciones de cada fotograma
+por separado, más el sesgo de lectura. Conserva memoria por fuga, pero no genera
+interacciones no lineales entre fotogramas. La identidad de aditividad al combinar
+mitades de historias está comprobada en los tests.
+
+Como las texturas del generador son estacionarias y la distribución marginal de
+cada fotograma no depende de la velocidad, cada término de esa suma tiene la
+misma esperanza condicionada a cada velocidad. En la población equilibrada no
+puede reducir el MSE de la predicción constante mediante correlaciones temporales.
+Puede memorizar correlaciones accidentales de una muestra finita, como mostró
+la campaña de 32 clips. Esto explica por qué ajustar entrenamiento en este
+control no demuestra aprendizaje del movimiento. El conectoma sí puede producir
+interacciones entre instantes mediante la recurrencia dentro de la no linealidad;
+que esas interacciones sean útiles debe comprobarse experimentalmente.

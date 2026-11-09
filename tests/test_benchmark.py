@@ -53,6 +53,21 @@ def test_static_and_reset_ignore_history():
         assert torch.equal(model(x), model(altered))
 
 
+def test_no_edges_has_memory_but_no_cross_time_interactions():
+    generator = torch.Generator().manual_seed(33)
+    ab = torch.randn(3, 8, 32, generator=generator)
+    cd = torch.randn(3, 8, 32, generator=generator)
+    ad = torch.cat([ab[:, :4], cd[:, 4:]], dim=1)
+    cb = torch.cat([cd[:, :4], ab[:, 4:]], dim=1)
+    model, _ = build_model(PilotConfig(model="no_edges"))
+    # Leak sums per-frame nonlinear features; it cannot create interactions
+    # between frames. This remains true for learned sensory gains and biases.
+    with torch.no_grad():
+        model.core.bias.copy_(torch.randn(model.core.n, generator=generator))
+        model.core.log_input_gain.copy_(torch.randn(model.core.n, generator=generator))
+        assert torch.allclose(model(ab)+model(cd), model(ad)+model(cb), atol=1e-6)
+
+
 def test_pilot_reproducibility_and_checkpoint(tmp_path):
     spec = importlib.util.spec_from_file_location(
         "pilot", Path(__file__).parents[1]/"scripts/pilot.py")

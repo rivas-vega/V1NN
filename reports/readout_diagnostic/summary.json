@@ -1,0 +1,195 @@
+{
+  "purpose": "Descriptive development summary; no held-out final test or significance claim",
+  "seeds": [
+    7,
+    8,
+    9
+  ],
+  "fixed_penalties": [
+    0,
+    0.0001,
+    0.01,
+    1,
+    100
+  ],
+  "models": {
+    "connectome": {
+      "0": {
+        "train": {
+          "mean_mse": 0.44513112857739146,
+          "sample_sd_mse": 0.004353701343171621
+        },
+        "validation": {
+          "mean_mse": 4.236097187214338,
+          "sample_sd_mse": 0.16639405660130513
+        },
+        "counterfactual": {
+          "mean_mse": 4.514504165758328,
+          "sample_sd_mse": 0.23079929422149295
+        }
+      },
+      "0.0001": {
+        "train": {
+          "mean_mse": 0.44645268321159304,
+          "sample_sd_mse": 0.004001338082010745
+        },
+        "validation": {
+          "mean_mse": 4.027187786836101,
+          "sample_sd_mse": 0.1703142758263275
+        },
+        "counterfactual": {
+          "mean_mse": 4.313165761917471,
+          "sample_sd_mse": 0.26067488387842
+        }
+      },
+      "0.01": {
+        "train": {
+          "mean_mse": 0.6424553248186613,
+          "sample_sd_mse": 0.008084819767007785
+        },
+        "validation": {
+          "mean_mse": 2.1657624399247575,
+          "sample_sd_mse": 0.026489869034070475
+        },
+        "counterfactual": {
+          "mean_mse": 2.1674188683697153,
+          "sample_sd_mse": 0.08925228664783072
+        }
+      },
+      "1": {
+        "train": {
+          "mean_mse": 1.2951824014296551,
+          "sample_sd_mse": 0.006679234288447935
+        },
+        "validation": {
+          "mean_mse": 1.5326909071969232,
+          "sample_sd_mse": 0.009577846650340923
+        },
+        "counterfactual": {
+          "mean_mse": 1.5686080725450608,
+          "sample_sd_mse": 0.006729183217199947
+        }
+      },
+      "100": {
+        "train": {
+          "mean_mse": 1.4907753149313576,
+          "sample_sd_mse": 0.00039871448374733764
+        },
+        "validation": {
+          "mean_mse": 1.4973777407340714,
+          "sample_sd_mse": 0.000269104412006135
+        },
+        "counterfactual": {
+          "mean_mse": 1.5072310877254937,
+          "sample_sd_mse": 0.0004932312714312899
+        }
+      }
+    },
+    "no_edges": {
+      "0": {
+        "train": {
+          "mean_mse": 0.4877688851466315,
+          "sample_sd_mse": 0.004173119625952171
+        },
+        "validation": {
+          "mean_mse": 4.698673442549558,
+          "sample_sd_mse": 0.10948097459004333
+        },
+        "counterfactual": {
+          "mean_mse": 4.523095839949848,
+          "sample_sd_mse": 0.0917634922916432
+        }
+      },
+      "0.0001": {
+        "train": {
+          "mean_mse": 0.49204131076156143,
+          "sample_sd_mse": 0.0027505490780419615
+        },
+        "validation": {
+          "mean_mse": 4.4158192747623195,
+          "sample_sd_mse": 0.07758153680350391
+        },
+        "counterfactual": {
+          "mean_mse": 4.340796065833881,
+          "sample_sd_mse": 0.0912726655022603
+        }
+      },
+      "0.01": {
+        "train": {
+          "mean_mse": 0.7106857154175368,
+          "sample_sd_mse": 0.007887483358798535
+        },
+        "validation": {
+          "mean_mse": 2.2176941908631282,
+          "sample_sd_mse": 0.0026974525712992214
+        },
+        "counterfactual": {
+          "mean_mse": 2.2211712782389514,
+          "sample_sd_mse": 0.10702248162693838
+        }
+      },
+      "1": {
+        "train": {
+          "mean_mse": 1.321401136913795,
+          "sample_sd_mse": 0.006617526677454702
+        },
+        "validation": {
+          "mean_mse": 1.534688385814675,
+          "sample_sd_mse": 0.008786819655288493
+        },
+        "counterfactual": {
+          "mean_mse": 1.5795590364252516,
+          "sample_sd_mse": 0.007581113239331685
+        }
+      },
+      "100": {
+        "train": {
+          "mean_mse": 1.4914361024648422,
+          "sample_sd_mse": 0.0003245110146840503
+        },
+        "validation": {
+          "mean_mse": 1.4974331053644385,
+          "sample_sd_mse": 0.0002656910244923198
+        },
+        "counterfactual": {
+          "mean_mse": 1.5075239964998024,
+          "sample_sd_mse": 0.0004932738268176271
+        }
+      }
+    }
+  },
+  "reference_baselines": {
+    "train": {
+      "zero": {
+        "mean_squared_vector_error": 1.50439453125,
+        "mean_endpoint_error": 1.208927035331726
+      },
+      "training_mean": {
+        "mean_squared_vector_error": 1.5043388605117798,
+        "mean_endpoint_error": 1.2089073657989502
+      }
+    },
+    "validation": {
+      "zero": {
+        "mean_squared_vector_error": 1.498046875,
+        "mean_endpoint_error": 1.2062976360321045
+      },
+      "training_mean": {
+        "mean_squared_vector_error": 1.4974061250686646,
+        "mean_endpoint_error": 1.2060191631317139
+      }
+    },
+    "counterfactual": {
+      "zero": {
+        "mean_squared_vector_error": 1.5,
+        "mean_endpoint_error": 1.2071067094802856
+      },
+      "training_mean": {
+        "mean_squared_vector_error": 1.5000554323196411,
+        "mean_endpoint_error": 1.2071186304092407
+      }
+    }
+  },
+  "selection_rule": "Compare mean validation MSE across all three seeds using the same penalty grid for each model",
+  "caveat": "Best penalty is at upper boundary; close to constant predictor. No meaningful temporal learning demonstrated."
+}

@@ -41,15 +41,20 @@
     },
     {
       "purpose": "tiny-fit-32",
-      "status": "reserved",
+      "status": "completed",
       "reservation_usd": 2,
-      "planned_trials": 12
+      "planned_trials": 12,
+      "app_id": "ap-jTYXYN8vV4Zu4BraLAilMz",
+      "run_id": "20261109T190712Z-eb2cacc2",
+      "trials": 12,
+      "function_seconds": 224.418454029,
+      "source_commit": "3f183683d7d696adb41129983396b5ad89801949"
     }
   ],
   "reserved_usd": 10.0,
   "available_after_reservations_usd": 40.0,
   "billing_note": "Billing queried before and after campaigns; delayed snapshots are not a final invoice. Keep reservations until reconciled.",
   "active_bionn_apps": 0,
-  "latest_ephemeral_apps_metered_snapshot_usd": 0.10324261,
+  "latest_ephemeral_apps_metered_snapshot_usd": 0.15065402,
   "snapshot_note": "Workspace ephemeral-app usage snapshot, not a final project invoice. Billing can lag and snapshot totals can update at different times. Reservations remain conservative."
 }

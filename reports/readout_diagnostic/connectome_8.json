@@ -1,0 +1,133 @@
+{
+  "purpose": "frozen saved core; CPU readout optimization diagnostic; validation used for tuning",
+  "config": {
+    "model": "connectome",
+    "seed": 8,
+    "data_seed": 20261109,
+    "steps": 500,
+    "batch": 64,
+    "train_size": 2048,
+    "validation_size": 512,
+    "frames": 8,
+    "image_size": 16,
+    "grid": 4,
+    "hidden": 64,
+    "lr": 0.003,
+    "device": "cuda",
+    "max_seconds": 300
+  },
+  "checkpoint_sha256": "edc7460c63084b56cccc8497c6f4e42070a785c624b2ee083c252ef040cc2230",
+  "original_report_sha256": "977d439fb90bfa90bc49aabc660a8d011660b012e2b08a721fe2f7aae41613f6",
+  "original_source": {
+    "commit": null,
+    "dirty": null,
+    "python_sources_sha256": "f989b31f2336a986e78540402b5cfe352f6a3539c9bd8931b161eccac34bb77f"
+  },
+  "analysis_source": {
+    "commit": "3f183683d7d696adb41129983396b5ad89801949",
+    "dirty": true,
+    "python_sources_sha256": "54112a15cc8921dfbdebf87b2c0de6f04003c15978d091ddaf2a7923248fa652"
+  },
+  "data_reconstruction_exact": true,
+  "original_readout": {
+    "train": {
+      "mean_squared_vector_error": 1.3512934446334839,
+      "mean_endpoint_error": 1.1141033172607422
+    },
+    "validation": {
+      "mean_squared_vector_error": 1.60658597946167,
+      "mean_endpoint_error": 1.2237541675567627
+    },
+    "counterfactual": {
+      "mean_squared_vector_error": 1.6908628940582275,
+      "mean_endpoint_error": 1.2454861402511597
+    }
+  },
+  "ridge_evaluation": {
+    "0": {
+      "train": {
+        "mean_squared_vector_error": 0.4459383612635306,
+        "mean_endpoint_error": 0.5917961280496467
+      },
+      "validation": {
+        "mean_squared_vector_error": 4.044091797396641,
+        "mean_endpoint_error": 1.7979821764115773
+      },
+      "counterfactual": {
+        "mean_squared_vector_error": 4.314570140382656,
+        "mean_endpoint_error": 1.8425738374197453
+      }
+    },
+    "0.0001": {
+      "train": {
+        "mean_squared_vector_error": 0.4475223821160671,
+        "mean_endpoint_error": 0.5932811927343218
+      },
+      "validation": {
+        "mean_squared_vector_error": 3.8307334953558154,
+        "mean_endpoint_error": 1.751590051220548
+      },
+      "counterfactual": {
+        "mean_squared_vector_error": 4.058183486892286,
+        "mean_endpoint_error": 1.7854923598335302
+      }
+    },
+    "0.01": {
+      "train": {
+        "mean_squared_vector_error": 0.6491943801703506,
+        "mean_endpoint_error": 0.7354368138135692
+      },
+      "validation": {
+        "mean_squared_vector_error": 2.149041945965238,
+        "mean_endpoint_error": 1.3596797975152712
+      },
+      "counterfactual": {
+        "mean_squared_vector_error": 2.0662940915607417,
+        "mean_endpoint_error": 1.3162817192234968
+      }
+    },
+    "1": {
+      "train": {
+        "mean_squared_vector_error": 1.30232668916666,
+        "mean_endpoint_error": 1.1126226404399193
+      },
+      "validation": {
+        "mean_squared_vector_error": 1.537904651721672,
+        "mean_endpoint_error": 1.2122950248222224
+      },
+      "counterfactual": {
+        "mean_squared_vector_error": 1.5654141460793927,
+        "mean_endpoint_error": 1.2171958541642682
+      }
+    },
+    "100": {
+      "train": {
+        "mean_squared_vector_error": 1.4911327725319032,
+        "mean_endpoint_error": 1.2032042303041721
+      },
+      "validation": {
+        "mean_squared_vector_error": 1.497341062214527,
+        "mean_endpoint_error": 1.2057607853852803
+      },
+      "counterfactual": {
+        "mean_squared_vector_error": 1.5068861279076158,
+        "mean_endpoint_error": 1.20916376035565
+      }
+    }
+  },
+  "solver": {
+    "arithmetic": "float64",
+    "scaling_fit_split": "train",
+    "penalty_objective": "mean squared vector error + lambda * squared Frobenius weight norm",
+    "numerical_rank": 1357,
+    "state_dimensions": 1357,
+    "gram_eigenvalue_cutoff": 2.818281440421419e-08,
+    "gram_max_eigenvalue": 281.8281440421419
+  },
+  "seconds": 34.464529095001126,
+  "environment": {
+    "torch": "2.14.1+cu130",
+    "device": "cpu"
+  },
+  "scientific_claim": null
+}

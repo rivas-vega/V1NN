@@ -1,6 +1,6 @@
 # Continuidad del proyecto BIONN / V1NN
 
-- Leer `docs/BITACORA.md`, `docs/PROTOCOL.md` y el estado de Git antes de continuar.
+- Leer `docs/BITACORA.md`, `docs/PROTOCOL.md`, `docs/RESEARCH_STATE.md` y el estado de Git antes de continuar.
 - Trabajar de forma autónoma dentro de la petición del usuario; conservar historial
   y cambios ajenos. No hacer force push.
 - Añadir una entrada a la bitácora tras cada experimento o cambio significativo:

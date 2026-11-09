@@ -74,7 +74,16 @@ globalmente la cuenta porque puede contener otros proyectos. Si el usuario quier
 un corte de facturación global, puede configurar el límite allí. Los presupuestos
 por Environment dependen del plan. [Presupuestos oficiales](https://modal.com/docs/guide/budgets).
 
-La persistencia de la campaña GPU y la continuidad de una sesión del agente son
-cosas distintas. Este repositorio no instala un agente permanente ni programa
-revisiones futuras: las pruebas remotas se pueden recuperar y continuar desde
-la bitácora sin asumir que una conversación permanece activa indefinidamente.
+La persistencia de la campaña GPU y las revisiones del agente son mecanismos
+distintos. Por petición del usuario, Codex tiene una revisión de este chat cada
+dos horas durante la noche del 9 al 10 de noviembre de 2026, con fin a las 08:00
+Europe/Paris. Esa configuración vive en la aplicación, no en este repositorio.
+El ordenador debe permanecer encendido y la aplicación abierta para acceder a
+los archivos locales. Consultar `RESEARCH_STATE.md` y el estado local antes de
+continuar; las campañas ya lanzadas con `--detach` permanecen en Modal.
+[Requisitos de las tareas locales](https://learn.chatgpt.com/docs/automations?surface=app).
+
+`--train-size`, `--batch` y `--lr` permiten diagnósticos controlados. Sus cotas
+son 1..4096 clips, 1..128 ejemplos por lote y una tasa finita entre 0 y 0,1
+(excluyendo 0). El informe distingue el error del lote durante entrenamiento
+del error sobre todos los clips después de la última actualización.
