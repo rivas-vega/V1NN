@@ -1,0 +1,25 @@
+{
+  "source_commit": "046b6ee0695f61654ee66daa0cee72b0225856c8",
+  "python_sources_sha256": "585fe044dfaa989e0d3fb884b00ae0b36b7291c50cdd32d02a815e8396c719e4",
+  "method": "sha256 of sorted relative .py paths plus NUL plus committed contents, matching pilot.source_identity",
+  "trials": {
+    "7": {
+      "source_verified": true,
+      "checkpoint_graph_verified": true,
+      "routing_equals_measured_checkpoint": true,
+      "checkpoint_sha256": "c40dcddc24354e8e2aa23f21421a481bafe90e9d1e1cc6cb5676143820a8099c"
+    },
+    "8": {
+      "source_verified": true,
+      "checkpoint_graph_verified": true,
+      "routing_equals_measured_checkpoint": true,
+      "checkpoint_sha256": "62078e54f5899085cf8ba10f987276e1a77ece6fd32ab78a6351a33c23765974"
+    },
+    "9": {
+      "source_verified": true,
+      "checkpoint_graph_verified": true,
+      "routing_equals_measured_checkpoint": true,
+      "checkpoint_sha256": "6caa6c0692f88ad210f650ef3cc516cc251e5cc900c5cb55dc4838eb921a45b4"
+    }
+  }
+}

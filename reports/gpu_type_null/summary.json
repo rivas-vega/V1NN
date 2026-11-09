@@ -1,0 +1,282 @@
+{
+  "purpose": "development validation reused; descriptive, not independent confirmation",
+  "seeds": [
+    7,
+    8,
+    9
+  ],
+  "all_trials_completed_steps": 3000,
+  "paired_data_config_environment_verified": true,
+  "models": {
+    "connectome": {
+      "train": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            0.6237987279891968,
+            0.6196882128715515,
+            0.6337407827377319
+          ],
+          "mean": 0.6257425745328268,
+          "sample_std": 0.007225135604253883
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            0.4925950765609741,
+            0.4850176274776459,
+            0.5051733255386353
+          ],
+          "mean": 0.4942620098590851,
+          "sample_std": 0.010180719082987512
+        }
+      },
+      "validation": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            1.083957552909851,
+            1.0712308883666992,
+            1.1110187768936157
+          ],
+          "mean": 1.0887357393900554,
+          "sample_std": 0.020319751915003504
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            1.4075102806091309,
+            1.3702106475830078,
+            1.47391939163208
+          ],
+          "mean": 1.4172134399414062,
+          "sample_std": 0.05253084211993596
+        }
+      },
+      "counterfactual": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            1.0585805177688599,
+            1.0930895805358887,
+            1.0584802627563477
+          ],
+          "mean": 1.0700501203536987,
+          "sample_std": 0.019952820775066375
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            1.364545226097107,
+            1.4540042877197266,
+            1.3656015396118164
+          ],
+          "mean": 1.39471701780955,
+          "sample_std": 0.05134699825317871
+        }
+      }
+    },
+    "degree_null": {
+      "train": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            0.6290197968482971,
+            0.637393593788147,
+            0.6696605086326599
+          ],
+          "mean": 0.6453579664230347,
+          "sample_std": 0.021459037424484403
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            0.4976044297218323,
+            0.5104589462280273,
+            0.557461142539978
+          ],
+          "mean": 0.5218415061632792,
+          "sample_std": 0.031509974934267944
+        }
+      },
+      "validation": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            1.1007623672485352,
+            1.0944238901138306,
+            1.1270442008972168
+          ],
+          "mean": 1.107410152753194,
+          "sample_std": 0.0172964145992209
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            1.4429690837860107,
+            1.4294044971466064,
+            1.499885082244873
+          ],
+          "mean": 1.4574195543924968,
+          "sample_std": 0.03739639413780675
+        }
+      },
+      "counterfactual": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            1.0447543859481812,
+            1.133087158203125,
+            1.0951623916625977
+          ],
+          "mean": 1.091001311937968,
+          "sample_std": 0.044313153824987316
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            1.3319268226623535,
+            1.543859839439392,
+            1.4610588550567627
+          ],
+          "mean": 1.4456151723861694,
+          "sample_std": 0.10680721605245881
+        }
+      }
+    },
+    "no_edges": {
+      "train": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            0.9214813709259033,
+            0.9272900819778442,
+            0.9424632787704468
+          ],
+          "mean": 0.9304115772247314,
+          "sample_std": 0.010833647291262677
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            0.9783340096473694,
+            0.9901204109191895,
+            1.0399985313415527
+          ],
+          "mean": 1.0028176506360371,
+          "sample_std": 0.03273443494645087
+        }
+      },
+      "validation": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            1.2908729314804077,
+            1.2929702997207642,
+            1.293006181716919
+          ],
+          "mean": 1.2922831376393635,
+          "sample_std": 0.0012214061312601394
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            1.866976261138916,
+            1.8726511001586914,
+            1.8929030895233154
+          ],
+          "mean": 1.8775101502736409,
+          "sample_std": 0.013629302386153818
+        }
+      },
+      "counterfactual": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            1.291529655456543,
+            1.3231475353240967,
+            1.3057267665863037
+          ],
+          "mean": 1.3068013191223145,
+          "sample_std": 0.015836305730638378
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            1.8627241849899292,
+            1.979381799697876,
+            1.954361915588379
+          ],
+          "mean": 1.932155966758728,
+          "sample_std": 0.06141724423894111
+        }
+      }
+    },
+    "type_null": {
+      "train": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            0.6985782384872437,
+            0.624805748462677,
+            0.6820967197418213
+          ],
+          "mean": 0.6684935688972473,
+          "sample_std": 0.038721820150676954
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            0.6031711101531982,
+            0.49265944957733154,
+            0.5749966502189636
+          ],
+          "mean": 0.5569424033164978,
+          "sample_std": 0.057425374654592284
+        }
+      },
+      "validation": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            1.104499101638794,
+            1.08192777633667,
+            1.1219921112060547
+          ],
+          "mean": 1.1028063297271729,
+          "sample_std": 0.020085737220478864
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            1.462519884109497,
+            1.4041428565979004,
+            1.4875589609146118
+          ],
+          "mean": 1.4514072338740032,
+          "sample_std": 0.042803970157993976
+        }
+      },
+      "counterfactual": {
+        "mean_endpoint_error": {
+          "values_by_seed": [
+            1.079827070236206,
+            1.1172683238983154,
+            1.1100075244903564
+          ],
+          "mean": 1.102367639541626,
+          "sample_std": 0.019855421185912513
+        },
+        "mean_squared_vector_error": {
+          "values_by_seed": [
+            1.4162461757659912,
+            1.4767098426818848,
+            1.4923040866851807
+          ],
+          "mean": 1.4617533683776855,
+          "sample_std": 0.04017428961483909
+        }
+      }
+    }
+  },
+  "paired_connectome_minus_type_null": {
+    "mean_endpoint_error": {
+      "values_by_seed": [
+        -0.02054154872894287,
+        -0.010696887969970703,
+        -0.010973334312438965
+      ],
+      "mean": -0.014070590337117514,
+      "relative_reduction_of_mean_error": 0.012758895154871275
+    },
+    "mean_squared_vector_error": {
+      "values_by_seed": [
+        -0.05500960350036621,
+        -0.03393220901489258,
+        -0.013639569282531738
+      ],
+      "mean": -0.03419379393259684,
+      "relative_reduction_of_mean_error": 0.023559062635597483
+    }
+  },
+  "uncertainty": "Three seeds jointly change routing, initialization, batches and null realization; no animal/population inference or equivalence test.",
+  "development_decision": "consistent_lower_connectome_EPE; next audit spatial controls"
+}

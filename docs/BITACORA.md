@@ -633,3 +633,83 @@ carga/entrenamiento/checkpoint; no se considera evidencia científica de rendimi
 Se añade ahora la reserva de 2 USD para los tres ensayos GPU: 14 acumulados,
 36 USD de margen conservador, límite operativo 50 USD; ampliación a 75 sin activar.
 La campaña se limita a 900 s cooperativos y 1800 s de timeout, sin reintentos.
+
+## Entrada 011 — 2026-11-09: ventaja pequeña frente al control E/I; falta espacio
+
+**Campaña completada.** `20261109T201939Z-45786be9`, aplicación
+`ap-exKaSczkvbyljZNJYsE3dZ`, revisión limpia
+`046b6ee0695f61654ee66daa0cee72b0225856c8`. Tres ensayos, los tres con 3000
+actualizaciones completas; 373,11 s de función, una T4 y cero reintentos.
+La preparación de los grafos ocurrió antes, en CPU. Informes y análisis en
+`reports/gpu_type_null/`; figura `reports/type_null_comparison.svg`.
+
+| Modelo, 3000 pasos | MSE entrenamiento, media ± DE | EPE validación, media ± DE | MSE validación, media ± DE |
+| --- | ---: | ---: | ---: |
+| Conectoma medido | 0,49426 ± 0,01018 | 1,08874 ± 0,02032 | 1,41721 ± 0,05253 |
+| Nulo de grados | 0,52184 ± 0,03151 | 1,10741 ± 0,01730 | 1,45742 ± 0,03740 |
+| Nulo de grados y E/I | 0,55694 ± 0,05743 | 1,10281 ± 0,02009 | 1,45141 ± 0,04280 |
+| Sin aristas | 1,00282 ± 0,03273 | 1,29228 ± 0,00122 | 1,87751 ± 0,01363 |
+
+Solo la fila E/I procede de entrenamiento nuevo; las demás reutilizan los
+checkpoints de la campaña de 3000 pasos. El comparador comprueba igualdad exacta
+de datos, normalización, configuración salvo nombre del control/límite temporal,
+entorno numérico y número de parámetros cuando hay aristas. El hash de los
+archivos Python ejecutados coincide con el calculado desde la revisión publicada.
+Se verificaron además las conexiones y signos realmente almacenados en los tres
+checkpoints, su configuración y el routing frente a los checkpoints del conectoma.
+`identity_audit.json` conserva la verificación y hashes de los checkpoints.
+
+**Contraste fijado.** Conectoma menos nulo E/I, EPE de validación:
+semillas 7/8/9 = −0,020542 / −0,010697 / −0,010973; media −0,014071.
+Reducción relativa del error medio: **1,28 %**. MSE secundario: −0,034194,
+reducción 2,36 %. Los tres signos favorecen al conectoma en ambas métricas.
+En historias con fotograma final compartido, EPE medio 1,07005 frente a 1,10237;
+esto es un diagnóstico adicional, no un nuevo contraste confirmatorio.
+
+**Qué cambia y qué no demuestra.** Preservar los grados E/I no elimina la ventaja
+observada en estos tres ensayos. Eso permite continuar con el control espacial;
+no demuestra que toda la mejora proceda del cableado fino. Son 512 clips de la
+validación de desarrollo ya utilizada, no una confirmación independiente.
+No se calcularon intervalos poblacionales ni significación a partir de solo tres
+semillas: cada una mezcla routing, inicialización, lotes y realización del nulo.
+No se ha ajustado ningún hiperparámetro con los resultados parciales. La GRU de
+500 pasos sigue siendo mucho mejor en esta misma validación (EPE ≈0,562).
+El objetivo actual es identificar una contribución de estructura, no afirmar
+competitividad ni correspondencia biológica.
+
+**Siguiente prueba y condición de parada, aún no ejecutada.** Preparar en CPU
+nulos que conserven grados por E/I y por intervalos de distancia entre somas.
+Fijar antes de entrenar los límites 50, 100, 200 y 400 µm, cubriendo el rango
+observado con umbrales redondos; son clases de distancia, no capas ni longitud
+axonal. Exigir conservación exacta por nodo de grados entrantes y salientes
+**conjuntos de tipo de vecino e intervalo de distancia**, además de identidad,
+signos e interfaz. La función actual de distancias conserva los bins por arista
+saliente, pero no los grados entrantes por bin: hay que extenderla y probarla
+antes de afirmar el control más fuerte. En un doble intercambio, conservar
+ambos extremos exige que las dos aristas originales y las dos propuestas estén
+en el mismo intervalo.
+
+Mantener semillas 7/8/9, 5×E intercambios aceptados, ≥50 % de aristas cambiadas,
+máximo 20 000 000 propuestas y 300 s por grafo. Es razonable proponer dentro de
+estratos compatibles para evitar rechazos inútiles, pero registrar el mecanismo,
+aceptación y limitaciones de mezcla. Si no se cumple el filtro, **no gastar GPU**:
+documentar la limitación del generador y mejorar su eficiencia sin relajar
+silenciosamente las restricciones. No interpretar ese fallo como refutación de
+la hipótesis biológica. Si los tres nulos pasan, reservar una nueva campaña de
+solo tres ensayos con la misma configuración de 3000 pasos; reutilizar todos
+los controles previos. No aumentar pasos ni buscar hiperparámetros por inercia.
+La reserva de esa campaña espacial todavía no existe.
+
+Si una ventaja deja de ser consistente al controlar también el espacio, estudiar
+variación entre realizaciones de nulo y routing antes de escalar. Si persiste,
+separar esos factores con un diseño explícito y congelar una nueva partición para
+confirmación antes de verla. La partición 20261110 permanece consumida.
+
+**Cierre verificable.** 35 tests superados; integración CPU, auditoría remota de
+identidades y figura revisada. Las siete entradas de gasto incluyen un intento
+rechazado por pago y seis campañas completadas (57 ensayos GPU en total). Todas
+las aplicaciones BIONN están detenidas. La lectura agregada de aplicaciones
+efímeras es 0,45508727 USD; puede retrasarse y no es factura exclusiva del proyecto.
+Las reservas conservadoras permanecen en **14 USD**, margen **36 USD** bajo el
+límite operativo de **50 USD**. No hace falta activar la ampliación a 75 USD.
+La revisión nocturna del chat cada dos horas sigue activa hasta las 08:00 locales.
