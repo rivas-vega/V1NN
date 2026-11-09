@@ -111,3 +111,11 @@ y sus invariantes, y conserva una copia exacta con los resultados. Publicar el
 informe de auditoría pequeño; los NPZ y checkpoints permanecen fuera de GitHub.
 `scripts/compare_type_nulls.py` verifica datos, normalización, configuración y
 entorno antes de comparar con los modelos ya entrenados de 3000 pasos.
+
+Para el control espacial conjunto, preparar con `scripts/prepare_spatial_nulls.py`
+y auditar con `scripts/audit_type_bundle.py --model spatial_null`. La campaña
+requiere `--graph spatial_nulls --models spatial_null`, el hash fijado del
+manifiesto y el paquete bajo `/spatial-null-bundles/SHA256_DEL_MANIFIESTO`.
+No usar el paquete inicial `spatial_nulls_v1`: la entrada 012 documenta su
+cobertura insuficiente en estratos pequeños. Verificar también el filtro local
+de esa entrada antes de reservar GPU. Las demás cotas de campaña se mantienen.

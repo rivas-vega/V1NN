@@ -102,3 +102,14 @@ la campaña de 32 clips. Esto explica por qué ajustar entrenamiento en este
 control no demuestra aprendizaje del movimiento. El conectoma sí puede producir
 interacciones entre instantes mediante la recurrencia dentro de la no linealidad;
 que esas interacciones sean útiles debe comprobarse experimentalmente.
+
+## Control espacial conjunto implementado
+
+`rewire_joint_spatial` conserva por cada nodo los grados entrantes y salientes
+conjuntos de tipo de vecino e intervalo de distancia entre somas. Las dos aristas
+originales y las dos propuestas comparten intervalo. Esto es más fuerte que la
+opción de distancias del generador `rewire`, que conserva bins por arista saliente.
+El piloto espacial usa [50, 100, 200, 400] µm; no conserva distancias continuas
+exactas. Reportar cobertura por estrato, además de cambio global. La entrada 012
+registra un generador que cumplía el filtro global pero visitaba insuficientemente
+algunos estratos pequeños, y la corrección realizada antes de gastar GPU.

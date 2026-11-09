@@ -778,3 +778,45 @@ La cota analítica de saturación de grados solo obliga a conservar 68 aristas
 (0,086 %); es una cota optimista, no prueba de que las demás puedan intercambiarse.
 `spatial_capacity_audit.json` conserva el cálculo y se comprobó sobre una fixture
 completa, en la que todas las aristas están forzadas.
+
+**Diagnóstico independiente previsto mientras se prepara v2 (solo CPU).**
+Reutilizar los tres checkpoints del conectoma a 3000 pasos y la validación conocida.
+Medir EPE/MSE intactos y al poner a cero únicamente la corriente recurrente,
+conservando fuga, entrada, sesgos y lectura aprendidos. Primero exigir que la
+reevaluación intacta reproduzca el informe GPU. No entrenar, no seleccionar modelos
+ni consultar otra partición. Esto comprueba dependencia del predictor ya aprendido;
+una lesión puede desplazar la distribución de estados y no demuestra superioridad
+anatómica ni sustituye el control sin aristas entrenado desde cero.
+
+**Revisión CPU v2 aprobada antes de GPU.** Generada desde revisión limpia
+`1dd8436e643562ce3f77a4f33885e74c4b06a301`. Semillas 7/8/9: cambio global
+68,797 / 68,952 / 68,904 %, con 3 860 174 / 3 860 549 / 3 857 287 propuestas;
+86,55 / 98,95 / 102,42 s. Los estratos I→I cercanos ahora cambian 24,47 / 21,32 /
+22,89 % y los lejanos 52,5 / 62,5 / 55,0 %, superando el filtro adicional del
+10 % en todas las semillas. No se afirma mezcla suficiente a partir de ese filtro.
+Los grados conjuntos entrantes/salientes, signos, identidad, routing y masa E/I
+inicial se conservan exactamente. Histogramas de distancias idénticos:
+[10505, 27542, 24064, 15042, 1800]. Las medias continuas pasan de 136,86 µm a
+139,82–139,98 µm: queda una diferencia residual dentro de los intervalos.
+Informe `reports/spatial_null_audit.json`; manifiesto fijado
+`076965c316800bc945c69c803033b37257a420e68f81fc0fb491d9fdbdc4a309`.
+Una integración CPU de dos pasos verificó carga y entrenamiento del paquete v2.
+
+**Lesión recurrente CPU completada.** `reports/recurrent_lesion.json` reproduce
+los informes intactos y conserva hashes de los tres checkpoints. Al retirar la
+corriente recurrente solo en inferencia, el EPE aumenta +0,40982 / +0,32032 /
++0,38292 (media +0,37102), pasando de ≈1,08874 a ≈1,45976. El aumento medio de
+MSE es +1,15059. Los predictores aprendidos dependen de la recurrencia; la lesión
+no es una comparación de capacidad de aprendizaje y no identifica especificidad
+del cableado. No requirió GPU ni entrenamiento adicional.
+
+**Campaña espacial autorizada por los controles.** Después de consultar de nuevo
+aplicaciones y facturación (sin GPU BIONN activa; mismo agregado 0,40975391 USD),
+se reservan 2 USD: 16 acumulados y 34 de margen bajo 50 USD. Sin ampliación a 75.
+Entrenar únicamente los tres nulos espaciales v2, semillas 7/8/9, 3000 pasos,
+2048 clips, lote 64, Adam 0,003, alpha 0,3, grid 4; una T4, 900 s solicitados,
+1800 s de timeout y cero reintentos. Se reutilizan los modelos medidos/de grados/EI.
+EPE emparejado de validación es primario descriptivo; MSE secundario. No usar esta
+validación conocida como confirmación nueva. Cualquiera que sea el resultado,
+el siguiente análisis separará variación de nulo y routing/entrenamiento antes
+de una afirmación general; no aumentar pasos ni ajustar hiperparámetros.

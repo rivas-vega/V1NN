@@ -1,0 +1,70 @@
+{
+  "purpose": "Frozen-model inference lesion on reused development validation; no retraining or new confirmation",
+  "intervention": "Set recurrent current scale to zero, preserving leak, sensory gains, biases and trained readout",
+  "limitation": "A lesion can shift hidden-state distributions; this tests dependence of the trained predictor, not the ability of another model to learn or anatomical specificity.",
+  "seeds": [
+    7,
+    8,
+    9
+  ],
+  "trials": {
+    "7": {
+      "checkpoint_sha256": "7a27fdfda826afd6ecf3daa9320ce3041c3a319cf3c00941cbca200f03ea5f7e",
+      "intact_reproduces_gpu_report": true,
+      "evaluation": {
+        "intact": {
+          "mean_squared_vector_error": 1.4075102806091309,
+          "mean_endpoint_error": 1.0839574337005615
+        },
+        "no_recurrent_current": {
+          "mean_squared_vector_error": 2.6729464530944824,
+          "mean_endpoint_error": 1.493778944015503
+        }
+      },
+      "lesion_minus_intact": {
+        "mean_squared_vector_error": 1.2654361724853516,
+        "mean_endpoint_error": 0.4098215103149414
+      }
+    },
+    "8": {
+      "checkpoint_sha256": "f363c79d608d8640c2928feec30adbb7fbcb3ccdb52e6d5cdc44550ae77c74de",
+      "intact_reproduces_gpu_report": true,
+      "evaluation": {
+        "intact": {
+          "mean_squared_vector_error": 1.3702106475830078,
+          "mean_endpoint_error": 1.0712308883666992
+        },
+        "no_recurrent_current": {
+          "mean_squared_vector_error": 2.279343605041504,
+          "mean_endpoint_error": 1.3915550708770752
+        }
+      },
+      "lesion_minus_intact": {
+        "mean_squared_vector_error": 0.9091329574584961,
+        "mean_endpoint_error": 0.320324182510376
+      }
+    },
+    "9": {
+      "checkpoint_sha256": "1a96aca51f07f67cfe1ea16a1d7b69542cb381ec23d43212bbf33bc4ab2b5cc3",
+      "intact_reproduces_gpu_report": true,
+      "evaluation": {
+        "intact": {
+          "mean_squared_vector_error": 1.4739195108413696,
+          "mean_endpoint_error": 1.1110188961029053
+        },
+        "no_recurrent_current": {
+          "mean_squared_vector_error": 2.7511162757873535,
+          "mean_endpoint_error": 1.4939345121383667
+        }
+      },
+      "lesion_minus_intact": {
+        "mean_squared_vector_error": 1.2771967649459839,
+        "mean_endpoint_error": 0.3829156160354614
+      }
+    }
+  },
+  "mean_lesion_minus_intact": {
+    "mean_endpoint_error": 0.37102043628692627,
+    "mean_squared_vector_error": 1.1505886316299438
+  }
+}

@@ -34,19 +34,17 @@ una entrada antigua.
 
 ## Próxima acción concreta
 
-Entrada 012 en curso. El generador espacial ya conserva grados conjuntos por
-E/I e intervalo [50, 100, 200, 400] µm en ambos extremos; 40 tests pasan.
-Los tres primeros nulos (pesos de propuesta m(m−1)) cumplieron el filtro global,
-pero casi no alteraban dos estratos I→I pequeños pese a existir intercambios legales.
-Se conservan como diagnóstico, **no se usarán en GPU**. La entrada 012 justifica
-una revisión previa a medir rendimiento: peso m para igualar propuestas por arista,
-misma configuración de 5×E, 300 s y 20 millones de intentos. Generar y auditar
-`spatial_nulls_v2` en CPU. Además de ≥50 % de cambio global e invariantes exactos,
-exigir ≥10 % de cambio en I→I de hasta 50 µm y de más de 400 µm en cada semilla.
-Si falla, no lanzar GPU ni seguir relajando condiciones; estudiar el generador.
-Si pasa, reservar 2 USD y entrenar solo tres controles espaciales, reutilizando
-los anteriores. Todavía no existe reserva espacial ni campaña espacial GPU.
-Reservas acumuladas 14 USD, límite operativo 50 USD, extensión no activada.
+Entrada 012: v2 espacial aprobada en CPU con grados conjuntos exactos, 68,8–69,0 %
+de aristas cambiadas y cobertura corregida en los dos estratos pequeños. No usar
+los grafos v1, que se conservan como diagnóstico negativo de muestreo.
+Preparada una campaña de solo tres ensayos espaciales a 3000 pasos; reserva nueva
+2 USD, acumulado 16 USD y margen 34 USD. Consultar estado local y Modal para
+comprobar si ya se lanzó; no duplicar. Al terminar, comparar con los controles
+existentes usando `compare_type_nulls.py --control spatial_null`, verificar
+identidad de código/checkpoints y aplicar el plan de la entrada 012.
+La lesión CPU de los tres conectomas terminó: retirar corriente recurrente en
+inferencia aumenta EPE medio +0,37102. No repetirla ni interpretarla como test de
+especificidad anatómica o incapacidad del control sin aristas entrenado.
 
 La partición de 2048 clips de la entrada 009 ya fue consultada. Conserva valor
 como confirmación de los modelos congelados entonces, pero no puede reciclarse
