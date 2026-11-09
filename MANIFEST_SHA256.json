@@ -1,0 +1,23 @@
+{
+  ".gitignore": "4a76a1714bffa74fa431a12b54bf8b9ef59e853b8a97a1c61e3bdaa3bb2ded6a",
+  "README.md": "a20ff09ee111fd3ebcb7064d19e97a12e1381e2ec965f094bd012b6b5d1add75",
+  "configs/pilot.json": "802ab3c9062a2dae64e470930d852fd4eab3259a25b3a957f7e8bc48df9dee39",
+  "docs/DATA.md": "692a89ca74baeefbbfb427076f9f0f6e38921c2547a988006cdf1bb0784537c3",
+  "docs/LOSSES.md": "2d999a5c118c5d5ed367452b75a01e4c9a15d69f56a57491d2be342dbc606d8f",
+  "docs/PROTOCOL.md": "3df9f7b9a7991721ec841752b82017f614b15098e1566c40317fdd84ce72adad",
+  "docs/PUBLISHING.md": "21681471e6452cdbf805779efcf2aa709929f1cb3b5fab91a5b5014bee534add",
+  "docs/ROADMAP.md": "3726ea0dd312bca45b1908efe2d00e2d29f165cee2da5cdce2efe16a0bda1b55",
+  "pyproject.toml": "61380f98e48ac74237f07b1c8139b0764db2fe749b2b645e673979179c8e5496",
+  "reports/VALIDATION.md": "8d69ce724fc0fa8e45e70b2b7a86efca356e2db74e86652253df4e098a072ced",
+  "reports/smoke_motion.json": "2230f511d69188248afe288e4373a54991d4238375bd7ddfec2eade6843b46fd",
+  "reports/smoke_ssl.json": "3bdb5f65f9821cc9506820157040a15eb4043a7b570662bc3f90c1a7b0472a53",
+  "scripts/prepare_microns.py": "27d31822ffe373c9a676636f56aeb5f683676b41dd6419c332e765a85dd92d4e",
+  "scripts/smoke.py": "23762ebbcb93c03cb333809638cc5942edf011c2be4f45ab584a56090a958b11",
+  "src/v1nn/__init__.py": "f99abc8469ac1df18429893c13588eb84513898674d550809ad12971b754c1d3",
+  "src/v1nn/graph.py": "7fbe0a8510616777c016201f2971397919ff4e6a12d3def970345d4a7faa32b1",
+  "src/v1nn/losses.py": "08da52843de416e15eab0fa98f1da8d16d1c9a91432d6ef489233c61dc1e7db7",
+  "src/v1nn/model.py": "8dcaac264bafde8217b8215f8a18d1e6aa16bf229002f260a9c593a04d856857",
+  "src/v1nn/synthetic.py": "0e8974e2318eff8dd5b5d977f13a0e394acbe2baa070b3efc8ac00e445f95085",
+  "tests/test_core.py": "095c61790b70a0837952f24590a4606e90725b7fafb585cbace56f3881c6be94",
+  "tests/test_import.py": "4eadc079a20fcf038ab4e4d539b9bae51b920c0ff63d9422106a441eaf4d8ecb"
+}

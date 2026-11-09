@@ -1,0 +1,20 @@
+{
+  "purpose": "finite-gradient integration check, not scientific evidence",
+  "graph_provenance": "synthetic graph; NOT MICrONS",
+  "nodes": 64,
+  "edges": 303,
+  "objective": "motion",
+  "steps": 25,
+  "seed": 7,
+  "first_training_loss": 1.5917507410049438,
+  "last_training_loss": 1.377721905708313,
+  "heldout_loss": 1.5741668939590454,
+  "baselines": {
+    "zero_velocity_loss": 1.53125
+  },
+  "seconds": 0.13869823400000314,
+  "torch": "2.10.0+cpu",
+  "python": "3.13.5",
+  "device": "cpu",
+  "scientific_claim": null
+}

@@ -1,0 +1,15 @@
+{
+  "status": "design only; not an executed preregistration",
+  "dataset": "MICrONS official column export v1718",
+  "primary_objective": "supervised 2D visual motion squared error",
+  "secondary_objective": "teacher-free future fixed-sensor Huber",
+  "encoder": "fixed stateless centre-surround ON/OFF, no pretrained weights",
+  "readout": "linear, current neural state only",
+  "graph_comparisons": ["measured", "degree_type_distance_null"],
+  "mechanism_controls": ["no_edges_with_leak", "reset_state", "static_frame", "linear_history", "temporal_CNN", "GRU", "untrained_graph"],
+  "initialization_seeds": 5,
+  "null_graph_seeds": 5,
+  "routing_seeds": 3,
+  "first_phase": "paired small pilot; establish tuning budget before confirmatory evaluation",
+  "note": "Full experiment runner and all baselines are not implemented. scripts/smoke.py is not this experiment."
+}

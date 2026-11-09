@@ -1,0 +1,21 @@
+{
+  "purpose": "finite-gradient integration check, not scientific evidence",
+  "graph_provenance": "synthetic graph; NOT MICrONS",
+  "nodes": 64,
+  "edges": 303,
+  "objective": "sensory_ssl",
+  "steps": 25,
+  "seed": 7,
+  "first_training_loss": 0.03540105000138283,
+  "last_training_loss": 0.002670968184247613,
+  "heldout_loss": 0.002570465672761202,
+  "baselines": {
+    "persistence_loss": 0.0006048575160093606,
+    "training_mean_loss": 0.0006337579106912017
+  },
+  "seconds": 0.15819164199996294,
+  "torch": "2.10.0+cpu",
+  "python": "3.13.5",
+  "device": "cpu",
+  "scientific_claim": null
+}
