@@ -1,0 +1,1029 @@
+{
+  "purpose": "Bounded methodological follow-up to the closed comparative pilot, requested by the user; development only",
+  "plan_sha256": "64ed042cf888c8f4b5c8e54d2845398726f07c4a2feb5f1df3dcb9387ae0b72b",
+  "source": {
+    "commit": "e8544b166432bf7616e860000949cd02e6b80375",
+    "dirty": true,
+    "python_sources_sha256": "fd32e6c5968d63efaf95c026538cf76afd48f8253adb7e8065ab8173690f719d"
+  },
+  "script_sha256": "db4d2f97678f5069c7c211f76aaa1172c9f98359be8ae3d6d5f6a4c571c57885",
+  "data": {
+    "train": {
+      "seed": 7557606305290508516,
+      "clips": 2048,
+      "features_sha256": "0d666751f6fdbb8300e1001be1fd0b4fee4d026b96b2e9622a97abe21cd0c045",
+      "targets_sha256": "6ed8cd8b0b82856498d964b7077cc53b5f710d60829178367268b4c88c7e3024"
+    },
+    "validation": {
+      "seed": 4810132247396768964,
+      "clips": 512,
+      "features_sha256": "8ffb646504955a2f842a6cda442b1a4087faadadffb46a1bd4285b808535a16f",
+      "targets_sha256": "7bc87a423e9a41f5e0642365f334610e3a6ec94605eba93ba42c5b2c4b12e582"
+    },
+    "pixel_reference": {
+      "mean_squared_vector_error": 0.0,
+      "mean_endpoint_error": 0.0
+    },
+    "counterfactual": {
+      "seed": 883249397151640743,
+      "textures": 16,
+      "clips": 128,
+      "features_sha256": "c6e30223c41494976ac7da64f2f730a050b6be385f2fd3642e94a43292bfc363",
+      "targets_sha256": "f0c9c0c5e258f336350e6f2d845ff207771b504f4f1a9ea5027a62689cdb6d27",
+      "same_final_frame_per_eight_directions": true
+    },
+    "normalization": {
+      "fit_split": "train",
+      "mean": [
+        0.034602485597133636,
+        0.03260877728462219,
+        0.032648518681526184,
+        0.034774914383888245,
+        0.03279823064804077,
+        0.03105083666741848,
+        0.03071530908346176,
+        0.03284052014350891,
+        0.03231469541788101,
+        0.03054143115878105,
+        0.030709557235240936,
+        0.03272981196641922,
+        0.03466201201081276,
+        0.0328088104724884,
+        0.032730575650930405,
+        0.03446290269494057,
+        0.034762099385261536,
+        0.032702356576919556,
+        0.032621145248413086,
+        0.03494802862405777,
+        0.032396797090768814,
+        0.030640650540590286,
+        0.030823830515146255,
+        0.032528262585401535,
+        0.03256969153881073,
+        0.03091810829937458,
+        0.030800510197877884,
+        0.03258897364139557,
+        0.03472793102264404,
+        0.032659947872161865,
+        0.03258666768670082,
+        0.03447987511754036
+      ],
+      "std": [
+        0.010538124479353428,
+        0.011462979950010777,
+        0.011388806626200676,
+        0.010629059746861458,
+        0.011448712088167667,
+        0.012091066688299179,
+        0.011877989396452904,
+        0.01152775902301073,
+        0.011397949419915676,
+        0.011885092593729496,
+        0.01207295898348093,
+        0.011469281278550625,
+        0.010508882813155651,
+        0.01146424189209938,
+        0.011365985497832298,
+        0.010525285266339779,
+        0.010524536482989788,
+        0.011450686492025852,
+        0.011552040465176105,
+        0.010669099166989326,
+        0.011540209874510765,
+        0.012054890394210815,
+        0.012039885856211185,
+        0.0114232013002038,
+        0.011470193043351173,
+        0.012017101049423218,
+        0.012125684879720211,
+        0.011388244107365608,
+        0.010628372430801392,
+        0.011466637253761292,
+        0.011467637494206429,
+        0.010496310889720917
+      ],
+      "trainable": false
+    }
+  },
+  "trials": [
+    {
+      "family": "measured",
+      "seed": 7,
+      "null_seed": null,
+      "checkpoint_sha256": "7a27fdfda826afd6ecf3daa9320ce3041c3a319cf3c00941cbca200f03ea5f7e",
+      "report_sha256": "f008d49d22f41655cdbb5b0e7920f35f722d40fa87ebf1a66bb40d424cbd43ef",
+      "graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "54112a15cc8921dfbdebf87b2c0de6f04003c15978d091ddaf2a7923248fa652"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.407510218212475,
+            "mean_endpoint_error": 1.0839575250832316
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3826020028438284,
+            "mean_endpoint_error": 1.0741754776184753
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0848654021291777,
+            "mean_endpoint_error": 0.9792058780469636
+          },
+          "even_component_squared_norm": 0.310190708398974,
+          "paired_mse": 1.3950561105281518,
+          "paired_mse_identity_absolute_residual": 1.1102230246251565e-16
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.364545299963202,
+            "mean_endpoint_error": 1.058580502305952
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3756740233018074,
+            "mean_endpoint_error": 1.0873022174517892
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0652201916485395,
+            "mean_endpoint_error": 0.9675453833508878
+          },
+          "even_component_squared_norm": 0.30488946998396493,
+          "paired_mse": 1.3701096616325046,
+          "paired_mse_identity_absolute_residual": 1.1102230246251565e-16
+        }
+      }
+    },
+    {
+      "family": "spatial_null",
+      "seed": 7,
+      "null_seed": 7,
+      "checkpoint_sha256": "7e011f5eee6701e7464508ed5424c59e41e94bd226360f421c5fce912472faa4",
+      "report_sha256": "5c643f4db7ace0ec0725a43ccbacf2392f735b40a67c8cf5e719563af0ac8a68",
+      "graph_sha256": "f5dfba750f1b708f89a6d2ce124d4ed1e006dfc6b238bb4e3aa56b69306a89c4",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "7ffa0a8b2ce749d8c01ee96892d2a69e1c982a618766486053629c11827a9f9d"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.4248597499150712,
+            "mean_endpoint_error": 1.0939194666708392
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.395557710148355,
+            "mean_endpoint_error": 1.0790293433389804
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.095656227478257,
+            "mean_endpoint_error": 0.9840651103561933
+          },
+          "even_component_squared_norm": 0.31455250255345607,
+          "paired_mse": 1.4102087300317132,
+          "paired_mse_identity_absolute_residual": 5.551115123125783e-17
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.351254386992062,
+            "mean_endpoint_error": 1.0549713578434177
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3396816653208763,
+            "mean_endpoint_error": 1.0652976752643784
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0482478269748956,
+            "mean_endpoint_error": 0.9602557830404257
+          },
+          "even_component_squared_norm": 0.29722019918157333,
+          "paired_mse": 1.345468026156469,
+          "paired_mse_identity_absolute_residual": 1.6653345369377348e-16
+        }
+      }
+    },
+    {
+      "family": "spatial_null",
+      "seed": 7,
+      "null_seed": 8,
+      "checkpoint_sha256": "5d4d15f1803b51c8ad40355b0c1835c534a12c59f2ddb9730671efaefa4a7b36",
+      "report_sha256": "0eb8784ad0c725bee1c2e424c543c736ae71c22612e64a99f15b82a1c5e98461",
+      "graph_sha256": "ddbcb66ee543052cae0b3620817cee3194dcd1f836ef929ef17a43706ac6355e",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "53c712f20b32f128d751f4432a8fc91d899e8b629e954d3590196e38620d7dd7"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.3861226015825174,
+            "mean_endpoint_error": 1.0759059816951366
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.4011905092334713,
+            "mean_endpoint_error": 1.0832341816686064
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0823717236383916,
+            "mean_endpoint_error": 0.9782687551440705
+          },
+          "even_component_squared_norm": 0.31128483176960287,
+          "paired_mse": 1.3936565554079943,
+          "paired_mse_identity_absolute_residual": 2.220446049250313e-16
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.3129764462822946,
+            "mean_endpoint_error": 1.0344091558177957
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.365309212433952,
+            "mean_endpoint_error": 1.0832902684481103
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0635850089897467,
+            "mean_endpoint_error": 0.9629285457571948
+          },
+          "even_component_squared_norm": 0.27555782036837667,
+          "paired_mse": 1.3391428293581233,
+          "paired_mse_identity_absolute_residual": 5.551115123125783e-17
+        }
+      }
+    },
+    {
+      "family": "spatial_null",
+      "seed": 7,
+      "null_seed": 9,
+      "checkpoint_sha256": "956a4a851c40cd0e358f39be28d0502d350eaba5e5cf1deef8dbb33d8896396a",
+      "report_sha256": "8e829026be3afacbd7e59e06407317629ef7910b20d1b62c2f3f1852ef23197e",
+      "graph_sha256": "1ef762c3eb56104297a6e9b9ed09ac076e49fceef2cc78e208dbff2ec22f2838",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "53c712f20b32f128d751f4432a8fc91d899e8b629e954d3590196e38620d7dd7"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.4252942706605969,
+            "mean_endpoint_error": 1.0948293076519569
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3791075151371344,
+            "mean_endpoint_error": 1.0743231668688835
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.085389041604032,
+            "mean_endpoint_error": 0.9795389318947425
+          },
+          "even_component_squared_norm": 0.3168118512948336,
+          "paired_mse": 1.4022008928988656,
+          "paired_mse_identity_absolute_residual": 1.1102230246251565e-16
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.3082037751017959,
+            "mean_endpoint_error": 1.0258665386996113
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.4188780104537062,
+            "mean_endpoint_error": 1.1034228788542484
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.07024018769292,
+            "mean_endpoint_error": 0.9727808682333927
+          },
+          "even_component_squared_norm": 0.2933007050848315,
+          "paired_mse": 1.363540892777751,
+          "paired_mse_identity_absolute_residual": 4.440892098500626e-16
+        }
+      }
+    },
+    {
+      "family": "gru",
+      "seed": 7,
+      "null_seed": null,
+      "checkpoint_sha256": "bb16678e63cf73f2cb2724e8b8e9abbddb423764742073eead0e7a54be78850f",
+      "report_sha256": "9827fd86ff3e630e2a29dd9d08de9b41b58b362a221d432c895a24187fae5ae3",
+      "graph_sha256": null,
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "f989b31f2336a986e78540402b5cfe352f6a3539c9bd8931b161eccac34bb77f"
+      },
+      "parameters": 18946,
+      "completed_training_steps": 500,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 0.4445458570108274,
+            "mean_endpoint_error": 0.5743875115713961
+          },
+          "reversed": {
+            "mean_squared_vector_error": 0.4309563371605666,
+            "mean_endpoint_error": 0.5557258892399033
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 0.32966577790594076,
+            "mean_endpoint_error": 0.4951114865374852
+          },
+          "even_component_squared_norm": 0.10808531917975615,
+          "paired_mse": 0.437751097085697,
+          "paired_mse_identity_absolute_residual": 6.938893903907228e-17
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 0.4216555442684271,
+            "mean_endpoint_error": 0.5606767376843587
+          },
+          "reversed": {
+            "mean_squared_vector_error": 0.35632174108762227,
+            "mean_endpoint_error": 0.5076905256598918
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 0.29508598259893914,
+            "mean_endpoint_error": 0.4576562301136716
+          },
+          "even_component_squared_norm": 0.09390266007908553,
+          "paired_mse": 0.3889886426780247,
+          "paired_mse_identity_absolute_residual": 1.3877787807814457e-17
+        }
+      }
+    },
+    {
+      "family": "measured",
+      "seed": 8,
+      "null_seed": null,
+      "checkpoint_sha256": "f363c79d608d8640c2928feec30adbb7fbcb3ccdb52e6d5cdc44550ae77c74de",
+      "report_sha256": "6b19a7c6768241ce5a84117b18c91cecb05d7f27ca51c98f14bd0680d1d50d0c",
+      "graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "54112a15cc8921dfbdebf87b2c0de6f04003c15978d091ddaf2a7923248fa652"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.3702106553764735,
+            "mean_endpoint_error": 1.0712309011306609
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3249533171554135,
+            "mean_endpoint_error": 1.0520563184987415
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0517723048824004,
+            "mean_endpoint_error": 0.9643047171799877
+          },
+          "even_component_squared_norm": 0.29580968138354313,
+          "paired_mse": 1.3475819862659435,
+          "paired_mse_identity_absolute_residual": 0.0
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.4540043718260072,
+            "mean_endpoint_error": 1.09308952958418
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.255694518985245,
+            "mean_endpoint_error": 1.0479153784912039
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.030089696025944,
+            "mean_endpoint_error": 0.953325764842389
+          },
+          "even_component_squared_norm": 0.32475974937968216,
+          "paired_mse": 1.3548494454056261,
+          "paired_mse_identity_absolute_residual": 5.551115123125783e-17
+        }
+      }
+    },
+    {
+      "family": "spatial_null",
+      "seed": 8,
+      "null_seed": 7,
+      "checkpoint_sha256": "45503a0d5b87fdbe71b5390a39eca2a9745e66e5a7e05dce3a9a9e26e39bb302",
+      "report_sha256": "b8bef6a8ab4fe25ba9d47a73d26776e4e1eb59a3680f399b2455761882a525a8",
+      "graph_sha256": "f5dfba750f1b708f89a6d2ce124d4ed1e006dfc6b238bb4e3aa56b69306a89c4",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "53c712f20b32f128d751f4432a8fc91d899e8b629e954d3590196e38620d7dd7"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.3766583605977596,
+            "mean_endpoint_error": 1.0765266739119772
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3249678113758958,
+            "mean_endpoint_error": 1.0549261207820808
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.060289596738389,
+            "mean_endpoint_error": 0.9680391911355363
+          },
+          "even_component_squared_norm": 0.29052348924843874,
+          "paired_mse": 1.3508130859868277,
+          "paired_mse_identity_absolute_residual": 0.0
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.4342373188007151,
+            "mean_endpoint_error": 1.0828788036892405
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.2580713982493006,
+            "mean_endpoint_error": 1.0387697276484857
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0259949572944855,
+            "mean_endpoint_error": 0.9514469720859151
+          },
+          "even_component_squared_norm": 0.32015940123052244,
+          "paired_mse": 1.3461543585250078,
+          "paired_mse_identity_absolute_residual": 2.220446049250313e-16
+        }
+      }
+    },
+    {
+      "family": "spatial_null",
+      "seed": 8,
+      "null_seed": 8,
+      "checkpoint_sha256": "f2a9065b76ae0f2af1481c0baec4c47ca5fb12b188f24a0cf10ae0b4559bbbc8",
+      "report_sha256": "1e7c428079425a9f88f4b940aa9f9a2f44b4fe8307960850b9c8ba6865a95fe5",
+      "graph_sha256": "ddbcb66ee543052cae0b3620817cee3194dcd1f836ef929ef17a43706ac6355e",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "7ffa0a8b2ce749d8c01ee96892d2a69e1c982a618766486053629c11827a9f9d"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.3875826500323973,
+            "mean_endpoint_error": 1.0817784882196437
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3324124782277924,
+            "mean_endpoint_error": 1.0625547853502295
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.061853230373486,
+            "mean_endpoint_error": 0.967283393979796
+          },
+          "even_component_squared_norm": 0.2981443337566091,
+          "paired_mse": 1.359997564130095,
+          "paired_mse_identity_absolute_residual": 1.1102230246251565e-16
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.4116576500766689,
+            "mean_endpoint_error": 1.0725255783189458
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3051916191208828,
+            "mean_endpoint_error": 1.0578188587963975
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.055456842570915,
+            "mean_endpoint_error": 0.9646213245005377
+          },
+          "even_component_squared_norm": 0.30296779202786095,
+          "paired_mse": 1.3584246345987758,
+          "paired_mse_identity_absolute_residual": 1.1102230246251565e-16
+        }
+      }
+    },
+    {
+      "family": "spatial_null",
+      "seed": 8,
+      "null_seed": 9,
+      "checkpoint_sha256": "bd8eebe0d53245c06f6e672d13da686e18f716d5920454b1041bf9a24e9e22dc",
+      "report_sha256": "8efb0d3165f69dde7080ae9fe621cbe97628c9fc4100e5301ed44e2180eb81e5",
+      "graph_sha256": "1ef762c3eb56104297a6e9b9ed09ac076e49fceef2cc78e208dbff2ec22f2838",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "53c712f20b32f128d751f4432a8fc91d899e8b629e954d3590196e38620d7dd7"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.389771501544413,
+            "mean_endpoint_error": 1.0840982985103813
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.350102966120739,
+            "mean_endpoint_error": 1.0644982237282292
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0639648009117542,
+            "mean_endpoint_error": 0.9699463680409288
+          },
+          "even_component_squared_norm": 0.30597243292082205,
+          "paired_mse": 1.3699372338325762,
+          "paired_mse_identity_absolute_residual": 5.551115123125783e-17
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.4827563013911582,
+            "mean_endpoint_error": 1.1102477593840745
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3099384457158092,
+            "mean_endpoint_error": 1.0601126011931679
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.035336028802498,
+            "mean_endpoint_error": 0.9577379250173648
+          },
+          "even_component_squared_norm": 0.36101134475098573,
+          "paired_mse": 1.3963473735534837,
+          "paired_mse_identity_absolute_residual": 0.0
+        }
+      }
+    },
+    {
+      "family": "gru",
+      "seed": 8,
+      "null_seed": null,
+      "checkpoint_sha256": "012c0df8b5b08ff2f22878489daa86cf499971c148700adc491f5e36f382687a",
+      "report_sha256": "e0cf9c5f078f1ac595c93ef010a89402dd8fefb73f4793dd83465b4bc64f5c07",
+      "graph_sha256": null,
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "f989b31f2336a986e78540402b5cfe352f6a3539c9bd8931b161eccac34bb77f"
+      },
+      "parameters": 18946,
+      "completed_training_steps": 500,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 0.40849738637636435,
+            "mean_endpoint_error": 0.5444577996916671
+          },
+          "reversed": {
+            "mean_squared_vector_error": 0.40375457994054875,
+            "mean_endpoint_error": 0.542335875757509
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 0.3053174618948341,
+            "mean_endpoint_error": 0.46651417169987086
+          },
+          "even_component_squared_norm": 0.1008085212636224,
+          "paired_mse": 0.40612598315845655,
+          "paired_mse_identity_absolute_residual": 4.163336342344337e-17
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 0.39210404026669804,
+            "mean_endpoint_error": 0.5318351392801066
+          },
+          "reversed": {
+            "mean_squared_vector_error": 0.3308010831883722,
+            "mean_endpoint_error": 0.4905037164191196
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 0.27009009087237357,
+            "mean_endpoint_error": 0.4465101687913542
+          },
+          "even_component_squared_norm": 0.0913624708551615,
+          "paired_mse": 0.36145256172753515,
+          "paired_mse_identity_absolute_residual": 8.326672684688674e-17
+        }
+      }
+    },
+    {
+      "family": "measured",
+      "seed": 9,
+      "null_seed": null,
+      "checkpoint_sha256": "1a96aca51f07f67cfe1ea16a1d7b69542cb381ec23d43212bbf33bc4ab2b5cc3",
+      "report_sha256": "a51236f9eb06d7bc7561429d0293384381601b19c5e2a33f2bf6bd2a656fcbc9",
+      "graph_sha256": "d2b24da4a7bffaa172e3081da033c09019a36b651f642c3e31358a31795c7c82",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "54112a15cc8921dfbdebf87b2c0de6f04003c15978d091ddaf2a7923248fa652"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.4739194410640133,
+            "mean_endpoint_error": 1.1110188344170162
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.4198743326771806,
+            "mean_endpoint_error": 1.0873323800866321
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0998139579703794,
+            "mean_endpoint_error": 0.9872657985012201
+          },
+          "even_component_squared_norm": 0.3470829289002175,
+          "paired_mse": 1.446896886870597,
+          "paired_mse_identity_absolute_residual": 0.0
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.3656016219698373,
+            "mean_endpoint_error": 1.0584802297056937
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.2822514483198315,
+            "mean_endpoint_error": 1.0557296770190763
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0241802008450716,
+            "mean_endpoint_error": 0.948865934929363
+          },
+          "even_component_squared_norm": 0.2997463342997628,
+          "paired_mse": 1.3239265351448344,
+          "paired_mse_identity_absolute_residual": 5.551115123125783e-17
+        }
+      }
+    },
+    {
+      "family": "spatial_null",
+      "seed": 9,
+      "null_seed": 7,
+      "checkpoint_sha256": "0ce06908b327144daecde04e20f1af7a0952c2f219d93a74392b04d4eaf36f39",
+      "report_sha256": "48eb1fa4dfdab19839b57f7ec746ca06af7cdec4cb5d38f1774272afd0ffdc59",
+      "graph_sha256": "f5dfba750f1b708f89a6d2ce124d4ed1e006dfc6b238bb4e3aa56b69306a89c4",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "53c712f20b32f128d751f4432a8fc91d899e8b629e954d3590196e38620d7dd7"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.444048005898635,
+            "mean_endpoint_error": 1.1010530094012072
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.417532277721622,
+            "mean_endpoint_error": 1.0916851160015502
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.1049264309766123,
+            "mean_endpoint_error": 0.9919617685504255
+          },
+          "even_component_squared_norm": 0.3258637108335164,
+          "paired_mse": 1.4307901418101285,
+          "paired_mse_identity_absolute_residual": 1.1102230246251565e-16
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.3726471677297571,
+            "mean_endpoint_error": 1.0568891807510659
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3286646937842477,
+            "mean_endpoint_error": 1.0730310956016393
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0441542767612377,
+            "mean_endpoint_error": 0.9579730807916449
+          },
+          "even_component_squared_norm": 0.3065016539957647,
+          "paired_mse": 1.3506559307570023,
+          "paired_mse_identity_absolute_residual": 1.1102230246251565e-16
+        }
+      }
+    },
+    {
+      "family": "spatial_null",
+      "seed": 9,
+      "null_seed": 8,
+      "checkpoint_sha256": "7ccb022079bc1613fb8324f65a7a8184efabcbecb9e2f062d7a9563539f494c2",
+      "report_sha256": "3b57eb4ca6970e2cb3435d5e6c8ba9cc3f5e93cc3886d05dda5889464e24b4b4",
+      "graph_sha256": "ddbcb66ee543052cae0b3620817cee3194dcd1f836ef929ef17a43706ac6355e",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "53c712f20b32f128d751f4432a8fc91d899e8b629e954d3590196e38620d7dd7"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.4543108245686462,
+            "mean_endpoint_error": 1.108068065167633
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.4135293691782016,
+            "mean_endpoint_error": 1.0876395635529745
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.1050203952095665,
+            "mean_endpoint_error": 0.9902349774977093
+          },
+          "even_component_squared_norm": 0.3288997016638572,
+          "paired_mse": 1.433920096873424,
+          "paired_mse_identity_absolute_residual": 3.3306690738754696e-16
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.363785203231141,
+            "mean_endpoint_error": 1.0574783043985776
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3053032342693576,
+            "mean_endpoint_error": 1.0625718723508641
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.041021939078639,
+            "mean_endpoint_error": 0.9593895243809091
+          },
+          "even_component_squared_norm": 0.29352227967161026,
+          "paired_mse": 1.3345442187502492,
+          "paired_mse_identity_absolute_residual": 1.1102230246251565e-16
+        }
+      }
+    },
+    {
+      "family": "spatial_null",
+      "seed": 9,
+      "null_seed": 9,
+      "checkpoint_sha256": "07e3460f1d170b42fea3f8ce5890e2a2024eda4be257c18d278c724c03af117c",
+      "report_sha256": "06f54f2f765ffe8eebb294a5f0de455113c8814a26a54d98e983f7898bcd3930",
+      "graph_sha256": "1ef762c3eb56104297a6e9b9ed09ac076e49fceef2cc78e208dbff2ec22f2838",
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "7ffa0a8b2ce749d8c01ee96892d2a69e1c982a618766486053629c11827a9f9d"
+      },
+      "parameters": 84383,
+      "completed_training_steps": 3000,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 1.4358577272074855,
+            "mean_endpoint_error": 1.102210286054721
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.4307304280542272,
+            "mean_endpoint_error": 1.0953950449622583
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.1104709218375854,
+            "mean_endpoint_error": 0.9933966502444709
+          },
+          "even_component_squared_norm": 0.32282315579327103,
+          "paired_mse": 1.4332940776308565,
+          "paired_mse_identity_absolute_residual": 0.0
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 1.3996698513293966,
+            "mean_endpoint_error": 1.0726529943283365
+          },
+          "reversed": {
+            "mean_squared_vector_error": 1.3221348253349121,
+            "mean_endpoint_error": 1.070791862112694
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 1.0634168287258325,
+            "mean_endpoint_error": 0.9710733814007038
+          },
+          "even_component_squared_norm": 0.29748550960632175,
+          "paired_mse": 1.3609023383321543,
+          "paired_mse_identity_absolute_residual": 5.551115123125783e-17
+        }
+      }
+    },
+    {
+      "family": "gru",
+      "seed": 9,
+      "null_seed": null,
+      "checkpoint_sha256": "0f8ca2598032751d81cd062bc044c8f2d458bf3f58bf70d2cc2f35cbe706daa5",
+      "report_sha256": "a6b620f4279d5c8f12e9654395bd6832c1fca6379634d10b20c920a0eb91b1ae",
+      "graph_sha256": null,
+      "original_source": {
+        "commit": null,
+        "dirty": null,
+        "python_sources_sha256": "f989b31f2336a986e78540402b5cfe352f6a3539c9bd8931b161eccac34bb77f"
+      },
+      "parameters": 18946,
+      "completed_training_steps": 500,
+      "original_metrics_reproduced": true,
+      "evaluation": {
+        "validation": {
+          "original": {
+            "mean_squared_vector_error": 0.4371041378585708,
+            "mean_endpoint_error": 0.5667078054147112
+          },
+          "reversed": {
+            "mean_squared_vector_error": 0.4638638743657624,
+            "mean_endpoint_error": 0.5733283138743848
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 0.33312939397157926,
+            "mean_endpoint_error": 0.4981636725634241
+          },
+          "even_component_squared_norm": 0.11735461214058732,
+          "paired_mse": 0.45048400611216655,
+          "paired_mse_identity_absolute_residual": 2.7755575615628914e-17
+        },
+        "counterfactual": {
+          "original": {
+            "mean_squared_vector_error": 0.46692901123109604,
+            "mean_endpoint_error": 0.5773978308683134
+          },
+          "reversed": {
+            "mean_squared_vector_error": 0.4314185110152679,
+            "mean_endpoint_error": 0.5654724010540348
+          },
+          "odd_projection": {
+            "mean_squared_vector_error": 0.3210889667134486,
+            "mean_endpoint_error": 0.48565716539625037
+          },
+          "even_component_squared_norm": 0.1280847944097334,
+          "paired_mse": 0.44917376112318197,
+          "paired_mse_identity_absolute_residual": 2.7755575615628914e-17
+        }
+      }
+    }
+  ],
+  "summary": {
+    "measured": {
+      "validation": {
+        "original": {
+          "mean_endpoint_error": 1.0887357535436362,
+          "mean_squared_vector_error": 1.4172134382176538
+        },
+        "reversed": {
+          "mean_endpoint_error": 1.0711880587346163,
+          "mean_squared_vector_error": 1.3758098842254742
+        },
+        "odd_projection": {
+          "mean_endpoint_error": 0.9769254645760571,
+          "mean_squared_vector_error": 1.0788172216606524
+        },
+        "even_component_squared_norm": 0.31769443956091153,
+        "relative_epe_reduction_by_training_seed": [
+          0.09663814735565834,
+          0.09981618700302142,
+          0.11138698290450932
+        ]
+      },
+      "counterfactual": {
+        "original": {
+          "mean_endpoint_error": 1.0700500871986085,
+          "mean_squared_vector_error": 1.3947170979196821
+        },
+        "reversed": {
+          "mean_endpoint_error": 1.0636490909873564,
+          "mean_squared_vector_error": 1.3045399968689615
+        },
+        "odd_projection": {
+          "mean_endpoint_error": 0.9565790277075465,
+          "mean_squared_vector_error": 1.0398300295065184
+        },
+        "even_component_squared_norm": 0.3097985178878033,
+        "relative_epe_reduction_by_training_seed": [
+          0.08599735094001681,
+          0.12786122358610308,
+          0.10355818814566664
+        ]
+      }
+    },
+    "spatial_null": {
+      "validation": {
+        "original": {
+          "mean_endpoint_error": 1.090932175253722,
+          "mean_squared_vector_error": 1.4138339657786136
+        },
+        "reversed": {
+          "mean_endpoint_error": 1.0770317273615324,
+          "mean_squared_vector_error": 1.3827923405774931
+        },
+        "odd_projection": {
+          "mean_endpoint_error": 0.9803039052048749,
+          "mean_squared_vector_error": 1.0855491520853415
+        },
+        "even_component_squared_norm": 0.3127640010927119,
+        "relative_epe_reduction_by_training_seed": [
+          0.09887169785041539,
+          0.1039767294780114,
+          0.10139062744470606
+        ]
+      },
+      "counterfactual": {
+        "original": {
+          "mean_endpoint_error": 1.063102185914563,
+          "mean_squared_vector_error": 1.3819097889927765
+        },
+        "reversed": {
+          "mean_endpoint_error": 1.0683452044744428,
+          "mean_squared_vector_error": 1.3281303449647828
+        },
+        "odd_projection": {
+          "mean_endpoint_error": 0.962023045023121,
+          "mean_squared_vector_error": 1.0497170996545746
+        },
+        "even_component_squared_norm": 0.3053029673242052,
+        "relative_epe_reduction_by_training_seed": [
+          0.0703898765151334,
+          0.11999009778836556,
+          0.09368766056803912
+        ]
+      }
+    },
+    "gru": {
+      "validation": {
+        "original": {
+          "mean_endpoint_error": 0.5618510388925915,
+          "mean_squared_vector_error": 0.43004912708192083
+        },
+        "reversed": {
+          "mean_endpoint_error": 0.557130026290599,
+          "mean_squared_vector_error": 0.4328582638222926
+        },
+        "odd_projection": {
+          "mean_endpoint_error": 0.4865964436002601,
+          "mean_squared_vector_error": 0.32270421125745136
+        },
+        "even_component_squared_norm": 0.10874948419465529,
+        "relative_epe_reduction_by_training_seed": [
+          0.13801836466992357,
+          0.14315825402067273,
+          0.12095145363513604
+        ]
+      },
+      "counterfactual": {
+        "original": {
+          "mean_endpoint_error": 0.5566365692775929,
+          "mean_squared_vector_error": 0.42689619858874034
+        },
+        "reversed": {
+          "mean_endpoint_error": 0.5212222143776821,
+          "mean_squared_vector_error": 0.3728471117637541
+        },
+        "odd_projection": {
+          "mean_endpoint_error": 0.46327452143375875,
+          "mean_squared_vector_error": 0.29542168006158714
+        },
+        "even_component_squared_norm": 0.10444997511466014,
+        "relative_epe_reduction_by_training_seed": [
+          0.18374314582083473,
+          0.16043499984647225,
+          0.1588864047758889
+        ]
+      }
+    }
+  },
+  "candidate_gate_passed": true,
+  "independent_confirmation": false,
+  "seconds": 192.75665300499531,
+  "cpu_seconds": 192.26179399400002,
+  "environment": {
+    "torch": "2.14.1+cu130",
+    "numpy": "2.5.4",
+    "device": "cpu",
+    "threads": 1
+  },
+  "limitations": "Same reused development clips; reversed clips are dependent on their originals. No new confirmation, no test selection, no clips excluded, no anatomical attribution, no extra training. Two-pass retrospective symmetrization cannot replace the causal online model and doubles forward work."
+}

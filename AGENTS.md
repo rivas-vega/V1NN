@@ -6,6 +6,10 @@
 - Añadir una entrada a la bitácora tras cada experimento o cambio significativo:
   configuración, revisión, datos, métricas, fallos, decisión y límites. Mantener
   resultados negativos y separar observación, hipótesis y trabajo pendiente.
+- Avisar expresamente al usuario cuando se cierre un piloto y antes de iniciar
+  una fase de escalado. Distinguir cierre, mejora metodológica y escalado; registrar
+  qué evidencia sostiene la transición. Es una obligación de comunicación, no
+  una petición de permiso adicional dentro del alcance ya autorizado.
 - No afirmar ventaja del conectoma a partir de un smoke test, una semilla o una
   mejora del error de entrenamiento. La validación del piloto sirve para ajustar;
   no presentarla como test final. Mantener comparaciones emparejadas.

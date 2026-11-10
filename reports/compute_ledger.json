@@ -114,12 +114,15 @@
   "conditional_maximum_usd": 75,
   "extension_activated": false,
   "extension_condition": "User permits up to 75 USD only if strictly necessary. Reconcile actual usage and reservations first; document why an indispensable phase-one experiment cannot fit within the active 50 USD limit.",
-  "latest_billing_checked_utc": "2026-11-10T00:57:51.066239+00:00",
+  "latest_billing_checked_utc": "2026-11-10T06:58:16.991410+00:00",
   "latest_local_analysis": {
-    "purpose": "first-frame-rectification-and-active-feature-support",
+    "purpose": "frozen-time-reversal-methodological-diagnostic",
     "status": "completed",
-    "cpu_seconds": 16.017593370001123,
+    "cpu_seconds": 192.26179399400002,
+    "wall_seconds": 192.75665300499531,
     "new_modal_executions": 0,
     "additional_reservation_usd": 0
-  }
+  },
+  "latest_account_metered_snapshot_usd": 0.97719401,
+  "latest_account_billed_snapshot_usd": 0.0
 }

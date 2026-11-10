@@ -1,0 +1,20 @@
+{
+  "purpose": "Bounded methodological follow-up to the closed comparative pilot, requested by the user; development only",
+  "created_utc": "2026-11-10T06:55:00Z",
+  "question": "Does a component incompatible with motion reversal account for a practically relevant part of the frozen predictors' error?",
+  "base_commit": "e8544b166432bf7616e860000949cd02e6b80375",
+  "training_routing_seeds": [7, 8, 9],
+  "null_graph_seeds": [7, 8, 9],
+  "models": "Three measured 3000-step checkpoints, all nine spatial-null 3000-step checkpoints, three GRU 500-step checkpoints",
+  "data_seed": 20261109,
+  "splits": ["validation", "counterfactual"],
+  "samples": {"validation": 512, "counterfactual": 128},
+  "transformation": "Reverse the complete eight-frame sequence and negate its two-dimensional velocity. Retain original train-only normalization.",
+  "diagnostic": "p=f(x), q=f(reverse(x)), odd=(p-q)/2, even=(p+q)/2. Evaluate p against y, q against -y, odd against y, and squared norm of even.",
+  "identity": "Mean paired forward/reversed MSE minus odd MSE equals mean squared norm of even. This identity is not an empirical improvement claim or a biological mechanism.",
+  "candidate_gate": "Consider a single-factor training reversal-augmentation experiment only if odd validation EPE improves at least 5 percent for each of three measured seeds AND each of three spatial-null row means, with mean counterfactual EPE not worsened in either family. Gate is a practical development decision, not statistical significance.",
+  "if_gate_fails": "Do not schedule reversal-augmentation training from this diagnostic alone; preserve negative evidence and retain the no-scaling decision.",
+  "if_gate_passes": "Specify bounded matched training with reversal augmentation, preserving one causal forward pass at inference. Do not treat the two-pass diagnostic as a deployed improvement or launch GPU automatically.",
+  "limits": "Same reused development clips; reversed clips are dependent on their originals. No new confirmation, no test selection, no clips excluded, no anatomical attribution, no extra training. Two-pass retrospective symmetrization cannot replace the causal online model and doubles forward work.",
+  "execution": {"device": "cpu", "threads": 1, "max_seconds": 300, "hard_timeout_seconds": 330, "retries": 0, "modal_runs": 0}
+}

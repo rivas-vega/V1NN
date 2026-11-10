@@ -1080,3 +1080,85 @@ reservas 18 USD y margen 32 bajo 50, sin ampliar a 75. Instantánea efímera act
 0,63059084 USD; se mantienen reservas porque no es conciliación de factura exclusiva.
 Las próximas revisiones solo deben actuar ante evidencia nueva o cierre de ventana;
 no repetir esta auditoría ni ejecutar propuestas únicamente por figurar en documentos.
+
+## Entrada 017 — 2026-11-10: decisión de continuidad y simetría temporal
+
+**Nueva petición y alcance.** El usuario pide analizar el piloto, proponer mejoras,
+decidir continuidad y avisar expresamente al cerrar el piloto o pasar a escalado.
+El piloto comparativo permanece cerrado; este seguimiento metodológico no es
+escalado ni repetición de campañas. La incertidumbre nueva es si una componente
+incompatible con invertir el movimiento explica una fracción relevante del error
+de los predictores congelados. La tarea admite una transformación exacta: invertir
+los ocho fotogramas cambia el signo de la velocidad, sin cambiar su distribución
+poblacional. La retina es por fotograma y conserva esta transformación.
+
+**Plan antes de observar el resultado.** `configs/time_reversal_plan.json` fija
+los tres modelos medidos, los nueve nulos espaciales del diseño completo y tres
+GRU de referencia; toda la validación histórica (512 clips) y el control de historias
+(128 clips), con normalización original. Inferencia CPU, un hilo, máximo 300 s y
+corte externo a 330 s, sin reintentos, entrenamiento ni GPU. Reproducir las métricas
+originales y verificar identidad de datos, grafos, rutas y checkpoints. Medir
+f(x), f(reverse(x)) y su componente antisimétrica [f(x)-f(reverse(x))]/2.
+La identidad algebraica de MSE sobre cada pareja se verifica, pero no demuestra
+mejora en la orientación original. Las parejas invertidas no son datos independientes.
+
+**Criterio fijado.** Solo proponer entrenamiento con aumento por inversión si la
+proyección reduce EPE de validación al menos 5 % en cada semilla medida y cada
+promedio por fila de nulos, sin empeorar el EPE contrafactual medio de ninguna
+familia. Es un filtro práctico de desarrollo, no significación estadística. La
+proyección requiere dos pasadas retrospectivas: no modifica el modelo causal ni
+se puede presentar como correspondencia cortical o capacidad online. Si pasa el
+filtro, concretar un experimento emparejado de un solo factor; no lanzar GPU
+automáticamente. Si falla, no abrir esa campaña únicamente por este diagnóstico.
+
+**Resultado del seguimiento.** Ejecutado una sola vez en 192,76 s de reloj y
+192,26 s CPU, por debajo de 300 s. Quince checkpoints, 512 clips originales de
+validación y 128 contrafactuales por modelo; las inversiones son pares dependientes,
+no nuevas muestras independientes. Todas las métricas originales se reproducen
+con tolerancia rtol=1e-5/atol=1e-6. Plan SHA-256
+`64ed042cf888c8f4b5c8e54d2845398726f07c4a2feb5f1df3dcb9387ae0b72b`.
+Se conservan hashes de checkpoints, grafos, informes, código y manifiesto de datos.
+El código de este diagnóstico local se ejecutó sobre base `e8544b1` con cambios
+sin publicar, registrados por hash; no se altera código de entrenamiento previo.
+
+| Modelo | EPE original | EPE proyección de dos pasadas | Reducción descriptiva |
+| --- | ---: | ---: | ---: |
+| Conectoma medido | 1.088736 | 0.976925 | 10.27 % |
+| Nulos espaciales (3×3) | 1.090932 | 0.980304 | 10.14 % |
+| GRU de referencia | 0.561851 | 0.486596 | 13.39 % |
+
+El filtro prefijado se cumple: cada semilla medida mejora entre 9,66 y 11,14 %;
+cada fila espacial entre 9,89 y 10,40 %. El control contrafactual medio también
+mejora: medido 1,070050 → 0,956579; nulos 1,063102 → 0,962023. La identidad de
+MSE sobre parejas se cumple con residual <1e-10 en los treinta grupos evaluados.
+No confundirla con mejora garantizada en la orientación original: ese caso se
+comprueba separadamente y un test incluye un contraejemplo donde empeora.
+
+**Interpretación.** La consistencia temporal proporciona un objetivo metodológico
+más concreto que corregir pérdidas locales raras de ReLU. El beneficio no identifica
+anatomía: aparece en ambos grafos y en GRU. La diferencia medido−nulo proyectada
+es −0,001418 / −0,004118 / −0,004599 por fila; todas negativas pero media de solo
+0,34 % relativo, sobre desarrollo reutilizado. No se convierte en una nueva
+confirmación ni se borra la conclusión del piloto. Dos pasadas retrospectivas no
+son el modelo causal original de una sola pasada. Aumentar datos al entrenar puede
+o no trasladar el beneficio: esa es la nueva hipótesis, no un resultado obtenido.
+
+**Decisión.** Piloto inicial finalizado; no pasar al escalado. Elegida una fase de
+mejora metodológica con aumento por inversión temporal, a escala fija. El plan
+`docs/NEXT_PHASE.md` fija un único cambio, nueve ensayos futuros emparejados,
+verificación previa CPU, umbral de continuidad y límites; aún sin implementación,
+reserva o lanzamiento. No ampliar pasos, circuitos, probabilidades o semillas tras
+un fracaso por inercia. No abrir un test final nuevo antes de fijar el método.
+Aviso expreso al usuario al cerrar el piloto y antes de cualquier escalado futuro,
+registrado también en AGENTS.md. Se actualiza la revisión del piloto.
+
+**Ejecución y cierre nocturno.** 49 tests pasan, incluyendo validez de la inversión
+sobre los vídeos y filtros reales, identidad de MSE y su límite interpretativo.
+Ninguna nueva GPU, ningún reintento y cero reservas adicionales. Consulta de Modal:
+sin aplicaciones BIONN activas; permanece otra aplicación ajena, sin tareas.
+Instantánea de aplicaciones efímeras 0,63059084 USD y total medido de cuenta
+0,97719401 USD; no son factura exclusiva del proyecto. Reservas conservadoras
+18 USD, margen 32 bajo 50, extensión a 75 sin activar. A las 07:00 UTC / 08:00
+Europe/Paris se eliminó la automatización nocturna mediante la herramienta de
+la aplicación; no se crea una nueva. La petición directa del usuario se atiende
+independientemente de aquella ventana, sin prolongar campañas nocturnas.
