@@ -109,10 +109,17 @@
   "available_after_reservations_usd": 32,
   "billing_note": "Billing queried before and after campaigns; delayed snapshots are not a final invoice. Keep reservations until reconciled.",
   "active_bionn_apps": 0,
-  "latest_ephemeral_apps_metered_snapshot_usd": 0.6688531,
+  "latest_ephemeral_apps_metered_snapshot_usd": 0.63059084,
   "snapshot_note": "Workspace ephemeral-app usage snapshot, not a final project invoice. Billing can lag and snapshot totals can update at different times. Reservations remain conservative.",
   "conditional_maximum_usd": 75,
   "extension_activated": false,
   "extension_condition": "User permits up to 75 USD only if strictly necessary. Reconcile actual usage and reservations first; document why an indispensable phase-one experiment cannot fit within the active 50 USD limit.",
-  "latest_billing_checked_utc": "2026-11-09T23:20:37.160242+00:00"
+  "latest_billing_checked_utc": "2026-11-10T00:57:51.066239+00:00",
+  "latest_local_analysis": {
+    "purpose": "first-frame-rectification-and-active-feature-support",
+    "status": "completed",
+    "cpu_seconds": 16.017593370001123,
+    "new_modal_executions": 0,
+    "additional_reservation_usd": 0
+  }
 }

@@ -17,8 +17,8 @@ una entrada antigua.
 | El conectoma puede memorizar 32 ejemplos. | Campaña 006 completada: conectoma y sin aristas cumplen <1 % del error cero en las tres semillas; validación ≈2,98. | Superada la capacidad de memorizar 32 clips. No repetirla ni confundirla con generalización. |
 | Resolver la lectura lineal recupera una representación temporal útil. | 30 lecturas sobre núcleos congelados: mejor regularización se aproxima a la predicción constante; mínimos cuadrados sobreajusta. | No rescata estos estados. No repetir el barrido sin cambiar o justificar la representación. |
 | El fallo a 2048 ejemplos depende del tiempo de optimización conjunta. | Ajuste pequeño posible; lectura congelada insuficiente; 500 pasos dejan entrenamiento alto. | Campañas 008/009 completas: 3000 pasos permiten aprender y la mejora se mantiene en clips nuevos. No aumentar pasos de nuevo por inercia; continuar con controles de estructura. |
-
-| El routing aleatorio elimina dimensiones antes de la rectificación. | Rango 32/32 en las tres rutas; reconstrucción de retina con error relativo <1,3e-8, también con ganancias aprendidas. | Descartado en esta etapa lineal. No demuestra retinotopía ni información preservada después de ReLU; próximo diagnóstico CPU local fijado. |
+| El routing aleatorio elimina dimensiones antes de la rectificación. | Rango 32/32 en las tres rutas; reconstrucción de retina con error relativo <1,3e-8, también con ganancias aprendidas. | Descartado en esta etapa lineal. La auditoría posterior encuentra pérdida ocasional después de ReLU, no un fallo general de rango. |
+| La primera rectificación pierde dimensiones sensoriales. | Auditoría CPU: rango deficiente en 0,78–1,95 % de primeras imágenes de validación por ruta en los modelos aprendidos; todas las pérdidas se explican por características sin rutas activas. Diez colisiones exactas verificadas. | Mecanismo local documentado; no demuestra pérdida de movimiento ni causa del resultado entre grafos. No justifica nueva GPU ni excluir clips. Propuesta futura de calibración no programada. |
 
 ## Reglas para evitar bucles
 
@@ -38,22 +38,25 @@ una entrada antigua.
 
 ## Próxima acción concreta
 
-Entrada 015 completa: matriz espacial 3×3 analizada una vez, seis cruces nuevos
-más seis checkpoints reutilizados. Campaña `20261109T230837Z-de15dfee` cerrada;
-no repetir diagonal, cruces, generación de nulos ni lesión recurrente anterior.
-Ninguna GPU BIONN activa. Reservas 18 USD, margen 32 bajo 50; sin ampliación.
+Entrada 016 completa. Piloto comparativo y diagnósticos inmediatos cerrados:
+matriz espacial cruzada sin ventaja robusta, routing lineal de rango completo,
+pérdida ocasional tras primera ReLU explicada por columnas sin rutas activas.
+No repetir matriz, nulos, lesión, auditoría de routing, SVD ni soporte sensorial.
+No queda análisis local o campaña en curso. Reservas 18 USD, margen 32 bajo 50;
+ninguna GPU BIONN activa y ampliación a 75 sin usar.
 
-Siguiente y único diagnóstico inmediato: `configs/sensory_rectification_plan.json`.
-CPU, máximo 300 s, un proceso/hilo; revisar posible pérdida local de rango tras
-ReLU del primer estado en 256 clips de entrenamiento y 256 de validación conocidos,
-por cada ruta 7/8/9, con parámetros sensoriales iniciales y aprendidos. No está
-ejecutado. La auditoría lineal previa sí está completa: no repetirla como nueva.
-No usar particiones nuevas, reentrenar ni lanzar GPU. Reportar tolerancias y límites:
-rango local no es información de movimiento ni invertibilidad global. Según el
-resultado, cerrar la explicación local o documentar un mecanismo para un futuro
-control de interfaz; no modificar rutas para rescatar la hipótesis anatómica.
-No hay ahora otra campaña pagada científicamente justificada. Mantener esa decisión
-si no aparece evidencia nueva y conservar un estado claro hasta cerrar la ventana.
+No hay un experimento inmediato científicamente justificado. Leer
+`reports/PHASE1_REVIEW.md` para síntesis, límites y condiciones de reapertura.
+Su control de calibración es una propuesta no programada; no ejecutarlo por
+figurar allí. El campo `planned_not_run` de `configs/sensory_rectification_plan.json`
+es parte del plan histórico congelado: **ese análisis ya se ejecutó**, con resultados
+en `reports/sensory_rectification_audit.json` y entrada 016.
+
+En siguientes revisiones nocturnas, comprobar si existe nueva instrucción, evidencia
+o ejecución activa. Si no cambió nada accionable, mantenerse en silencio sin
+repetir pruebas o gastos. Al alcanzar el 10 de noviembre a las 08:00 Europe/Paris,
+desactivar la automatización. No interpretar una tarea de vigilancia como necesidad
+de inventar otro experimento, consumir presupuesto o reiniciar vías descartadas.
 
 La partición de 2048 clips de la entrada 009 ya fue consultada. Conserva valor
 como confirmación de los modelos congelados entonces, pero no puede reciclarse

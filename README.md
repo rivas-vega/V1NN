@@ -18,9 +18,10 @@ El precedente directo es [Lappalainen et al., Nature 2024](https://www.nature.co
 | Nulos dirigidos conservando grados, grupos y distancias discretizadas | Implementado, sin garantía de muestreo uniforme |
 | Pérdidas de movimiento, predicción sensorial y observación neuronal | Implementadas |
 | Importador MICrONS v1718 con verificación de hashes | Descarga real verificada: 1.357 neuronas, 78.953 parejas dirigidas |
-| Tests unitarios e integración sintética | 44 tests superados; integración con nulos E/I y espaciales auditados |
+| Tests unitarios e integración sintética | 47 tests superados; integración con nulos E/I y espaciales auditados |
 | Piloto temporal de desarrollo | GRU/CNN aprenden; matriz espacial cruzada 3×3: EPE medio −0,20 %, signos mixtos y MSE 0,24 % peor para MICrONS; sin ventaja robusta del cableado fino |
 | MICrONS frente al nulo de grados, confirmación congelada | Ventaja pequeña en 2048 clips nuevos; esta confirmación no incluye el control E/I posterior |
+| Interfaz sensorial, diagnóstico CPU | Routing lineal de rango completo; pérdidas ocasionales tras ReLU, sin vínculo demostrado con el error temporal |
 | Validación funcional y benchmark confirmatorio completo | **No evaluados** |
 
 Los smoke tests de 25 actualizaciones **no superan predictores triviales**. Son pruebas de ejecución y gradientes, no evidencia a favor o en contra del conectoma. Véase [el informe](reports/VALIDATION.md).
@@ -48,6 +49,8 @@ python scripts/smoke.py --graph data/processed/column_v1718.npz --steps 25
 El segundo comando sigue siendo una comprobación de ejecución. El importador rechaza hashes incorrectos y la red rechaza signos presinápticos desconocidos. No redistribuir datos crudos, credenciales ni checkpoints sin verificar condiciones de uso.
 
 ## Documentación
+
+- [Revisión del piloto inicial](reports/PHASE1_REVIEW.md): resultados, límites y condiciones para continuar.
 
 - [Bitácora de BIONN/V1NN](docs/BITACORA.md): resultados, hipótesis, retoques y decisiones acumuladas.
 - [GPU y conexión a Modal](docs/MODAL.md): autenticación, campañas acotadas y recuperación de resultados.

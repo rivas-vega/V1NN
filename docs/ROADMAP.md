@@ -8,7 +8,7 @@
 | Modelo | RNN dispersa, E/I, entrada fija, contracción, lectura lineal | Routing fisiológico, microsteps, priors por tipo |
 | Objetivos | Movimiento 2D, SSL sensorial, pérdidas de observación | Flujo denso, observación calibrada y sincronizada |
 | Controles | GRU/CNN, historia lineal, no-edge/reset, nulos de grados, E/I y espacio; lesión recurrente CPU | Perturbaciones y confirmación anatómica completa; reservorio disponible en código, no equipararlo a un control ya evaluado |
-| Validación | 44 tests, identidades y checkpoints auditados; comparaciones de tres semillas | Ventaja robusta del cableado fino, fisiología y conciliación de factura definitiva |
+| Validación | 47 tests, identidades y checkpoints auditados; comparaciones de tres semillas | Ventaja robusta del cableado fino, fisiología y conciliación de factura definitiva |
 
 ## P0 — Contrato de datos
 

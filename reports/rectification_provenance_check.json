@@ -1,0 +1,14 @@
+{
+  "primary_code_verified": true,
+  "followup_code_verified": true,
+  "all_dependencies_verified": true,
+  "primary_source_snapshot": "Current Python files excluding the support follow-up, which was added only after the primary result",
+  "followup_source_snapshot": "All current src and scripts Python files",
+  "primary_source_hash": "5cde4af03e110c4dff8d1b8203dbd031b959b7b26677f6c099c5e8e8a3f21fb0",
+  "followup_source_hash": "6205b05ad383f733b7286915d6e94d63d76bb6c8111965c8bad78856ba3cd6cd",
+  "frozen_plan_sha256": "57752a8941056a04d4bd1526b5672009e976bdffefaa87e846658ac1a5551899",
+  "checkpoints_and_first_state_forward_verified": true,
+  "tests_passed": 47,
+  "primary_seconds": 13.562354756999412,
+  "followup_seconds": 2.455238613001711
+}

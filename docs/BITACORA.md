@@ -1005,3 +1005,78 @@ GPU** en total. BIONN detenido, cero tareas. Reservas acumuladas **18 USD**, mar
 **32 USD** bajo 50; ampliación a 75 sin activar. Instantánea de aplicaciones efímeras
 **0,66885310 USD**, aún no factura definitiva exclusiva. La próxima continuación
 lee esta entrada y el plan CPU; no debe retomar como pendientes campañas ya completas.
+
+## Entrada 016 — 2026-11-10: auditoría CPU de la primera rectificación
+
+**Análisis fijado previamente.** Ejecutado el plan de la entrada 015 sin cambiar
+muestra, semillas, tolerancias ni checkpoints: 256 primeros clips de entrenamiento
+y 256 de validación, primer fotograma, tres rutas, parámetros sensoriales iniciales
+y aprendidos. Solo CPU. `reports/sensory_rectification_audit.json` conserva identidad,
+hashes, espectro de covarianza y distribuciones de rango; los estados calculados
+se contrastan exactamente con el forward real. Tests contrastan el jacobiano con
+autograd, casos con rango deficiente, fronteras ReLU y sensibilidad de tolerancia.
+
+**Seguimiento motivado por evidencia nueva.** El rango cae en una minoría de estados,
+lejos de las fronteras ReLU y sin cambiar al variar la tolerancia. Antes de atribuir
+una causa, comprobar si faltan columnas sensoriales en las neuronas activas. Este
+seguimiento usa las mismas entradas y máscaras, sin repetir las descomposiciones
+SVD ni entrenar: compara el histograma de cobertura de columnas con el rango ya
+calculado. Si coinciden, el rango no puede superar la cobertura y la igualdad de
+sumas establece que no queda un déficit adicional. Construir un ejemplo por grupo
+con pérdida: perturbar una característica sin ruta activa, dentro de su margen de
+inactividad, y verificar que el estado ReLU no cambia. Son perturbaciones del espacio
+de características, no vídeos generados ni evidencia de pérdida de información de
+movimiento. Seguimiento limitado a 60 s de CPU, sin GPU.
+
+**Resultados del plan.** 3072 jacobianos en 13,56 s: los mismos 512 clips únicos
+observados en tres rutas y dos condiciones, no 3072 clips independientes.
+Rangos calculados por SVD directa en float64 con tolerancias relativas 1e-5 y 1e-4.
+No hay desacuerdos de rango entre tolerancias. Todas las deficiencias están fuera
+de la banda de proximidad 1e-6 a la frontera ReLU. La covarianza de las 256 primeras
+entradas de entrenamiento tiene rango empírico 32, con autovalores 0,2125–2,4785;
+esto no equivale a certificar el espacio de todos los estímulos realizables.
+
+| Ruta | Inicial: entrenamiento | Inicial: validación | Aprendido: entrenamiento | Aprendido: validación |
+| --- | ---: | ---: | ---: | ---: |
+| 7 | 2/256 (0,78 %) | 4/256 (1,56 %) | 0/256 | 4/256 (1,56 %) |
+| 8 | 4/256 (1,56 %) | 6/256 (2,34 %) | 0/256 | 5/256 (1,95 %) |
+| 9 | 2/256 (0,78 %) | 4/256 (1,56 %) | 1/256 (0,39 %) | 2/256 (0,78 %) |
+
+La tabla cuenta estados con rango <32. El mínimo inicial observado es 27; tras
+entrenamiento, 29. La mayoría de estados conserva rango completo. No agrupar estas
+repeticiones como observaciones independientes ni atribuir significación al pequeño
+número de casos. Tampoco seleccionar o retirar esos clips de la comparación principal.
+
+**Mecanismo comprobado, seguimiento de 2,46 s.** El histograma de columnas cubiertas
+por neuronas activas coincide exactamente con el de rango en los doce grupos y ambas
+tolerancias: no queda déficit adicional por dependencia entre columnas cubiertas.
+Aunque haya más de cien neuronas activas, algunas características no llegan a ninguna
+de ellas; las neuronas que las reciben están todas inactivas para ese fotograma.
+Diez ejemplos constructivos —uno por grupo con pérdida— cambian una característica
+dentro del margen inactivo y dejan el estado ReLU exactamente igual. No se repitió
+ninguna SVD. Evidencia: `reports/rectification_support_audit.json`.
+
+**Interpretación y decisión.** Hay una pérdida local real, ocasional, en esta interfaz.
+No demuestra que esas direcciones sensoriales codifiquen movimiento, que la secuencia
+no pueda compensarla ni que explique el rendimiento o la comparación entre grafos.
+Los modelos aprendidos aún tienen pérdidas en 0,78–1,95 % de las primeras imágenes
+de validación examinadas; la mayor parte del mapa conserva rango completo. No basta
+para justificar una nueva campaña GPU ni para rescatar la ventaja anatómica ausente.
+La conclusión de la entrada 015 queda intacta.
+
+Se formula un control futuro concreto en `reports/PHASE1_REVIEW.md`: calibración de
+la inicialización sensorial usando solo entrenamiento, idéntica para medido y nulos,
+con comprobación de cobertura y del grado de linealización antes de cualquier nuevo
+entrenamiento. Es una propuesta **no programada**, no una campaña pendiente. Hace
+falta una razón relacionada con la tarea temporal para activarla; no basta reducir
+un defecto local raro. Se cierra el piloto comparativo actual y se conservan datos,
+pesos y resultados negativos. No quedan experimentos inmediatos justificados.
+
+**Verificación y gasto.** 47 tests pasan, incluido contraste con autograd y una
+colisión explícita que conserva el estado. Auditoría de código, dependencias,
+checkpoints y plan en `reports/rectification_provenance_check.json`. Los dos análisis
+usaron 16,02 s de CPU, ningún entrenamiento y ninguna GPU. BIONN sigue detenido;
+reservas 18 USD y margen 32 bajo 50, sin ampliar a 75. Instantánea efímera actual
+0,63059084 USD; se mantienen reservas porque no es conciliación de factura exclusiva.
+Las próximas revisiones solo deben actuar ante evidencia nueva o cierre de ventana;
+no repetir esta auditoría ni ejecutar propuestas únicamente por figurar en documentos.

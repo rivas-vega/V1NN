@@ -1,0 +1,758 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-11-10T01:01:11.303884+00:00",
+  "purpose": "CPU mechanistic diagnosis on existing development data, not confirmation",
+  "plan_sha256": "57752a8941056a04d4bd1526b5672009e976bdffefaa87e846658ac1a5551899",
+  "source": {
+    "commit": "3cb394375723d3757a5289b7a8e6f46664e3f270",
+    "dirty": true,
+    "python_sources_sha256": "5cde4af03e110c4dff8d1b8203dbd031b959b7b26677f6c099c5e8e8a3f21fb0"
+  },
+  "code_sha256": "56249b18f9a9a753e3be2eded327d000c3849d6777d755c7d2a40470987471a3",
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.14.1+cu130",
+    "device": "cpu",
+    "threads": 1
+  },
+  "unique_clips": 512,
+  "first_frame_only": true,
+  "selection": "First 256 existing clips in fixed generator order; first frame only",
+  "repetitions_per_clip": "three routing seeds, two sensory parameter conditions; not independent clips",
+  "data_manifest": {
+    "train": {
+      "seed": 7557606305290508516,
+      "clips": 2048,
+      "features_sha256": "0d666751f6fdbb8300e1001be1fd0b4fee4d026b96b2e9622a97abe21cd0c045",
+      "targets_sha256": "6ed8cd8b0b82856498d964b7077cc53b5f710d60829178367268b4c88c7e3024"
+    },
+    "validation": {
+      "seed": 4810132247396768964,
+      "clips": 512,
+      "features_sha256": "8ffb646504955a2f842a6cda442b1a4087faadadffb46a1bd4285b808535a16f",
+      "targets_sha256": "7bc87a423e9a41f5e0642365f334610e3a6ec94605eba93ba42c5b2c4b12e582"
+    },
+    "pixel_reference": {
+      "mean_squared_vector_error": 0.0,
+      "mean_endpoint_error": 0.0
+    },
+    "counterfactual": {
+      "seed": 883249397151640743,
+      "textures": 16,
+      "clips": 128,
+      "features_sha256": "c6e30223c41494976ac7da64f2f730a050b6be385f2fd3642e94a43292bfc363",
+      "targets_sha256": "f0c9c0c5e258f336350e6f2d845ff207771b504f4f1a9ea5027a62689cdb6d27",
+      "same_final_frame_per_eight_directions": true
+    },
+    "normalization": {
+      "fit_split": "train",
+      "mean": [
+        0.034602485597133636,
+        0.03260877728462219,
+        0.032648518681526184,
+        0.034774914383888245,
+        0.03279823064804077,
+        0.03105083666741848,
+        0.03071530908346176,
+        0.03284052014350891,
+        0.03231469541788101,
+        0.03054143115878105,
+        0.030709557235240936,
+        0.03272981196641922,
+        0.03466201201081276,
+        0.0328088104724884,
+        0.032730575650930405,
+        0.03446290269494057,
+        0.034762099385261536,
+        0.032702356576919556,
+        0.032621145248413086,
+        0.03494802862405777,
+        0.032396797090768814,
+        0.030640650540590286,
+        0.030823830515146255,
+        0.032528262585401535,
+        0.03256969153881073,
+        0.03091810829937458,
+        0.030800510197877884,
+        0.03258897364139557,
+        0.03472793102264404,
+        0.032659947872161865,
+        0.03258666768670082,
+        0.03447987511754036
+      ],
+      "std": [
+        0.010538124479353428,
+        0.011462979950010777,
+        0.011388806626200676,
+        0.010629059746861458,
+        0.011448712088167667,
+        0.012091066688299179,
+        0.011877989396452904,
+        0.01152775902301073,
+        0.011397949419915676,
+        0.011885092593729496,
+        0.01207295898348093,
+        0.011469281278550625,
+        0.010508882813155651,
+        0.01146424189209938,
+        0.011365985497832298,
+        0.010525285266339779,
+        0.010524536482989788,
+        0.011450686492025852,
+        0.011552040465176105,
+        0.010669099166989326,
+        0.011540209874510765,
+        0.012054890394210815,
+        0.012039885856211185,
+        0.0114232013002038,
+        0.011470193043351173,
+        0.012017101049423218,
+        0.012125684879720211,
+        0.011388244107365608,
+        0.010628372430801392,
+        0.011466637253761292,
+        0.011467637494206429,
+        0.010496310889720917
+      ],
+      "trainable": false
+    }
+  },
+  "selected_features_sha256": {
+    "train": "17c1c5bc8a60d0d4494dd5e4dc58a0d617d3a695078513319b5ff792fa9d4187",
+    "validation": "a430c76b3a203d5b0e416442d66b2f6b8643be0a494c418304eedb52091ca227"
+  },
+  "training_covariance": {
+    "samples": 256,
+    "frame": 0,
+    "centered": true,
+    "eigenvalues_descending": [
+      2.478522393343111,
+      2.1206440306215697,
+      1.9271434725663383,
+      1.8506185139876132,
+      1.7507051436302719,
+      1.6511582850962654,
+      1.4512481736711274,
+      1.4263288356550083,
+      1.2916278860564716,
+      1.2306554381120411,
+      1.081651305146063,
+      1.0185871354880625,
+      0.9838845511115276,
+      0.9355898784522076,
+      0.9121799271883072,
+      0.8644815343479132,
+      0.8096390366446821,
+      0.8011082276646238,
+      0.7278450576152788,
+      0.6925188168174313,
+      0.6413477708525034,
+      0.6274788820255099,
+      0.6233737702066664,
+      0.5951507750716,
+      0.5474899248977763,
+      0.5051978018882461,
+      0.4478156335017351,
+      0.42634253711396713,
+      0.3886572665132292,
+      0.3477822436886189,
+      0.3085615345224366,
+      0.21250252268795694
+    ],
+    "empirical_rank": 32
+  },
+  "thresholds": [
+    1e-05,
+    0.0001
+  ],
+  "near_zero_preactivation_threshold": 1e-06,
+  "boundary_convention": "ReLU derivative taken as zero at exactly zero; near-boundary counts are reported separately",
+  "alpha_omitted_from_rank": "Positive alpha scales every Jacobian singular value equally; relative rank unchanged",
+  "seeds": {
+    "7": {
+      "checkpoint_sha256": "7a27fdfda826afd6ecf3daa9320ce3041c3a319cf3c00941cbca200f03ea5f7e",
+      "checkpoint_identity_verified": true,
+      "conditions": {
+        "initial": {
+          "train": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 147.0,
+              "q25": 526.0,
+              "median": 670.0,
+              "q75": 775.25,
+              "max": 1121.0
+            },
+            "near_boundary_preactivations": 1,
+            "near_boundary_fraction": 2.8785924834193074e-06,
+            "samples_with_near_boundary": 1,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 3.3540791478169128e-18,
+              "q25": 0.16814431161508747,
+              "median": 0.2068666188034205,
+              "q75": 0.23735814757426243,
+              "max": 0.3467728108017586
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "27": 1,
+                  "31": 1,
+                  "32": 254
+                },
+                "full_rank_fraction": 0.9921875,
+                "rank_deficient_samples": 2,
+                "rank_deficient_away_from_boundary": 2
+              },
+              "0.0001": {
+                "histogram": {
+                  "27": 1,
+                  "31": 1,
+                  "32": 254
+                },
+                "full_rank_fraction": 0.9921875,
+                "rank_deficient_samples": 2,
+                "rank_deficient_away_from_boundary": 2
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          },
+          "validation": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 112.0,
+              "q25": 517.5,
+              "median": 670.5,
+              "q75": 804.5,
+              "max": 1106.0
+            },
+            "near_boundary_preactivations": 0,
+            "near_boundary_fraction": 0.0,
+            "samples_with_near_boundary": 0,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 0.0,
+              "q25": 0.16276046073178713,
+              "median": 0.20310914667371194,
+              "q75": 0.2413303763640124,
+              "max": 0.331797970117258
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "29": 1,
+                  "30": 2,
+                  "31": 1,
+                  "32": 252
+                },
+                "full_rank_fraction": 0.984375,
+                "rank_deficient_samples": 4,
+                "rank_deficient_away_from_boundary": 4
+              },
+              "0.0001": {
+                "histogram": {
+                  "29": 1,
+                  "30": 2,
+                  "31": 1,
+                  "32": 252
+                },
+                "full_rank_fraction": 0.984375,
+                "rank_deficient_samples": 4,
+                "rank_deficient_away_from_boundary": 4
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          }
+        },
+        "trained": {
+          "train": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 140.0,
+              "q25": 485.75,
+              "median": 612.5,
+              "q75": 718.0,
+              "max": 1058.0
+            },
+            "near_boundary_preactivations": 0,
+            "near_boundary_fraction": 0.0,
+            "samples_with_near_boundary": 0,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 0.06584810879388281,
+              "q25": 0.17176810639290735,
+              "median": 0.2122547489340437,
+              "q75": 0.24058919463976786,
+              "max": 0.3345096154076556
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "32": 256
+                },
+                "full_rank_fraction": 1.0,
+                "rank_deficient_samples": 0,
+                "rank_deficient_away_from_boundary": 0
+              },
+              "0.0001": {
+                "histogram": {
+                  "32": 256
+                },
+                "full_rank_fraction": 1.0,
+                "rank_deficient_samples": 0,
+                "rank_deficient_away_from_boundary": 0
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          },
+          "validation": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 125.0,
+              "q25": 475.25,
+              "median": 619.0,
+              "q75": 754.25,
+              "max": 1050.0
+            },
+            "near_boundary_preactivations": 1,
+            "near_boundary_fraction": 2.8785924834193074e-06,
+            "samples_with_near_boundary": 1,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 0.0,
+              "q25": 0.16253294831920012,
+              "median": 0.2065680908505064,
+              "q75": 0.24632235703169175,
+              "max": 0.32508783480850306
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "30": 1,
+                  "31": 3,
+                  "32": 252
+                },
+                "full_rank_fraction": 0.984375,
+                "rank_deficient_samples": 4,
+                "rank_deficient_away_from_boundary": 4
+              },
+              "0.0001": {
+                "histogram": {
+                  "30": 1,
+                  "31": 3,
+                  "32": 252
+                },
+                "full_rank_fraction": 0.984375,
+                "rank_deficient_samples": 4,
+                "rank_deficient_away_from_boundary": 4
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          }
+        }
+      }
+    },
+    "8": {
+      "checkpoint_sha256": "f363c79d608d8640c2928feec30adbb7fbcb3ccdb52e6d5cdc44550ae77c74de",
+      "checkpoint_identity_verified": true,
+      "conditions": {
+        "initial": {
+          "train": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 140.0,
+              "q25": 535.0,
+              "median": 667.5,
+              "q75": 778.75,
+              "max": 1110.0
+            },
+            "near_boundary_preactivations": 1,
+            "near_boundary_fraction": 2.8785924834193074e-06,
+            "samples_with_near_boundary": 1,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 0.0,
+              "q25": 0.16627234823334394,
+              "median": 0.2053856170755794,
+              "q75": 0.2395077789787842,
+              "max": 0.33269249056762207
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "29": 1,
+                  "31": 3,
+                  "32": 252
+                },
+                "full_rank_fraction": 0.984375,
+                "rank_deficient_samples": 4,
+                "rank_deficient_away_from_boundary": 4
+              },
+              "0.0001": {
+                "histogram": {
+                  "29": 1,
+                  "31": 3,
+                  "32": 252
+                },
+                "full_rank_fraction": 0.984375,
+                "rank_deficient_samples": 4,
+                "rank_deficient_away_from_boundary": 4
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          },
+          "validation": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 128.0,
+              "q25": 516.5,
+              "median": 666.5,
+              "q75": 799.5,
+              "max": 1134.0
+            },
+            "near_boundary_preactivations": 0,
+            "near_boundary_fraction": 0.0,
+            "samples_with_near_boundary": 0,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 0.0,
+              "q25": 0.16257116322329637,
+              "median": 0.20156178017237747,
+              "q75": 0.243142513463518,
+              "max": 0.33593790284998204
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "29": 2,
+                  "30": 1,
+                  "31": 3,
+                  "32": 250
+                },
+                "full_rank_fraction": 0.9765625,
+                "rank_deficient_samples": 6,
+                "rank_deficient_away_from_boundary": 6
+              },
+              "0.0001": {
+                "histogram": {
+                  "29": 2,
+                  "30": 1,
+                  "31": 3,
+                  "32": 250
+                },
+                "full_rank_fraction": 0.9765625,
+                "rank_deficient_samples": 6,
+                "rank_deficient_away_from_boundary": 6
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          }
+        },
+        "trained": {
+          "train": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 133.0,
+              "q25": 494.75,
+              "median": 622.5,
+              "q75": 728.5,
+              "max": 1057.0
+            },
+            "near_boundary_preactivations": 1,
+            "near_boundary_fraction": 2.8785924834193074e-06,
+            "samples_with_near_boundary": 1,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 0.05651285717413238,
+              "q25": 0.16552766685366888,
+              "median": 0.2081662791728725,
+              "q75": 0.24053405798015592,
+              "max": 0.3326656288159994
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "32": 256
+                },
+                "full_rank_fraction": 1.0,
+                "rank_deficient_samples": 0,
+                "rank_deficient_away_from_boundary": 0
+              },
+              "0.0001": {
+                "histogram": {
+                  "32": 256
+                },
+                "full_rank_fraction": 1.0,
+                "rank_deficient_samples": 0,
+                "rank_deficient_away_from_boundary": 0
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          },
+          "validation": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 127.0,
+              "q25": 482.75,
+              "median": 615.5,
+              "q75": 755.25,
+              "max": 1074.0
+            },
+            "near_boundary_preactivations": 0,
+            "near_boundary_fraction": 0.0,
+            "samples_with_near_boundary": 0,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 0.0,
+              "q25": 0.17128456521716648,
+              "median": 0.20630381889295946,
+              "q75": 0.24251267399349186,
+              "max": 0.328232590287091
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "30": 1,
+                  "31": 4,
+                  "32": 251
+                },
+                "full_rank_fraction": 0.98046875,
+                "rank_deficient_samples": 5,
+                "rank_deficient_away_from_boundary": 5
+              },
+              "0.0001": {
+                "histogram": {
+                  "30": 1,
+                  "31": 4,
+                  "32": 251
+                },
+                "full_rank_fraction": 0.98046875,
+                "rank_deficient_samples": 5,
+                "rank_deficient_away_from_boundary": 5
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          }
+        }
+      }
+    },
+    "9": {
+      "checkpoint_sha256": "1a96aca51f07f67cfe1ea16a1d7b69542cb381ec23d43212bbf33bc4ab2b5cc3",
+      "checkpoint_identity_verified": true,
+      "conditions": {
+        "initial": {
+          "train": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 137.0,
+              "q25": 537.75,
+              "median": 666.0,
+              "q75": 781.5,
+              "max": 1102.0
+            },
+            "near_boundary_preactivations": 1,
+            "near_boundary_fraction": 2.8785924834193074e-06,
+            "samples_with_near_boundary": 1,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 2.3212600085879593e-18,
+              "q25": 0.16715926160345002,
+              "median": 0.20818870547406426,
+              "q75": 0.2376255533229569,
+              "max": 0.335551120259141
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "30": 1,
+                  "31": 1,
+                  "32": 254
+                },
+                "full_rank_fraction": 0.9921875,
+                "rank_deficient_samples": 2,
+                "rank_deficient_away_from_boundary": 2
+              },
+              "0.0001": {
+                "histogram": {
+                  "30": 1,
+                  "31": 1,
+                  "32": 254
+                },
+                "full_rank_fraction": 0.9921875,
+                "rank_deficient_samples": 2,
+                "rank_deficient_away_from_boundary": 2
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          },
+          "validation": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 115.0,
+              "q25": 512.0,
+              "median": 663.5,
+              "q75": 800.0,
+              "max": 1113.0
+            },
+            "near_boundary_preactivations": 0,
+            "near_boundary_fraction": 0.0,
+            "samples_with_near_boundary": 0,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 0.0,
+              "q25": 0.16446960768111593,
+              "median": 0.20427209852777906,
+              "q75": 0.24673979503864493,
+              "max": 0.34098545783260936
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "27": 1,
+                  "28": 1,
+                  "29": 1,
+                  "31": 1,
+                  "32": 252
+                },
+                "full_rank_fraction": 0.984375,
+                "rank_deficient_samples": 4,
+                "rank_deficient_away_from_boundary": 4
+              },
+              "0.0001": {
+                "histogram": {
+                  "27": 1,
+                  "28": 1,
+                  "29": 1,
+                  "31": 1,
+                  "32": 252
+                },
+                "full_rank_fraction": 0.984375,
+                "rank_deficient_samples": 4,
+                "rank_deficient_away_from_boundary": 4
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          }
+        },
+        "trained": {
+          "train": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 125.0,
+              "q25": 499.25,
+              "median": 615.5,
+              "q75": 726.5,
+              "max": 1039.0
+            },
+            "near_boundary_preactivations": 2,
+            "near_boundary_fraction": 5.757184966838615e-06,
+            "samples_with_near_boundary": 2,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 6.968026963044749e-18,
+              "q25": 0.17180276790817556,
+              "median": 0.21472254940327257,
+              "q75": 0.24527452368536146,
+              "max": 0.3263800246080658
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "31": 1,
+                  "32": 255
+                },
+                "full_rank_fraction": 0.99609375,
+                "rank_deficient_samples": 1,
+                "rank_deficient_away_from_boundary": 1
+              },
+              "0.0001": {
+                "histogram": {
+                  "31": 1,
+                  "32": 255
+                },
+                "full_rank_fraction": 0.99609375,
+                "rank_deficient_samples": 1,
+                "rank_deficient_away_from_boundary": 1
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          },
+          "validation": {
+            "samples": 256,
+            "ambient_features": 32,
+            "active_neurons": {
+              "min": 121.0,
+              "q25": 474.0,
+              "median": 607.5,
+              "q75": 751.5,
+              "max": 1046.0
+            },
+            "near_boundary_preactivations": 0,
+            "near_boundary_fraction": 0.0,
+            "samples_with_near_boundary": 0,
+            "exact_zero_preactivations": 0,
+            "smallest_to_largest_singular_ratio": {
+              "min": 0.0,
+              "q25": 0.16623065535789647,
+              "median": 0.2118297257940654,
+              "q75": 0.247467479123767,
+              "max": 0.34482383191064336
+            },
+            "ranks": {
+              "1e-05": {
+                "histogram": {
+                  "29": 1,
+                  "30": 1,
+                  "32": 254
+                },
+                "full_rank_fraction": 0.9921875,
+                "rank_deficient_samples": 2,
+                "rank_deficient_away_from_boundary": 2
+              },
+              "0.0001": {
+                "histogram": {
+                  "29": 1,
+                  "30": 1,
+                  "32": 254
+                },
+                "full_rank_fraction": 0.9921875,
+                "rank_deficient_samples": 2,
+                "rank_deficient_away_from_boundary": 2
+              }
+            },
+            "threshold_disagreement_samples": 0,
+            "actual_first_state_exactly_reproduced": true
+          }
+        }
+      }
+    }
+  },
+  "limits": "Local Jacobian rank in ambient 32-dimensional feature space. Does not establish global invertibility or motion-information loss; later frames and recurrence may compensate.",
+  "evaluated_jacobians": 3072,
+  "all_full_rank_at_both_tolerances": false,
+  "decision": "Document a local sensory limitation and formulate a matched interface-calibration control before any renewed anatomy claim; no automatic GPU launch.",
+  "seconds": 13.562354756999412
+}

@@ -1,0 +1,667 @@
+{
+  "purpose": "Explain observed local rank deficiencies with active-feature coverage; no repeated SVD, new split or training",
+  "primary_report_sha256": "210ebb54698f3e774c1d98520057775a085c3212ca8729e4ab6d6c36febb73e3",
+  "source": {
+    "commit": "3cb394375723d3757a5289b7a8e6f46664e3f270",
+    "dirty": true,
+    "python_sources_sha256": "6205b05ad383f733b7286915d6e94d63d76bb6c8111965c8bad78856ba3cd6cd"
+  },
+  "code_sha256": "f9810e8745289c73782766b60d9ba6b56f3a5fbc33ef01983672e6b950a4fc4f",
+  "seeds": {
+    "7": {
+      "initial": {
+        "train": {
+          "active_feature_count_histogram": {
+            "27": 1,
+            "31": 1,
+            "32": 254
+          },
+          "number_of_samples_missing_each_feature": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 198,
+            "feature_index": 12,
+            "applied_feature_delta": 0.0520632266998291,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        },
+        "validation": {
+          "active_feature_count_histogram": {
+            "29": 1,
+            "30": 2,
+            "31": 1,
+            "32": 252
+          },
+          "number_of_samples_missing_each_feature": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 14,
+            "feature_index": 1,
+            "applied_feature_delta": 0.07073354721069336,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        }
+      },
+      "trained": {
+        "train": {
+          "active_feature_count_histogram": {
+            "32": 256
+          },
+          "number_of_samples_missing_each_feature": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": null
+        },
+        "validation": {
+          "active_feature_count_histogram": {
+            "30": 1,
+            "31": 3,
+            "32": 252
+          },
+          "number_of_samples_missing_each_feature": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 7,
+            "feature_index": 29,
+            "applied_feature_delta": 0.04432106018066406,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        }
+      }
+    },
+    "8": {
+      "initial": {
+        "train": {
+          "active_feature_count_histogram": {
+            "29": 1,
+            "31": 3,
+            "32": 252
+          },
+          "number_of_samples_missing_each_feature": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 35,
+            "feature_index": 31,
+            "applied_feature_delta": 0.1793074607849121,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        },
+        "validation": {
+          "active_feature_count_histogram": {
+            "29": 2,
+            "30": 1,
+            "31": 3,
+            "32": 250
+          },
+          "number_of_samples_missing_each_feature": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 7,
+            "feature_index": 9,
+            "applied_feature_delta": 0.04259610176086426,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        }
+      },
+      "trained": {
+        "train": {
+          "active_feature_count_histogram": {
+            "32": 256
+          },
+          "number_of_samples_missing_each_feature": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": null
+        },
+        "validation": {
+          "active_feature_count_histogram": {
+            "30": 1,
+            "31": 4,
+            "32": 251
+          },
+          "number_of_samples_missing_each_feature": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 7,
+            "feature_index": 9,
+            "applied_feature_delta": 0.01385188102722168,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        }
+      }
+    },
+    "9": {
+      "initial": {
+        "train": {
+          "active_feature_count_histogram": {
+            "30": 1,
+            "31": 1,
+            "32": 254
+          },
+          "number_of_samples_missing_each_feature": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 115,
+            "feature_index": 17,
+            "applied_feature_delta": 0.049822330474853516,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        },
+        "validation": {
+          "active_feature_count_histogram": {
+            "27": 1,
+            "28": 1,
+            "29": 1,
+            "31": 1,
+            "32": 252
+          },
+          "number_of_samples_missing_each_feature": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 14,
+            "feature_index": 1,
+            "applied_feature_delta": 0.17327547073364258,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        }
+      },
+      "trained": {
+        "train": {
+          "active_feature_count_histogram": {
+            "31": 1,
+            "32": 255
+          },
+          "number_of_samples_missing_each_feature": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 115,
+            "feature_index": 17,
+            "applied_feature_delta": 0.01783311367034912,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        },
+        "validation": {
+          "active_feature_count_histogram": {
+            "29": 1,
+            "30": 1,
+            "32": 254
+          },
+          "number_of_samples_missing_each_feature": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "rank_histogram_matches_coverage_at_both_tolerances": true,
+          "remaining_total_rank_deficit_after_missing_columns": {
+            "1e-05": 0,
+            "0.0001": 0
+          },
+          "collision_witness": {
+            "selected_clip_index": 83,
+            "feature_index": 13,
+            "applied_feature_delta": 0.05057024955749512,
+            "relu_state_exactly_identical": true,
+            "active_set_exactly_identical": true,
+            "scope": "Ambient feature-vector perturbation; not claimed to correspond to a realizable video"
+          }
+        }
+      }
+    }
+  },
+  "all_rank_loss_explained_by_missing_active_feature_columns": true,
+  "constructive_collision_witnesses": 10,
+  "seconds": 2.455238613001711,
+  "limits": "Sparse local failures in the first frame. No evidence that missing directions encode motion or that these events cause graph-comparison errors; no global invertibility or biological claim. Not an architecture-selection experiment."
+}
